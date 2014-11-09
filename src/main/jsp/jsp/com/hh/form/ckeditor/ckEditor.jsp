@@ -386,9 +386,9 @@
 		<div id="formdiv">
 
 			<div xtype="border_layout">
-				<div config="render : 'west' ,width:120 ,westOpen:0 ">
-					<div xtype="toolbar" config="type:'head'" style="height:25px;text-align:center;">控件列表</div>
-					<ul id="btn_menu">
+				<div config="render : 'west' ,width:120 ,open:0 ">
+					<div xtype="toolbar" config="type:'head'" style="height:28px;text-align:center;">控件列表</div>
+					<ul id="btn_menu"  style="width:117px;border:0px;">
 					</ul>
 				</div>
 				<div>
