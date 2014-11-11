@@ -1,7 +1,6 @@
 package com.hh.form.service.impl;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,7 +19,7 @@ import com.hh.system.util.dto.PageRange;
 @Service
 public class MongoFormOperService {
 	@Autowired
-	private ISpringMongo springMongoDAOImpl;
+	private ISpringMongo<Map<String, Object>> springMongoDAOImpl;
 
 	public void save(Map<String, Object> objectMap) {
 		String tableName = Convert.toString(objectMap.get("tableName"));
