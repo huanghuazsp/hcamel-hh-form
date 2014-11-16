@@ -88,7 +88,7 @@ public class MongoFormOperService {
 			}
 		}
 		
-		Map<String, Object> resultMap = springMongoDAOImpl.queryPage(tableName, query);
+		Map<String, Object> resultMap = springMongoDAOImpl.queryPage(Map.class,tableName, query);
 		return resultMap;
 	}
 
