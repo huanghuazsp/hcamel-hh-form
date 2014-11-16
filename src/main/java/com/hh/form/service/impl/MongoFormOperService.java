@@ -19,7 +19,7 @@ import com.hh.system.util.dto.PageRange;
 @Service
 public class MongoFormOperService {
 	@Autowired
-	private ISpringMongo<Map<String, Object>> springMongoDAOImpl;
+	private ISpringMongo springMongoDAOImpl;
 
 	public void save(Map<String, Object> objectMap) {
 		String tableName = Convert.toString(objectMap.get("tableName"));
