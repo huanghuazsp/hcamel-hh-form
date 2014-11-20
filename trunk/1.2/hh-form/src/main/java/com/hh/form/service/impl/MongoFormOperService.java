@@ -6,9 +6,9 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
+import com.hh.hibernate.util.dto.PagingData;
 import com.hh.mongo.dao.inf.ISpringMongo;
 import com.hh.system.util.Check;
 import com.hh.system.util.Convert;
@@ -31,16 +31,16 @@ public class MongoFormOperService {
 			objectMap.put("_id", uuidString);
 			objectMap.put("id", uuidString);
 		}
-		springMongoDAOImpl.save(tableName,objectMap);
+		springMongoDAOImpl.save(tableName, objectMap);
 	}
 
 	public Map<String, Object> findObjectById(String id, String tableName) {
 		return springMongoDAOImpl.findById(tableName, id);
 	}
 
-	public Map<String, Object> queryPagingData(Map<String, Object> object,
-			PageRange pageRange, String tableName) {
-		Query query = new Query();
+	public PagingData<Map<String, Object>> queryPagingData(
+			Map<String, Object> object, PageRange pageRange, String tableName) {
+		List<Object> paramList = new ArrayList<Object>();
 		if (object != null) {
 			Object value = object.get("cond");
 			if (Check.isNoEmpty(value)) {
@@ -83,17 +83,16 @@ public class MongoFormOperService {
 							criteria.andOperator(criterias);
 						}
 					}
-					query.addCriteria(criteria);
+					paramList.add(criteria);
 				}
 			}
 		}
-		
-		Map<String, Object> resultMap = springMongoDAOImpl.queryPage(Map.class,tableName, query);
+		PagingData<Map<String, Object>> resultMap = springMongoDAOImpl
+				.queryPage(tableName, paramList);
 		return resultMap;
 	}
 
 	public void deleteByIds(String ids, String tableName) {
-		Query query = new Query(new Criteria("id").in(Convert.strToList(ids)));
-		springMongoDAOImpl.remove(tableName, query);
+		springMongoDAOImpl.remove(tableName, Convert.strToList(ids));
 	}
 }
