@@ -8,13 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.stereotype.Service;
 
-import com.hh.hibernate.util.dto.PagingData;
 import com.hh.mongo.dao.inf.ISpringMongo;
 import com.hh.system.util.Check;
 import com.hh.system.util.Convert;
 import com.hh.system.util.Json;
 import com.hh.system.util.PrimaryKey;
 import com.hh.system.util.dto.PageRange;
+import com.hh.system.util.dto.PagingData;
 
 @Service
 public class MongoFormOperService {
