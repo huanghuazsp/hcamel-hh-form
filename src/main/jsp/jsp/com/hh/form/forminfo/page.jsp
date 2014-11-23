@@ -97,6 +97,10 @@
 		} ],
 		onClick : function(data) {
 			if (data.leaf == 1) {
+				var param = {
+						text:data.text
+				};
+				BaseUtil.openHref('jsp-form-ckeditor-ckEditoredit?' + $.param(param));
 			} else {
 				requestParams.node = data.id;
 				loadData();
