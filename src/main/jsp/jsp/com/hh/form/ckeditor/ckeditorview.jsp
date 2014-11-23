@@ -2,12 +2,12 @@
 <%@page import="com.hh.system.util.Check"%>
 <%@page import="com.hh.system.util.Json"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@page import="com.hh.system.util.SystemUtil"%>
-<%=SystemUtil.getBaseDoctype()%>
+<%@page import="com.hh.system.util.BaseSystemUtil"%>
+<%=BaseSystemUtil.getBaseDoctype()%>
 <html>
 <head>
 <title>表单预览</title>
-<%=SystemUtil.getBaseJs("checkform","date","ckeditor")%>
+<%=BaseSystemUtil.getBaseJs("checkform","date","ckeditor")%>
 <%
 Map<String,Object> paramMap =   Json.toMap(request.getParameter("params"));
 String html =  Convert.toString(paramMap.get("html")).replaceAll("<img config", "<span config").replaceAll("ztype=\"span\" />", "></span>");

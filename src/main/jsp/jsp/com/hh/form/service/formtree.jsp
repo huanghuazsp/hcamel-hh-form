@@ -1,9 +1,9 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@page import="com.hh.system.util.SystemUtil"%>
-<%=SystemUtil.getBaseDoctype()%>
+<%@page import="com.hh.system.util.BaseSystemUtil"%>
+<%=BaseSystemUtil.getBaseDoctype()%>
 <html>
 <head>
-<%=SystemUtil.getBaseJs("layout", "ztree", "ztree_edit")%>
+<%=BaseSystemUtil.getBaseJs("layout", "ztree", "ztree_edit")%>
 <script type="text/javascript">
 	function formTreeClick(treeNode) {
 		if (treeNode.leaf == 1) {

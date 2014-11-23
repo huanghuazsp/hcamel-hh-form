@@ -1,10 +1,10 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@page import="com.hh.system.util.SystemUtil"%>
-<%=SystemUtil.getBaseDoctype()%>
+<%@page import="com.hh.system.util.BaseSystemUtil"%>
+<%=BaseSystemUtil.getBaseDoctype()%>
 <html>
 <head>
 <title>表单树编辑</title>
-<%=SystemUtil.getBaseJs("checkform")%>
+<%=BaseSystemUtil.getBaseJs("checkform")%>
 <script type="text/javascript">
 	var params = BaseUtil.getIframeParams();
 	var width = 580;

@@ -1,15 +1,15 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@page import="com.hh.system.util.SystemUtil"%>
+<%@page import="com.hh.system.util.BaseSystemUtil"%>
 <%@page import="com.hh.form.bean.HhCkFormTree"%>
 <%@page import="com.hh.form.service.impl.CkFormTreeService"%>
 <%@page import="com.hh.system.service.impl.BeanFactoryHelper"%>
 <%@page import="com.hh.system.util.Convert"%>
 <%@page import="com.hh.system.util.Check"%>
 <%@page import="com.hh.system.util.Json"%>
-<%=SystemUtil.getBaseDoctype()%>
+<%=BaseSystemUtil.getBaseDoctype()%>
 <html>
 <head>
-<%=SystemUtil.getBaseJs()%>
+<%=BaseSystemUtil.getBaseJs()%>
 <%
 	String id = Convert.toString(request.getParameter("formId"));
 	CkFormTreeService ckFormTreeService = BeanFactoryHelper
