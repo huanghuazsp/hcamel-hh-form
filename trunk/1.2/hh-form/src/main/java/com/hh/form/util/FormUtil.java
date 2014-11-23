@@ -19,8 +19,8 @@ import com.hh.form.bean.HhXtForm;
 import com.hh.form.bean.model.Column;
 import com.hh.system.util.Check;
 import com.hh.system.util.Convert;
-import com.hh.system.util.SysParam;
 import com.hh.system.util.date.DateFormat;
+import com.hh.system.util.statics.StaticVar;
 
 public class FormUtil {
 	public static List<Column> xtFormToColumn(String formSource) {
@@ -31,7 +31,7 @@ public class FormUtil {
 				JSONObject jsonObject = userArray.getJSONObject(i);
 				String[] names = JSONObject.getNames(jsonObject);
 				Map<String, Object> colMap = new HashMap<String, Object>();
-				if (SysParam.DATABASE.equals("mysql")) {
+				if (StaticVar.DATABASE.equals("mysql")) {
 					for (String name : names) {
 						if ("name".equals(name)) {
 							colMap.put("name", jsonObject.get(name));
@@ -66,7 +66,7 @@ public class FormUtil {
 							colMap.put("note", jsonObject.get(name));
 						}
 					}
-				} else if (SysParam.DATABASE.equals("oracle")) {
+				} else if (StaticVar.DATABASE.equals("oracle")) {
 					for (String name : names) {
 						if ("name".equals(name)) {
 							colMap.put("name", jsonObject.get(name));
@@ -122,22 +122,22 @@ public class FormUtil {
 			List<Column> list) {
 		List<String> sqlList = new ArrayList<String>();
 		if (deleteTable) {
-			if (SysParam.DATABASE.equals("mysql")) {
+			if (StaticVar.DATABASE.equals("mysql")) {
 				sqlList = createMysqlTable(tableName, columnList);
-			} else if (SysParam.DATABASE.equals("oracle")) {
+			} else if (StaticVar.DATABASE.equals("oracle")) {
 				sqlList = createTable(tableName, columnList);
 			}
 		} else {
 			if (tableName.equals(oldTableName)) {
-				if (SysParam.DATABASE.equals("mysql")) {
+				if (StaticVar.DATABASE.equals("mysql")) {
 					sqlList = alterMysqlTable(tableName, columnList, list);
-				} else if (SysParam.DATABASE.equals("oracle")) {
+				} else if (StaticVar.DATABASE.equals("oracle")) {
 					sqlList = alterTable(tableName, columnList, list);
 				}
 			} else {
-				if (SysParam.DATABASE.equals("mysql")) {
+				if (StaticVar.DATABASE.equals("mysql")) {
 					sqlList = createMysqlTable(tableName, columnList);
-				} else if (SysParam.DATABASE.equals("oracle")) {
+				} else if (StaticVar.DATABASE.equals("oracle")) {
 					sqlList = createTable(tableName, columnList);
 				}
 			}

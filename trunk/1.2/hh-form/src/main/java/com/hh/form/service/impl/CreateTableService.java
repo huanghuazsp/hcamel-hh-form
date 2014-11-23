@@ -13,7 +13,7 @@ import com.hh.form.bean.model.Column;
 import com.hh.hibernate.dao.inf.IHibernateDAO;
 import com.hh.system.util.Check;
 import com.hh.system.util.Convert;
-import com.hh.system.util.SysParam;
+import com.hh.system.util.statics.StaticVar;
 
 @Service
 public class CreateTableService {
@@ -38,12 +38,12 @@ public class CreateTableService {
 
 	public int isDataBaseTable(String tableName) {
 		int count = 0;
-		if (SysParam.DATABASE.equals("mysql")) {
+		if (StaticVar.DATABASE.equals("mysql")) {
 			count = hibernateDAO
 					.findCountBySql(
 							"SELECT	COUNT(*)  FROM	information_schema. TABLES WHERE TABLES .TABLE_NAME = ? AND TABLES .TABLE_SCHEMA = ?",
-							new Object[] { tableName, SysParam.DATABASE_SCHEMA });
-		} else if (SysParam.DATABASE.equals("oracle")) {
+							new Object[] { tableName, StaticVar.DATABASE_SCHEMA });
+		} else if (StaticVar.DATABASE.equals("oracle")) {
 			count = hibernateDAO
 					.findCountBySql(
 							"select COUNT(*) from TABS t where lower(t.table_name)=lower(?)",
@@ -63,12 +63,12 @@ public class CreateTableService {
 		}
 
 		List<Map<String, Object>> returnMaps = new ArrayList<Map<String, Object>>();
-		if (SysParam.DATABASE.equals("mysql")) {
+		if (StaticVar.DATABASE.equals("mysql")) {
 			returnMaps = hibernateDAO.queryListBySql(
 					"select * from information_schema.`COLUMNS`  where TABLE_SCHEMA='"
-							+ SysParam.DATABASE_SCHEMA + "' and TABLE_NAME='"
+							+ StaticVar.DATABASE_SCHEMA + "' and TABLE_NAME='"
 							+ (tableName.toLowerCase()) + "'", new HashMap<String, Object>());
-		} else if (SysParam.DATABASE.equals("oracle")) {
+		} else if (StaticVar.DATABASE.equals("oracle")) {
 			returnMaps = hibernateDAO
 					.queryListBySql(
 							"Select t.*,b.comments From user_tab_columns t  ,user_col_comments b where t.COLUMN_NAME = b.COLUMN_NAME and t.table_name = b.table_name and t.table_name ='"
@@ -80,10 +80,10 @@ public class CreateTableService {
 			column.setTableName(Convert.toString(map.get("TABLE_NAME")));
 			column.setName(Convert.toString(map.get("COLUMN_NAME")));
 			column.setType(Convert.toString(map.get("DATA_TYPE")));
-			if (SysParam.DATABASE.equals("mysql")) {
+			if (StaticVar.DATABASE.equals("mysql")) {
 				column.setNote(Convert.toString(map.get("COLUMN_COMMENT")));
 				column.setLength(Convert.toInt(map.get("CHARACTER_MAXIMUM_LENGTH")));
-			} else if (SysParam.DATABASE.equals("oracle")) {
+			} else if (StaticVar.DATABASE.equals("oracle")) {
 				column.setLength(Convert.toInt(map.get("DATA_LENGTH")));
 				column.setNote(Convert.toString(map.get("COMMENTS")));
 			}
