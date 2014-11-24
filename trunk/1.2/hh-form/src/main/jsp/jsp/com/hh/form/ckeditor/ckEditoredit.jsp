@@ -317,7 +317,7 @@
 	}
 	
 	function openview() {
-		BaseUtil.openHref('jsp-form-ckeditor-ckeditorview', {
+		Request.submit('jsp-form-ckeditor-ckeditorview', {
 			html : CKEDITOR.instances.editor.getData(),
 			title : text
 		});
