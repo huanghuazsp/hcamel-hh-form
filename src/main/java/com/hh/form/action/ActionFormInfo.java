@@ -15,9 +15,9 @@ public class ActionFormInfo extends BaseMongoAction<FormInfo> {
 
 	@Autowired
 	private FormInfoService service;
-	
+
 	public void updateHtml() {
-//		service.updateHtml(object);
+		service.updateHtml(object);
 	}
 
 }
