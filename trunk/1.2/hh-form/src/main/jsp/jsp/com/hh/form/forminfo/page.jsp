@@ -98,9 +98,13 @@
 		onClick : function(data) {
 			if (data.leaf == 1) {
 				var param = {
-						text:data.text
+					text : data.text,
+					objectId : data.id
 				};
-				BaseUtil.openHref('jsp-form-ckeditor-ckEditoredit?' + $.param(param));
+				Request.openwin({
+					id : 'form_' + data.text,
+					url : 'jsp-form-ckeditor-ckEditoredit?' + $.param(param)
+				});
 			} else {
 				requestParams.node = data.id;
 				loadData();
