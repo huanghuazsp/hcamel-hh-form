@@ -182,8 +182,8 @@
 										items : [
 												'Source',
 												'-',
-												'NewPage'/*, 'Save',, 'DocProps',
-																																																																																																																																																																																																																																														'Preview', 'Print', '-'*/,
+												'NewPage',
+												//, 'Save',, 'DocProps','Preview', 'Print', '-',
 												'Templates' ]
 									},
 									{
