@@ -298,7 +298,7 @@
 		var html = CKEDITOR.instances.editor.getData().replace(/<img config/g,
 				'<span config').replace(/ztype="span" \/>/g, '></span>');
 		var jsonConfig = [];
-		var $html = $(html);
+		var $html = $('<span>'+html+'</span>');
 		$html.find("[xtype]").each(function() {
 			var config = $(this).getConfig();
 			if (!config.text) {
@@ -311,7 +311,7 @@
 			html : html,
 			jsonConfig : BaseUtil.toString(jsonConfig)
 		};
-		Request.request('form-FormInif-save', {
+		Request.request('form-FormInfo-updateHtml', {
 			data : data
 		});
 	}
@@ -324,6 +324,25 @@
 	}
 	function init(){
 		document.title=document.title+'-'+text;
+		findObject();
+	}
+	
+	function findObject(){
+		Request.request(
+				'form-FormInfo-findObjectById',
+				{
+					data : {
+						id : objectId
+					},
+					defaultMsg : false,
+					callback : function(object) {
+						if(object && object.html){
+							CKEDITOR.instances.editor.setData(object.html.replace(
+									/<span config/g, '<img config').replace(/><\/span>/g,
+									'ztype="span" />'));
+						}
+					}
+				});
 	}
 </script>
 <style>

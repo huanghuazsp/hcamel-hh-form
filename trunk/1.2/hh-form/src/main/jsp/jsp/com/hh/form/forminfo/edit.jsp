@@ -63,7 +63,11 @@
 					<tr>
 						<td xtype="label">类型：</td>
 						<td><span id="leafspan" xtype="radio"
-							config="name: 'leaf' ,value : 0, data :[{id:1,text:'表单'},{id:0,text:'类别'}]"></span></td>
+							config="name: 'leaf' ,value : 1, data :[{id:1,text:'表单'},{id:0,text:'类别'}]"></span></td>
+					</tr>
+					<tr>
+						<td xtype="label">业务表名：</td>
+						<td><span xtype="text" config="name: 'tableName' "></span></td>
 					</tr>
 				</tbody>
 			</table>
