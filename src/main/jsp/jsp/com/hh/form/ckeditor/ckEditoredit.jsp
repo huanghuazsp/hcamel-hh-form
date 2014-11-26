@@ -242,7 +242,7 @@
 										name : 'forms',
 										items : formitems
 									} ],
-							height : Browser.getHeight() - 150,
+							height : Browser.getHeight() - 155,
 							fullPage : false,
 							contentsCss : '/hhcommon/opensource/jquery/jqueryuiframe.css',
 							menu_groups : 'clipboard,form,tablecell,tablecellproperties,tablerow,tablecolumn,table,anchor,link,flash,checkbox,radio,textfield,hiddenfield,imagebutton,button,select,textarea,'
@@ -288,6 +288,7 @@
 					});
 			$("#btn_menu").menu();
 			$(toolId).remove();
+			findObject();
 		});
 	};
 	
@@ -324,7 +325,6 @@
 	}
 	function init(){
 		document.title=document.title+'-'+text;
-		findObject();
 	}
 	
 	function findObject(){
@@ -353,10 +353,10 @@
 </head>
 <body>
 	<div xtype="border_layout">
-		<div config="render : 'west' ,resizable :false ">
+		<div config="render : 'west' ,resizable :false ,width:180 ">
 			<div xtype="toolbar" config="type:'head'"
-				style="height: 28px; text-align: center;">控件列表</div>
-			<ul id="btn_menu" style="width: 197px; border: 0px;">
+				style="height: 28px; text-align: center;"><div style="margin:5px 0px 0px 0px">控件列表</div></div>
+			<ul id="btn_menu" style="width: 150px; border: 0px;margin:5px;">
 			</ul>
 		</div>
 		<div>
