@@ -1,3 +1,5 @@
+<%@page import="com.hh.form.bean.FormInfo"%>
+<%@page import="com.hh.form.service.impl.FormInfoService"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@page import="com.hh.system.util.BaseSystemUtil"%>
 <%@page import="com.hh.form.bean.HhCkFormTree"%>
@@ -12,19 +14,33 @@
 <%=BaseSystemUtil.getBaseJs()%>
 <%
 	String id = Convert.toString(request.getParameter("formId"));
-	CkFormTreeService ckFormTreeService = BeanFactoryHelper
-			.getBeanFactory().getBean(CkFormTreeService.class);
-	HhCkFormTree hhCkFormTree = ckFormTreeService.findObjectById(id);
+	String databaseType = Convert.toString(request.getParameter("databaseType"));
+	String jsonConfig = "[]";
+	String tableName = "";
+	if("relation".equals(databaseType)){
+		CkFormTreeService ckFormTreeService = BeanFactoryHelper
+				.getBeanFactory().getBean(CkFormTreeService.class);
+		HhCkFormTree hhCkFormTree = ckFormTreeService.findObjectById(id);
+		jsonConfig = hhCkFormTree.getJsonConfig();
+		tableName = hhCkFormTree.getTableName();
+	}else{
+		FormInfoService formInfoService = BeanFactoryHelper
+				.getBeanFactory().getBean(FormInfoService.class);
+		FormInfo formInfo = formInfoService.findObjectById(id);
+		jsonConfig = formInfo.getJsonConfig();
+		tableName = formInfo.getTableName();
+	}
 %>
 <script type="text/javascript">
 	var formId = '<%=id%>';
-	var  column =  <%=hhCkFormTree.getJsonConfig()%>;
+	var  column =  <%=jsonConfig%>;
+	var tableName = '<%=tableName%>';
+	
 	
 	for(var i=0;i<column.length;i++){
 		var data = column[i];
 		data.id=data.name;
 	}
-	var tableName = '<%=hhCkFormTree.getTableName()%>';
 	var pagelistConfig = {
 		url : 'form-MongoFormOper-queryPagingData',
 		params : {
@@ -49,7 +65,7 @@
 		Dialog.open({
 			width : Browser.getMainWidth() * 0.9,
 			height : Browser.getMainHeight() * 0.85,
-			url : 'jsp-form-service-ckeditorform?hrefckeditor=' + formId,
+			url : 'jsp-form-service-ckeditorform?databaseType=<%=databaseType%>&hrefckeditor=' + formId,
 			params : {
 				callback : function() {
 					$("#pagelist").loadData();
@@ -62,7 +78,7 @@
 			Dialog.open({
 				width : Browser.getMainWidth() * 0.9,
 				height : Browser.getMainHeight() * 0.85,
-				url : 'jsp-form-service-ckeditorform?hrefckeditor=' + formId
+				url : 'jsp-form-service-ckeditorform?databaseType=<%=databaseType%>&hrefckeditor=' + formId
 						+ '&objectId=' + row.id,
 				params : {
 					callback : function() {

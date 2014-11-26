@@ -8,7 +8,7 @@
 	function formTreeClick(treeNode) {
 		if (treeNode.leaf == 1) {
 			$('#startserviceiframe').attr('src',
-					'jsp-form-service-formlist?formId=' + treeNode.id);
+					'jsp-form-service-formlist?databaseType=relation&formId=' + treeNode.id);
 		}
 	}
 	function init() {
