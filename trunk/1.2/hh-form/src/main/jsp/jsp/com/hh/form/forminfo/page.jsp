@@ -101,9 +101,10 @@
 					text : data.text,
 					objectId : data.id
 				};
-				Request.openwin({
+				BaseUtil.addTab({
 					id : 'form_' + data.text,
-					url : 'jsp-form-ckeditor-ckEditoredit?' + $.param(param)
+					text :  '表单设计-'+data.text,
+					src : 'jsp-form-ckeditor-ckEditoredit?' + $.param(param)
 				});
 			} else {
 				requestParams.node = data.id;
