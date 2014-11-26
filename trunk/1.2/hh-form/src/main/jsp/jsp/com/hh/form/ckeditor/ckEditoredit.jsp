@@ -242,7 +242,7 @@
 										name : 'forms',
 										items : formitems
 									} ],
-							height : Browser.getHeight() - 155,
+							height : Browser.getHeight() - 145,
 							fullPage : false,
 							contentsCss : '/hhcommon/opensource/jquery/jqueryuiframe.css',
 							menu_groups : 'clipboard,form,tablecell,tablecellproperties,tablerow,tablecolumn,table,anchor,link,flash,checkbox,radio,textfield,hiddenfield,imagebutton,button,select,textarea,'
