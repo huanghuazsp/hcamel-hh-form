@@ -1,4 +1,6 @@
 <%@page import="com.hh.form.bean.HhCkFormTree"%>
+<%@page import="com.hh.form.bean.FormInfo"%>
+<%@page import="com.hh.form.service.impl.FormInfoService"%>
 <%@page import="com.hh.form.service.impl.CkFormTreeService"%>
 <%@page import="com.hh.system.service.impl.BeanFactoryHelper"%>
 <%@page import="com.hh.system.util.Convert"%>
@@ -13,16 +15,34 @@
 <%=BaseSystemUtil.getBaseJs("checkform", "date", "ckeditor")%>
 <%
 	String id = Convert.toString(request.getParameter("hrefckeditor"));
-	CkFormTreeService ckFormTreeService = BeanFactoryHelper
-			.getBeanFactory().getBean(CkFormTreeService.class);
-	HhCkFormTree hhCkFormTree = ckFormTreeService.findObjectById(id);
+	String databaseType = Convert.toString(request.getParameter("databaseType"));
+	String jsonConfig = "[]";
+	String tableName = "";
+	String html = "";
+	if("relation".equals(databaseType)){
+		CkFormTreeService ckFormTreeService = BeanFactoryHelper
+				.getBeanFactory().getBean(CkFormTreeService.class);
+		HhCkFormTree hhCkFormTree = ckFormTreeService.findObjectById(id);
+		jsonConfig = hhCkFormTree.getJsonConfig();
+		tableName = hhCkFormTree.getTableName();
+		html = hhCkFormTree.getHtml();
+	}else{
+		FormInfoService formInfoService = BeanFactoryHelper
+				.getBeanFactory().getBean(FormInfoService.class);
+		FormInfo formInfo = formInfoService.findObjectById(id);
+		jsonConfig = formInfo.getJsonConfig();
+		tableName = formInfo.getTableName();
+		html = formInfo.getHtml();
+	}
+	
+	
 	String type = Convert.toString(request.getParameter("type"));
 %>
 <script type="text/javascript">
 	var params = BaseUtil.getIframeParams();
 	var dataManager = params.dataManager?BaseUtil.toObject(params.dataManager):[];
 	var actionType = '<%=Convert.toString(request.getParameter("actionType"))%>';
-	var tableName = '<%=hhCkFormTree.getTableName()%>';
+	var tableName = '<%=tableName%>';
 	var objectId= '<%=Convert.toString(request.getParameter("objectId"))%>';
 	function save(submit) {
 		if ($("#form").validationEngine('validate')) {
@@ -105,7 +125,7 @@ $(function(){
 						<tr>
 							<td align=left>
 								<form id="form" xtype="form" style="padding-top: 20px">
-									<%=Convert.toString(hhCkFormTree.getHtml())%>
+									<%=Convert.toString(html)%>
 								</form>
 							</td>
 						</tr>

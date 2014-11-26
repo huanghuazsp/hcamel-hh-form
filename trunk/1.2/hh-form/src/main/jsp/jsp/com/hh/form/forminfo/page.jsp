@@ -81,6 +81,16 @@
 				});
 			}
 		}, {
+			text : '查看配置列表',
+			img : StaticVar.img_edit,
+			onClick : function(data) {
+				BaseUtil.addTab({
+					id : 'form_view_' + data.text,
+					text :  '表单查看-'+data.text,
+					src : 'jsp-form-service-formlist?formId=' + data.id
+				});
+			}
+		},  {
 			text : '删除',
 			img : StaticVar.img_delete,
 			onClick : function(data) {
