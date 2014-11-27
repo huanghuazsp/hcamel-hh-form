@@ -40,7 +40,7 @@
 			</tr>
 			<tr>
 				<td xtype="label">格式：<img   src="<%=BaseSystemUtil.img_help%>"  title="请输入：yyyy=年,MM=月,dd=日,HH=小时,mm=分,ss=秒，的组合！如（yyyy-MM-dd HH:mm:ss）" /></span></td>
-				<td colspan="3"><span xtype="text" config=" name : 'type'   "></span></td>
+				<td colspan="3"><span xtype="text" config=" name : 'type'  , selectData : ['yyyy-MM-dd' , 'yyyy-MM-dd HH:mm:ss', 'yyyy-MM' , 'yyyy'  , 'HH:mm:ss' , 'HH:mm' ,'yyyy-MM-dd HH']  "></span></td>
 			</tr>
 		</table>
 	</form>
