@@ -88,7 +88,7 @@ public class MongoFormOperService {
 			}
 		}
 		PagingData<Map<String, Object>> resultMap = springMongoDAOImpl
-				.queryPage(tableName, paramList);
+				.queryPage(tableName,pageRange, paramList);
 		return resultMap;
 	}
 
