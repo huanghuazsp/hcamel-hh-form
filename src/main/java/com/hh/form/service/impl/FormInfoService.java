@@ -12,12 +12,15 @@ import com.hh.system.util.statics.StaticVar;
 
 @Service
 public class FormInfoService extends BaseMongoService<FormInfo> {
+	protected boolean getCache() {
+		return true;
+	}
 
 	public void updateHtml(FormInfo object) {
 		Map<String, Object> updateMap = new HashMap<String, Object>();
 		updateMap.put("html", object.getHtml());
 		updateMap.put("jsonConfig", object.getJsonConfig());
-		dao.updateEntity(FormInfo.class,
+		dao.updateEntityCache(FormInfo.class,
 				ParamFactory.getParam().is(StaticVar.entityId, object.getId()),
 				updateMap);
 	}
