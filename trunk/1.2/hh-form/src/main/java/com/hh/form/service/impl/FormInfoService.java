@@ -12,6 +12,7 @@ import com.hh.system.util.statics.StaticVar;
 
 @Service
 public class FormInfoService extends BaseMongoService<FormInfo> {
+	@Override
 	protected boolean getCache() {
 		return true;
 	}
