@@ -4,65 +4,17 @@
 <%=BaseSystemUtil.getBaseDoctype()%>
 <html>
 <head>
-<title>流程设计</title>
-<%=BaseSystemUtil.getBaseJs("right_menu")%>
+<title>表单设计</title>
+<%=BaseSystemUtil.getBaseJs("right_menu","gridviewService")%>
 <%
 	Gson gson = new Gson();
 %>
 <style type="text/css">
 </style>
 <script type="text/javascript">
+	var queryAction = 'form-FormInfo-queryTreeList';
 	function init() {
 		loadData();
-	}
-	var pathList = [];
-	var hidata = {};
-	var requestParams = {
-		node : 'root'
-	};
-	function refresh() {
-		loadData(true);
-	}
-	function loadData(editresult) {
-		if (editresult) {
-			var tempPathList = [];
-			var path = '';
-			for (var i = 0; i < pathList.length - 1; i++) {
-				tempPathList.push(pathList[i]);
-				path = pathList[i];
-			}
-			pathList = tempPathList;
-			delete hidata[requestParams.node];
-		}
-		if (hidata[requestParams.node]) {
-			pathList.push(requestParams.node);
-			renderList(hidata[requestParams.node]);
-		} else {
-			Request.request('form-FormInfo-queryTreeList', {
-				data : requestParams,
-				callback : function(result) {
-					pathList.push(requestParams.node);
-					hidata[requestParams.node] = result;
-					renderList(result);
-				}
-			});
-		}
-	}
-
-	function renderList(result) {
-		if (pathList.length > 1) {
-			$('#backbtn').undisabled();
-		} else {
-			$('#backbtn').disabled();
-		}
-		for (var i = 0; i < result.length; i++) {
-			result[i].img = result[i].leaf == 0 ? StaticVar.img_wenjianjia
-					: StaticVar.img_wenjian;
-		}
-		$('#gridView').setConfig({
-			data : result
-		});
-		$('#gridView').render();
 	}
 
 	var gridViewConfig = {
@@ -113,7 +65,7 @@
 				};
 				BaseUtil.addTab({
 					id : 'form_' + data.text,
-					text :  '表单设计-'+data.text,
+					text :  document.title+'-'+data.text,
 					src : 'jsp-form-ckeditor-ckEditoredit?' + $.param(param)
 				});
 			} else {
@@ -130,18 +82,6 @@
 		},
 		data : []
 	};
-
-	function doBack() {
-		var tempPathList = [];
-		var path = '';
-		for (var i = 0; i < pathList.length - 1; i++) {
-			tempPathList.push(pathList[i]);
-			path = pathList[i];
-		}
-		pathList = tempPathList;
-		requestParams.node = path;
-		renderList(hidata[path]);
-	}
 
 	function addFormType() {
 		Dialog.open({
