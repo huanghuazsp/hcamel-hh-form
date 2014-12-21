@@ -28,7 +28,7 @@
 				<td xtype="label">名称：</td>
 				<td ><span xtype="text" config=" name : 'name',required :true"></span></td>
 				<td xtype="label">中文名称：</td>
-				<td><span xtype="text" config=" name : 'text' "></span></td>
+				<td><span xtype="text" config=" name : 'textfield' "></span></td>
 			</tr>
 			<tr>
 			<td xtype="label">宽度：</td>
