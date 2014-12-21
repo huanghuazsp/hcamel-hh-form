@@ -88,6 +88,21 @@
 			});
 		});
 	}
+	function doView() {
+		PageUtil.callRow("pagelist", function(row) {
+			Dialog.open({
+				width : Browser.getMainWidth() * 0.9,
+				height : Browser.getMainHeight() * 0.85,
+				url : 'jsp-form-service-ckeditorform?actionType=select&databaseType=<%=databaseType%>&hrefckeditor=' + formId
+						+ '&objectId=' + row.id,
+				params : {
+					callback : function() {
+						$("#pagelist").loadData();
+					}
+				}
+			});
+		});
+	}
 	function doDelete() {
 		PageUtil.deleteData({
 			data : {
@@ -165,6 +180,7 @@
 	<div xtype="toolbar" config="type:'head'">
 		<span xtype="button" config="onClick:doAdd,text:'添加'"></span> <span
 			xtype="button" config="onClick:doEdit,text:'修改'"></span> <span
+			xtype="button" config="onClick:doView,text:'查看'"></span> <span
 			xtype="button" config="onClick:doDelete,text:'删除'"></span> <span
 			xtype="button" config="onClick: doQuery ,text:'查询'"></span>
 	</div>
