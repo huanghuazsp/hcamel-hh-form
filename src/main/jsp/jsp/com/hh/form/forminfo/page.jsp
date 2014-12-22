@@ -37,7 +37,7 @@
 			img : StaticVar.img_edit,
 			onClick : function(data) {
 				BaseUtil.addTab({
-					id : 'form_view_' + data.text,
+					id : data.id,
 					text :  '表单查看-'+data.text,
 					src : 'jsp-form-service-formlist?formId=' + data.id
 				});
