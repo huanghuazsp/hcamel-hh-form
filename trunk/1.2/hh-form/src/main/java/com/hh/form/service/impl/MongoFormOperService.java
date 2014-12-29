@@ -15,6 +15,8 @@ import com.hh.system.util.Json;
 import com.hh.system.util.PrimaryKey;
 import com.hh.system.util.dto.PageRange;
 import com.hh.system.util.dto.PagingData;
+import com.hh.system.util.dto.ParamFactory;
+import com.hh.system.util.dto.ParamInf;
 
 @Service
 public class MongoFormOperService {
@@ -40,7 +42,7 @@ public class MongoFormOperService {
 
 	public PagingData<Map<String, Object>> queryPagingData(
 			Map<String, Object> object, PageRange pageRange, String tableName) {
-		List<Object> paramList = new ArrayList<Object>();
+		ParamInf paramList = ParamFactory.getParam();
 		if (object != null) {
 			Object value = object.get("cond");
 			if (Check.isNoEmpty(value)) {
