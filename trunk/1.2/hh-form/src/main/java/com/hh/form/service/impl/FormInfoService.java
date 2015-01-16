@@ -22,7 +22,7 @@ public class FormInfoService extends BaseMongoService<FormInfo> {
 		updateMap.put("html", object.getHtml());
 		updateMap.put("jsonConfig", object.getJsonConfig());
 		dao.updateEntityCache(FormInfo.class,
-				ParamFactory.getParam().is(StaticVar.entityId, object.getId()),
+				ParamFactory.getParam().is(StaticVar.mongoEntityId, object.getId()),
 				updateMap);
 	}
 
