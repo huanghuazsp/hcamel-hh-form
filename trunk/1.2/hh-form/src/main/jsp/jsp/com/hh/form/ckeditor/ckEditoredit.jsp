@@ -162,7 +162,7 @@
 		}
 	}
 
-	var extraPlugins = 'hhtext,hhtextarea,hhcheck,hhcheckbox,hhradio,hhcombobox,hhitemselect,hhdate,hhuploadpic,hhfile,hhckeditor,hhselectUser,hhselectOrg,hhselectColor,hhtableitem';
+	var extraPlugins = '';
 	var formitems = [
 	//  'Form', 'Checkbox', 'Radio',
 	//'Textarea', 'Select', 'Button',
@@ -170,6 +170,15 @@
 	'hhtext', 'hhtextarea', 'hhcheck', 'hhcheckbox', 'hhradio', 'hhcombobox',
 			'hhitemselect', 'hhdate', 'hhuploadpic', 'hhfile', 'hhckeditor',
 			'hhselectUser', 'hhselectOrg', 'hhselectColor', 'hhtableitem' ];
+	
+	for(var i=0;i<formitems.length;i++){
+		extraPlugins+=formitems[i]+','
+	}
+	var buttonitems=[];
+	for(var i=0;i<buttonitems.length;i++){
+		extraPlugins+=buttonitems[i]+','
+	}
+	extraPlugins=extraPlugins.substr(0,extraPlugins.length-1);
 	window.onload = function() {
 		var editor = CKEDITOR
 				.replace(
@@ -241,6 +250,9 @@
 									}, '/', {
 										name : 'forms',
 										items : formitems
+									} , {
+										name : 'buttons',
+										items : buttonitems
 									} ],
 							height : Browser.getHeight() - 145,
 							fullPage : false,
@@ -248,6 +260,18 @@
 							menu_groups : 'clipboard,form,tablecell,tablecellproperties,tablerow,tablecolumn,table,anchor,link,flash,checkbox,radio,textfield,hiddenfield,imagebutton,button,select,textarea,'
 									+ extraPlugins
 						});
+		  CKEDITOR.plugins.registered.dialog.init=function(t){
+		    	t.on("doubleclick",
+			            function(u) {
+		    				var xtype = u.data.dialog;
+		    				if($(u.data.element.$).attr('xtype')){
+		    					xtype = 'hh'+$(u.data.element.$).attr('xtype');
+		    				}
+		    				u.data.dialog && t.openDialog(xtype)
+			               // u.data.dialog && t.openDialog(u.data.dialog)
+			            },
+			            null, null, 999);
+		    };
 		CKEDITOR.instances['editor'].on("instanceReady", function() {
 			var toolId = '#cke_71';
 			if (Browser.type.indexOf('IE') > -1) {
@@ -255,22 +279,6 @@
 			}
 			$(toolId).find('a').each(
 					function() {
-						/* var ckeditor_a = $(this);
-						var background = ckeditor_a.find('span').eq(0).css(
-								'background-image')
-						var li = $('<li></li>');
-						var a = $('<a></a>');
-						if (Browser.type.indexOf('IE') > -1) {
-							li.attr('onclick', ckeditor_a.attr('onmouseup'));
-						} else {
-							li.attr('onclick', ckeditor_a.attr('onclick'));
-						}
-						a.html('<span class="ui-icon" ></span>'
-								+ ckeditor_a.attr('title'));
-						a.find('span').css('background-image', background);
-						li.append(a);
-						$("#btn_menu").append(li); */
-						
 						var ckeditor_a = $(this);
 						var background = ckeditor_a.find('span').eq(0).css(
 								'background-image')
