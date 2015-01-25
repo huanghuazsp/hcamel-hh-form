@@ -352,6 +352,10 @@
 					}
 				});
 	}
+	
+	function set_height(){
+		$('#cke_1_contents').height(Browser.getHeight() - 145);
+	}
 </script>
 <style>
 .ui-menu {
