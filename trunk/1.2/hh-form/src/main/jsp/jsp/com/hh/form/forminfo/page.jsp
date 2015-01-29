@@ -97,9 +97,9 @@
 <body>
 	<div xtype="toolbar" config="type:'head'">
 		<span id="backbtn" xtype="button"
-			config="onClick: doBack ,text:'后退' , icon : 'ui-icon-arrow-1-w' "></span>
-		<span xtype="button" config="onClick: addFormType ,text:'添加'"></span>
-		<span xtype="button" config="onClick: refresh ,text:'刷新'"></span>
+			config="onClick: doBack ,text:'后退' , icon :'hh_img_left' "></span>
+		<span xtype="button" config="onClick: addFormType ,text:'添加' ,itype:'add'" ></span>
+		<span xtype="button" config="onClick: refresh ,text:'刷新' ,itype:'refresh'"></span>
 	</div>
 	<div style="padding: 25px;">
 		<span id="gridView" xtype="gridView" configVar="gridViewConfig"></span>
