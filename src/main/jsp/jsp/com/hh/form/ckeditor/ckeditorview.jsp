@@ -22,7 +22,14 @@ if(user!=null){
 	.replaceAll("\\$\\{当前登录人所在部门}",  user.getDeptText())
 	.replaceAll("\\$\\{当前登录人所在机构}",  user.getOrgText());
 }
-html.replaceAll("\\$\\{当前时间}", "'"+ DateFormat.getDate(DateFormat.dateTimeFormat)+"'");
+html=html
+.replaceAll("\\$\\{当前时间yyyy-MM-dd}",  DateFormat.getDate("yyyy-MM-dd"))
+.replaceAll("\\$\\{当前时间yyyy-MM-dd HH:mm:ss}",  DateFormat.getDate("yyyy-MM-dd HH:mm:ss"))
+.replaceAll("\\$\\{当前时间yyyy-MM}",  DateFormat.getDate("yyyy-MM"))
+.replaceAll("\\$\\{当前时间yyyy}",  DateFormat.getDate("yyyy"))
+.replaceAll("\\$\\{当前时间HH:mm:ss}",  DateFormat.getDate("HH:mm:ss"))
+.replaceAll("\\$\\{当前时间HH:mm}",  DateFormat.getDate("HH:mm"))
+.replaceAll("\\$\\{当前时间yyyy-MM-dd HH}",  DateFormat.getDate("yyyy-MM-dd HH"));
 %>
 <script type="text/javascript">
 $(function(){
