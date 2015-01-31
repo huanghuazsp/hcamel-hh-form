@@ -373,8 +373,8 @@
 		</div>
 		<div>
 			<div xtype="toolbar" config="type:'head'">
-				<span xtype="button" config="onClick:updateHtml,text:'保存'"></span> <span
-					xtype="button" config="onClick : openview,text : '预览'"></span>
+				<span xtype="button" config="onClick:updateHtml,text:'保存',itype:'save' "></span> <span
+					xtype="button" config="onClick : openview,text : '预览' ,itype:'view' "></span>
 				&nbsp;&nbsp;<span id="formdivspan" style="color: red;"></span>
 			</div>
 			<textarea id="editor" name="editor"></textarea>
