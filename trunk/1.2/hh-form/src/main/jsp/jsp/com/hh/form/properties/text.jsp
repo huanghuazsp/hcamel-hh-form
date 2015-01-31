@@ -19,6 +19,10 @@
 				<td><span xtype="text" config=" name : 'textfield' "></span></td>
 			</tr>
 			<tr>
+				<td xtype="label">默认值：</td>
+				<td colspan="3"><span xtype="text" configVar=" defaultValueConfig "></span></td>
+			</tr>
+			<tr>
 			<td xtype="label">宽度：</td>
 				<td colspan="3" ><span xtype="text" config=" name : 'width' ,number : true "></span></td>
 			</tr>
