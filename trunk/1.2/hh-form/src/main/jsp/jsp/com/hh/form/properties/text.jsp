@@ -24,7 +24,9 @@
 			</tr>
 			<tr>
 			<td xtype="label">宽度：</td>
-				<td colspan="3" ><span xtype="text" config=" name : 'width' ,number : true "></span></td>
+				<td ><span xtype="text" config=" name : 'width' ,number : true "></span></td>
+			<td xtype="label">只读：</td>
+				<td ><span xtype="check" config=" name : 'readonly'  "></span></td>
 			</tr>
 			<tr>
 				<td xtype="label">必填：</td>
