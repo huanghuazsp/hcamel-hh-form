@@ -1,3 +1,5 @@
+<%@page import="com.hh.system.util.date.DateFormat"%>
+<%@page import="com.hh.usersystem.IUser"%>
 <%@page import="com.hh.system.util.Convert"%>
 <%@page import="com.hh.system.util.Check"%>
 <%@page import="com.hh.system.util.Json"%>
@@ -12,6 +14,15 @@
 Map<String,Object> paramMap =   Json.toMap(request.getParameter("params"));
 String html =  Convert.toString(paramMap.get("html")).replaceAll("<img config", "<span config").replaceAll("ztype=\"span\" />", "></span>");
 String title =  Convert.toString(paramMap.get("title"));
+
+IUser user =	(IUser)session.getAttribute("loginuser");
+if(user!=null){
+	html=html.replaceAll("\\$\\{当前登录人}", user.getText())
+	.replaceAll("\\$\\{当前登录人岗位}",  user.getJobText())
+	.replaceAll("\\$\\{当前登录人所在部门}",  user.getDeptText())
+	.replaceAll("\\$\\{当前登录人所在机构}",  user.getOrgText());
+}
+html.replaceAll("\\$\\{当前时间}", "'"+ DateFormat.getDate(DateFormat.dateTimeFormat)+"'");
 %>
 <script type="text/javascript">
 $(function(){
