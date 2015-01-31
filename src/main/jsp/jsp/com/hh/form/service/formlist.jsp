@@ -148,7 +148,7 @@
 	function doAddGroup(){
 		var trhtml = '<tr type="queryFormTr">'
 								+'<td style="width: 100px;"><span type="andor" xtype="radio"'
-									+' config="name: \'andor'+groupi+'\' ,value : \'and\',  data :[{id:\'and\',text:\'与\'},{id:\'or\',text:\'或\'}]"></span></td>'
+									+' config="name: \'andor'+groupi+'\' ,defaultValue : \'and\',  data :[{id:\'and\',text:\'与\'},{id:\'or\',text:\'或\'}]"></span></td>'
 								+'<td><span type="tableitem" xtype="tableitem" configVar="tableitemConfig"></span></td>'
 							+'</tr>';
 		var tr = $(trhtml);
