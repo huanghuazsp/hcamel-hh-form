@@ -4,21 +4,9 @@
 <html>
 <head>
 <title>选择用户</title>
-<%=BaseSystemUtil.getBaseJs("checkform")%>
+<%=BaseSystemUtil.getBaseJs("checkform")+BaseSystemUtil.getKey("form")%>
 <script type="text/javascript">
-	var params = BaseUtil.getIframeParams();
-	function setValues(config) {
-		$('#form').renderAll();
-		$('#form').setValue(config);
-	}
-	function getValues() {
-		if ($("#form").validationEngine('validate')) {
-			return $("#form").getValue()
-		} else {
-			Dialog.errormsg("验证失败！！");
-			return null;
-		}
-	}
+	
 </script>
 </head>
 <body>
