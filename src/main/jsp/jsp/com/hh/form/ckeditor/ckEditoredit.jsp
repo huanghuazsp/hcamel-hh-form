@@ -355,7 +355,7 @@
 	
 	function doEventList(){
 		Dialog.open({
-			url : 'jsp-form-ckeditor-eventList',
+			url : 'jsp-form-event-eventList',
 			params : {
 				callback : function(){
 					
