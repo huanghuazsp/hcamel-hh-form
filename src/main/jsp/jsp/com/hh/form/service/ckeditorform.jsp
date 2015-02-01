@@ -6,6 +6,8 @@
 <%@page import="com.hh.system.util.Convert"%>
 <%@page import="com.hh.system.util.Check"%>
 <%@page import="com.hh.system.util.Json"%>
+<%@page import="com.hh.system.util.date.DateFormat"%>
+<%@page import="com.hh.usersystem.IUser"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@page import="com.hh.system.util.BaseSystemUtil"%>
 <%=BaseSystemUtil.getBaseDoctype()%>
@@ -35,7 +37,21 @@
 		html = formInfo.getHtml();
 	}
 	
-	
+	IUser user =	(IUser)session.getAttribute("loginuser");
+	if(user!=null){
+		html=html.replaceAll("\\$\\{当前登录人}", user.getText())
+		.replaceAll("\\$\\{当前登录人岗位}",  user.getJobText())
+		.replaceAll("\\$\\{当前登录人所在部门}",  user.getDeptText())
+		.replaceAll("\\$\\{当前登录人所在机构}",  user.getOrgText());
+	}
+	html=html
+	.replaceAll("\\$\\{当前时间yyyy-MM-dd}",  DateFormat.getDate("yyyy-MM-dd"))
+	.replaceAll("\\$\\{当前时间yyyy-MM-dd HH:mm:ss}",  DateFormat.getDate("yyyy-MM-dd HH:mm:ss"))
+	.replaceAll("\\$\\{当前时间yyyy-MM}",  DateFormat.getDate("yyyy-MM"))
+	.replaceAll("\\$\\{当前时间yyyy}",  DateFormat.getDate("yyyy"))
+	.replaceAll("\\$\\{当前时间HH:mm:ss}",  DateFormat.getDate("HH:mm:ss"))
+	.replaceAll("\\$\\{当前时间HH:mm}",  DateFormat.getDate("HH:mm"))
+	.replaceAll("\\$\\{当前时间yyyy-MM-dd HH}",  DateFormat.getDate("yyyy-MM-dd HH"));
 	String type = Convert.toString(request.getParameter("type"));
 %>
 <script type="text/javascript">
