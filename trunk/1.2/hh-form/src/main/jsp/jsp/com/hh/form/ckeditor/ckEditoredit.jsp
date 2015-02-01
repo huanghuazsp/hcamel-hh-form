@@ -353,6 +353,17 @@
 				});
 	}
 	
+	function doEventList(){
+		Dialog.open({
+			url : 'jsp-form-ckeditor-eventList',
+			params : {
+				callback : function(){
+					
+				}
+			}
+		});
+	}
+	
 	function set_height(){
 		$('#cke_1_contents').height(Browser.getHeight() - 145);
 	}
@@ -375,7 +386,8 @@
 			<div xtype="toolbar" config="type:'head'">
 				<span xtype="button" config="onClick:updateHtml,text:'保存',itype:'save' "></span> <span
 					xtype="button" config="onClick : openview,text : '预览' ,itype:'view' "></span>
-				&nbsp;&nbsp;<span id="formdivspan" style="color: red;"></span>
+				<span
+					xtype="button" config="onClick : doEventList ,text : '事件'  "></span>
 			</div>
 			<textarea id="editor" name="editor"></textarea>
 		</div>
