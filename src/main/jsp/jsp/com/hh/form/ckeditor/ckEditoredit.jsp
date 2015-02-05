@@ -302,69 +302,87 @@
 	
 	var text = '<%=request.getParameter("text") == null ? "" : request.getParameter("text")%>';
 	var objectId = '<%=request.getParameter("objectId") == null ? "" : request.getParameter("objectId")%>';
-	
-	function updateHtml() {
+
+	function getData() {
 		var html = CKEDITOR.instances.editor.getData().replace(/<img config/g,
 				'<span config').replace(/ztype="span" \/>/g, '></span>');
 		var jsonConfig = [];
-		var $html = $('<span>'+html+'</span>');
+		var $html = $('<span>' + html + '</span>');
 		$html.find("[xtype]").each(function() {
 			var config = $(this).getConfig();
-			if (!config.text) {
-				config.text = config.name;
+			if(config.xtype!='form'){
+				if (!config.text) {
+					config.text = config.name;
+				}
+				jsonConfig.push(config);
 			}
-			jsonConfig.push(config);
 		});
+		return {
+			html : html,
+			jsonConfig : jsonConfig,
+			eventList : eventList
+		};
+	}
+	var eventList = [];
+	function updateHtml() {
+		var data1 = getData();
 		var data = {
 			id : objectId,
-			html : html,
-			jsonConfig : BaseUtil.toString(jsonConfig)
+			html : data1.html,
+			eventList :BaseUtil.toString( eventList),
+			jsonConfig : BaseUtil.toString(data1.jsonConfig)
 		};
 		Request.request('form-FormInfo-updateHtml', {
 			data : data
 		});
 	}
-	
+
 	function openview() {
+		var data = getData();
 		Request.submit('jsp-form-ckeditor-ckeditorview', {
-			html : CKEDITOR.instances.editor.getData(),
+			html : data.html,
+			eventList : BaseUtil.toString( data.eventList),
 			title : text
 		});
 	}
-	function init(){
-		document.title=document.title+'-'+text;
+	function init() {
+		document.title = document.title + '-' + text;
 	}
-	
-	function findObject(){
-		Request.request(
-				'form-FormInfo-findObjectById',
-				{
-					data : {
-						id : objectId
-					},
-					defaultMsg : false,
-					callback : function(object) {
-						if(object && object.html){
-							CKEDITOR.instances.editor.setData(object.html.replace(
-									/<span config/g, '<img config').replace(/><\/span>/g,
-									'ztype="span" />'));
-						}
-					}
-				});
-	}
-	
-	function doEventList(){
-		Dialog.open({
-			url : 'jsp-form-event-eventList',
-			params : {
-				callback : function(){
-					
+
+	function findObject() {
+		Request.request('form-FormInfo-findObjectById', {
+			data : {
+				id : objectId
+			},
+			defaultMsg : false,
+			callback : function(object) {
+				if (object && object.html) {
+					CKEDITOR.instances.editor.setData(object.html.replace(
+							/<span config/g, '<img config').replace(
+							/><\/span>/g, 'ztype="span" />'));
+				}
+				if(object && object.eventList){
+					eventList=BaseUtil.toObject(object.eventList);
 				}
 			}
 		});
 	}
 	
-	function set_height(){
+	
+	function doEventList() {
+		Dialog.open({
+			url : 'jsp-form-event-eventList',
+			params : {
+				eventList :eventList,
+				data : getData(),
+				callback : function(eventListResult) {
+					eventList=eventListResult;
+				}
+			}
+		});
+	}
+
+	function set_height() {
 		$('#cke_1_contents').height(Browser.getHeight() - 145);
 	}
 </script>
@@ -378,15 +396,18 @@
 	<div xtype="border_layout">
 		<div config="render : 'west' ,resizable :false ,width:180 ">
 			<div xtype="toolbar" config="type:'head'"
-				style="height: 28px; text-align: center;"><div style="margin:5px 0px 0px 0px">控件列表</div></div>
-			<ul id="btn_menu" style="width: 150px; border: 0px;margin:5px;">
+				style="height: 28px; text-align: center;">
+				<div style="margin: 5px 0px 0px 0px">控件列表</div>
+			</div>
+			<ul id="btn_menu" style="width: 150px; border: 0px; margin: 5px;">
 			</ul>
 		</div>
 		<div>
 			<div xtype="toolbar" config="type:'head'">
-				<span xtype="button" config="onClick:updateHtml,text:'保存',itype:'save' "></span> <span
-					xtype="button" config="onClick : openview,text : '预览' ,itype:'view' "></span>
-				<span
+				<span xtype="button"
+					config="onClick:updateHtml,text:'保存',itype:'save' "></span> <span
+					xtype="button"
+					config="onClick : openview,text : '预览' ,itype:'view' "></span> <span
 					xtype="button" config="onClick : doEventList ,text : '事件'  "></span>
 			</div>
 			<textarea id="editor" name="editor"></textarea>

@@ -6,6 +6,7 @@ public class FormInfo extends BaseTreeNodeEntity<FormInfo> {
 	private String html;
 	private String tableName;
 	private String jsonConfig;
+	private String eventList;
 	
 	public String getHtml() {
 		return html;
@@ -25,4 +26,11 @@ public class FormInfo extends BaseTreeNodeEntity<FormInfo> {
 	public void setJsonConfig(String jsonConfig) {
 		this.jsonConfig = jsonConfig;
 	}
+	public String getEventList() {
+		return eventList;
+	}
+	public void setEventList(String eventList) {
+		this.eventList = eventList;
+	}
+	
 }
