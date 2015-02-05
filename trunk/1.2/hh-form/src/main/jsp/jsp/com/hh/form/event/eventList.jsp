@@ -9,31 +9,79 @@
 	
 %>
 <script type="text/javascript">
-	var width = 600;
-	var height = 500;
+	var width = 650;
+	var height = 450;
+	var params = BaseUtil.getIframeParams();
 	function doAdd() {
 		Dialog.open({
 			url : 'jsp-form-event-eventEdit',
 			params : {
-				callback : function(){
-					
+				data : params.data,
+				callback : function(data) {
+					var dataList = $('#pagelist').data('data') || [];
+					dataList.push(data);
+					$('#pagelist').loadData({
+						data : dataList
+					});
 				}
 			}
 		});
 	}
+
+	function doEdit() {
+		PageUtil.callRow("pagelist", function(row) {
+			Dialog.open({
+				url : 'jsp-form-event-eventEdit',
+				params : {
+					row : row,
+					data : params.data,
+					callback : function(data) {
+						$("#pagelist").getWidgetObject().updateRow(data);
+					}
+				}
+			});
+		});
+	}
+
+	function doDelete() {
+		PageUtil.callRow("pagelist", function(row) {
+			$("#pagelist").getWidgetObject().deleteRow(row);
+		});
+	}
+
+	function doSave() {
+		params.callback($('#pagelist').data('data') || []);
+		Dialog.close();
+	}
+
+	var pagelistConfig = {
+		paging : false,
+		column : [ {
+			name : 'eventName',
+			text : '名称'
+		} ],
+		data : params.eventList
+	}
+
+	function init() {
+
+	}
 </script>
 </head>
 <body>
-<div xtype="toolbar" config="type:'head'">
-	<span xtype="button" config="onClick : doAdd ,text : '添加'  "></span>
+	<div xtype="hh_content" style="overflow: visible;">
+		<div xtype="toolbar" config="type:'head'">
+			<span xtype="button" config="onClick:doAdd,text:'添加' , itype :'add' "></span>
+			<span xtype="button"
+				config="onClick:doEdit,text:'修改' , itype :'edit' "></span> <span
+				xtype="button"
+				config="onClick:doDelete,text:'删除' , itype :'delete' "></span>
+		</div>
+		<div id="pagelist" xtype="pagelist" configVar=" pagelistConfig"></div>
 	</div>
-	<div id="pagelist" xtype="pagelist"
-		config=" paging : false , params :  {nxb:2},column : [
-		{
-			name : 'text' ,
-			text : '名称'
-		}
-	]">
+	<div xtype="toolbar">
+		<span xtype="button"
+			config="onClick : doSave ,text : '保存' ,itype:'save' "></span>
 	</div>
 </body>
 </html>

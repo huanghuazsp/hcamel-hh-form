@@ -53,6 +53,10 @@
 					<span xtype="check" config=" name : 'image'  "></span>图片|
 				</td>
 			</tr>
+			<tr>
+				<td xtype="label">改变事件：</td>
+				<td colspan="3"><span xtype="combobox" configVar=" blurEventConfig "></span></td>
+			</tr>
 		</table>
 	</form>
 </body>

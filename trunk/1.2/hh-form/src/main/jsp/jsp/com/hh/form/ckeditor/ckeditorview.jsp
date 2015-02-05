@@ -12,7 +12,8 @@
 <%=BaseSystemUtil.getBaseJs("checkform","date","ckeditor")%>
 <%
 Map<String,Object> paramMap =   Json.toMap(request.getParameter("params"));
-String html =  Convert.toString(paramMap.get("html")).replaceAll("<img config", "<span config").replaceAll("ztype=\"span\" />", "></span>");
+String html =  Convert.toString(paramMap.get("html"));
+String eventList =  Convert.toString(paramMap.get("eventList"));
 String title =  Convert.toString(paramMap.get("title"));
 
 IUser user =	(IUser)session.getAttribute("loginuser");
@@ -32,6 +33,26 @@ html=html
 .replaceAll("\\$\\{当前时间yyyy-MM-dd HH}",  DateFormat.getDate("yyyy-MM-dd HH"));
 %>
 <script type="text/javascript">
+<%
+List<Map<String,Object>> mapList = Json.toMapList(eventList);
+StringBuffer eventStr = new StringBuffer();
+for(Map<String,Object> map : mapList){
+	String eventType = Convert.toString(map.get("eventType"));
+	String id = Convert.toString(map.get("id"));
+	String widget = Convert.toString(map.get("widget"));
+	String formula = Convert.toString(map.get("formula"));
+	
+	eventStr.append("function "+id+"(){ \n");
+	if("setValue".equals(eventType)){
+		eventStr.append(" var data = $('#form').getValue(); \n");
+		
+		eventStr.append(" $('#span_"+widget+"').setValue("+formula+"); \n");
+	}
+	
+	eventStr.append("}\n");
+}
+%>
+<%=eventStr.toString()%>
 $(function(){
 	var width = $('#form').find('table').eq(0).css('width');
 	$('#maintable').css('width',width);
