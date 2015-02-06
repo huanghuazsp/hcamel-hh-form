@@ -54,7 +54,7 @@
 		data : fieldListConfig.data,
 		onChange : function(value) {
 			$('#span_formula').setValue(
-					$('#span_formula').getValue() + ' data.' + value);
+					$('#span_formula').getValue() + 'data.' + value);
 		}
 	}
 
