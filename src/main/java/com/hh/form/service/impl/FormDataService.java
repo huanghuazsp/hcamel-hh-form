@@ -10,13 +10,11 @@ import com.hh.system.util.statics.StaticVar;
 
 @Service
 public class FormDataService extends BaseMongoService<FormData> {
-	protected boolean checkTextOnly(FormData entity) {
+	protected boolean checkTreeTextOnly(FormData entity) {
 		return dao.count(
-				FormData.class,
-				ParamFactory.getParam().is(StaticVar.text, entity.getText())
-						.ne(StaticVar.entityId, entity.getId())
-						.is("node", entity.getNode())
-						.is("dataTypeId", entity.getDataTypeId())) > 0 ? true
+				this.getGenericType(0),
+				ParamFactory.getParam().ne(StaticVar.mongoEntityId, entity.getId()).is(StaticVar.text, entity.getText())
+						.is(StaticVar.node, entity.getNode()).is("dataTypeId", entity.getDataTypeId())) > 0 ? true
 				: false;
 	}
 
