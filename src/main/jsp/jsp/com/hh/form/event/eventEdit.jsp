@@ -1,23 +1,33 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@page import="com.hh.system.util.PrimaryKey"%>
 <%@page import="com.hh.system.util.BaseSystemUtil"%>
 <%=BaseSystemUtil.getBaseDoctype()%>
 <html>
 <head>
 <title>添加事件</title>
-<%=BaseSystemUtil.getBaseJs("checkform")%>
+<%=BaseSystemUtil.getBaseJs("checkform")
+					+ BaseSystemUtil.getKey("event")%>
 <%
-	
+	String frameId = PrimaryKey.getPrimaryKeyUUID();
 %>
 <script type="text/javascript">
-	var width = 550;
-	var height = 400;
-	var params = BaseUtil.getIframeParams();
-	var data = params.data;
+	var width = 700;
+	var height = 550;
+	var frameId = '<%=frameId%>';
+	var row = params.row || {
+		id : BaseUtil.getUUID()
+	}
 	
-	var row = params.row || {id:BaseUtil.getUUID()}
-	
+	params.row=row;
+
 	function doSave() {
 		FormUtil.check('form', function(formData) {
+			var subframe = window.frames[frameId].getValues();
+			if(subframe){
+				$.extend(formData,subframe);
+			}else{
+				return;
+			}
 			params.callback(formData);
 			Dialog.close();
 		});
@@ -37,29 +47,15 @@
 		} ]
 	}
 
-	var fieldListConfig = {
-		name : 'widget',
-		data : []
-	}
-	for (var i = 0; i < data.jsonConfig.length; i++) {
-		var jsonData = data.jsonConfig[i];
-		fieldListConfig.data.push({
-			id : jsonData.name,
-			text : jsonData.textfield || jsonData.name
-		});
-	}
-
-	var radioConfig = {
-		name : 'radioConfig',
-		data : fieldListConfig.data,
-		onChange : function(value) {
-			$('#span_formula').setValue(
-					$('#span_formula').getValue() + 'data.' + value);
-		}
-	}
-
 	function init() {
+		BaseUtil.setFrameParams(frameId, params);
 		$('#form').setValue(row);
+		var eventType = $('#span_eventType').getValue();
+		$('#' + frameId).attr('src', 'jsp-form-event-' + eventType);
+	}
+
+	function setHeight(height) {
+		$('#' + frameId).height(height - 150);
 	}
 </script>
 </head>
@@ -74,23 +70,13 @@
 				</tr>
 				<tr>
 					<td xtype="label">事件名称：</td>
-					<td><span xtype="text" config="name : 'eventName' ,required:true "></span></td>
+					<td><span xtype="text"
+						config="name : 'eventName' ,required:true "></span></td>
 				</tr>
 			</table>
 			<hr />
-			<table xtype="form">
-				<tr>
-					<td xtype="label">设置控件：</td>
-					<td><span xtype="combobox" configVar="fieldListConfig"></span></td>
-				</tr>
-				<tr>
-					<td colspan="2"><span xtype="radio" configVar=" radioConfig"></span></td>
-				</tr>
-				<tr>
-					<td xtype="label">设置公式：</td>
-					<td><span xtype="textarea" config=" name: 'formula',required:true "></span></td>
-				</tr>
-			</table>
+			<iframe id="<%=frameId%>" name="<%=frameId%>" width=100% height=100%
+				frameborder=0 src=""></iframe>
 		</div>
 	</form>
 	<div xtype="toolbar">
