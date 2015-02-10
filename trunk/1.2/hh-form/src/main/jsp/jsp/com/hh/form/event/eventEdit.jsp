@@ -36,7 +36,7 @@
 		name : 'eventType',
 		defautlValue : 'setValue',
 		onChange : function(value) {
-			console.log(value);
+			$('#' + frameId).attr('src', 'jsp-form-event-' + value);
 		},
 		data : [ {
 			id : 'setValue',
