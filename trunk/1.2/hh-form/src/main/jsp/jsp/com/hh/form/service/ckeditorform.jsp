@@ -21,6 +21,7 @@
 	String jsonConfig = "[]";
 	String tableName = "";
 	String html = "";
+	String eventList = "[]";
 	if("relation".equals(databaseType)){
 		CkFormTreeService ckFormTreeService = BeanFactoryHelper
 				.getBeanFactory().getBean(CkFormTreeService.class);
@@ -35,6 +36,7 @@
 		jsonConfig = formInfo.getJsonConfig();
 		tableName = formInfo.getTableName();
 		html = formInfo.getHtml();
+		eventList = formInfo.getEventList();
 	}
 	
 	IUser user =	(IUser)session.getAttribute("loginuser");
@@ -54,6 +56,34 @@
 	.replaceAll("\\$\\{当前时间yyyy-MM-dd HH}",  DateFormat.getDate("yyyy-MM-dd HH"));
 	String type = Convert.toString(request.getParameter("type"));
 %>
+<script type="text/javascript">
+<%
+
+List<Map<String,Object>> mapList = Json.toMapList(eventList);
+StringBuffer eventStr = new StringBuffer();
+for(Map<String,Object> map : mapList){
+	String eventType = Convert.toString(map.get("eventType"));
+	String eventid = Convert.toString(map.get("id"));
+	String widget = Convert.toString(map.get("widget"));
+	String formula = Convert.toString(map.get("formula"));
+	
+	eventStr.append("function "+eventid+"(){ \n");
+	if("setValue".equals(eventType)){
+		eventStr.append(" var data = $('#form').getValue(); \n");
+		
+		eventStr.append(" $('#span_"+widget+"').setValue("+formula+"); \n");
+	}else if("loadData".equals(eventType)){
+		eventStr.append(" var data = $('#form').getValue(); \n");
+		
+		eventStr.append(" $('#span_"+widget+"').setConfig({params:"+formula+"}); \n");
+		eventStr.append(" $('#span_"+widget+"').render(); \n");
+	}
+	
+	eventStr.append("}\n");
+}
+%>
+<%=eventStr.toString()%>
+</script>
 <script type="text/javascript">
 	var params = BaseUtil.getIframeParams();
 	var dataManager = params.dataManager?BaseUtil.toObject(params.dataManager):[];
@@ -110,7 +140,7 @@
 				}
 			}, function(result) {
 				if (actionType == 'select') {
-					$('#form').setValue(result, true);
+					$('#form').setValue(result, {view:true});
 				} else {
 					$('#form').setValue(result);
 				}

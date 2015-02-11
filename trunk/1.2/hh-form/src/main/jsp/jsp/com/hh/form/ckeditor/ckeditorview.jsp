@@ -38,15 +38,20 @@ List<Map<String,Object>> mapList = Json.toMapList(eventList);
 StringBuffer eventStr = new StringBuffer();
 for(Map<String,Object> map : mapList){
 	String eventType = Convert.toString(map.get("eventType"));
-	String id = Convert.toString(map.get("id"));
+	String eventid = Convert.toString(map.get("id"));
 	String widget = Convert.toString(map.get("widget"));
 	String formula = Convert.toString(map.get("formula"));
 	
-	eventStr.append("function "+id+"(){ \n");
+	eventStr.append("function "+eventid+"(){ \n");
 	if("setValue".equals(eventType)){
 		eventStr.append(" var data = $('#form').getValue(); \n");
 		
 		eventStr.append(" $('#span_"+widget+"').setValue("+formula+"); \n");
+	}else if("loadData".equals(eventType)){
+		eventStr.append(" var data = $('#form').getValue(); \n");
+		
+		eventStr.append(" $('#span_"+widget+"').setConfig({params:"+formula+"}); \n");
+		eventStr.append(" $('#span_"+widget+"').render(); \n");
 	}
 	
 	eventStr.append("}\n");
