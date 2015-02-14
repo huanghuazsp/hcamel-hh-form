@@ -42,15 +42,13 @@ for(Map<String,Object> map : mapList){
 	String widget = Convert.toString(map.get("widget"));
 	String formula = Convert.toString(map.get("formula"));
 	
-	eventStr.append("function "+eventid+"(){ \n");
+	eventStr.append("function "+eventid+"(params){ \n");
 	if("setValue".equals(eventType)){
 		eventStr.append(" var data = $('#form').getValue(); \n");
 		
 		eventStr.append(" $('#span_"+widget+"').setValue("+formula+"); \n");
-	}else if("loadData".equals(eventType)){
-		eventStr.append(" var data = $('#form').getValue(); \n");
-		
-		eventStr.append(" $('#span_"+widget+"').setConfig({params:"+formula+"}); \n");
+	}else if("loadSubComboData".equals(eventType)){
+		eventStr.append(" $('#span_"+widget+"').setConfig({params:{node:params}}); \n");
 		eventStr.append(" $('#span_"+widget+"').render(); \n");
 	}
 	

@@ -42,8 +42,8 @@
 			id : 'setValue',
 			text : '设值'
 		}, {
-			id : 'loadData',
-			text : '数据加载'
+			id : 'loadSubComboData',
+			text : '加载子下拉框数据'
 		} ]
 	}
 
