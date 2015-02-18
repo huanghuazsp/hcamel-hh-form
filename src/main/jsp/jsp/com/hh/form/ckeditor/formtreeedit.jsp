@@ -15,7 +15,7 @@
 				Dialog.infomsg("类型为表单时，表名不能为空！");
 				return;
 			}
-			Request.request('form-CkFormTree-save', {
+			Request.request('form-CkFormTree-saveTree', {
 				data : formData,
 				callback : function(result) {
 					if (result.success) {
