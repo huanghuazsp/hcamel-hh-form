@@ -1,6 +1,7 @@
 Ext.define('com.hh.form.tree.FormTreeEdit', {
 	extend : 'com.hh.global.SimpleFormPanelWindow',
 	action : 'form-FormTree-',
+	submitMethod : 'saveTree',
 	title : '编辑',
 	width : 600,
 	height : 300,
