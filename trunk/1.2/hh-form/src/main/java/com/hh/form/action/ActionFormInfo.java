@@ -5,10 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.hh.form.bean.FormInfo;
 import com.hh.form.service.impl.FormInfoService;
 import com.hh.system.service.impl.BaseMongoService;
-import com.hh.system.util.base.BaseMongoAction;
+import com.hh.system.util.base.BaseServiceAction;
 
 @SuppressWarnings("serial")
-public class ActionFormInfo extends BaseMongoAction<FormInfo> {
+public class ActionFormInfo extends BaseServiceAction<FormInfo> {
 	public BaseMongoService<FormInfo> getService() {
 		return service;
 	}

@@ -74,7 +74,7 @@
 			}
 		},
 		update : function(id) {
-			Request.request('form-FormInfo-order', {
+			Request.request('form-FormInfo-orderAll', {
 				data : {
 					ids : id
 				}
