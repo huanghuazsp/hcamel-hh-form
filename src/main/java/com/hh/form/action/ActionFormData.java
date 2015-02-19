@@ -6,11 +6,11 @@ import com.hh.form.bean.FormData;
 import com.hh.form.service.impl.FormDataService;
 import com.hh.system.service.impl.BaseMongoService;
 import com.hh.system.util.Convert;
-import com.hh.system.util.base.BaseMongoAction;
+import com.hh.system.util.base.BaseServiceAction;
 import com.hh.system.util.dto.ParamFactory;
 
 @SuppressWarnings("serial")
-public class ActionFormData extends BaseMongoAction<FormData> {
+public class ActionFormData extends BaseServiceAction<FormData> {
 
 	public BaseMongoService<FormData> getService() {
 		return formDataService;
