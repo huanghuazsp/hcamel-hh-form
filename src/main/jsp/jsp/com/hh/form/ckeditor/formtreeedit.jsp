@@ -10,7 +10,7 @@
 	var width = 580;
 	var height = 220;
 	function save() {
-		FormUtil.check('form', function(formData) {
+		$.hh.validation.check('form', function(formData) {
 			if(formData.leaf==1 && (formData.tableName==null || formData.tableName=='')){
 				Dialog.infomsg("类型为表单时，表名不能为空！");
 				return;

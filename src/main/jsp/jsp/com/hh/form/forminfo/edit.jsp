@@ -13,7 +13,7 @@
 	var queryData = null;
 	
 	function save() {
-		FormUtil.check('form', function(formData) {
+		$.hh.validation.check('form', function(formData) {
 			if(queryData){
 				$.extend(queryData,formData);
 				delete queryData.dcreate;
