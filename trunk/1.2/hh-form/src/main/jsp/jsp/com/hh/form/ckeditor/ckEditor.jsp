@@ -302,13 +302,13 @@ var hhckeditor = {
 	var selectTreeNode = {};
 
 	function addFormType() {
-		var selectNode = TreeUtil.getSelectNode('formTree');
+		var selectNode = $.hh.tree.getSelectNode('formTree');
 		Dialog.open({
 			url : 'jsp-form-ckeditor-formtreeedit',
 			params : {
 				selectNode : selectNode,
 				callback : function() {
-					TreeUtil.refresh('formTree');
+					$.hh.tree.refresh('formTree');
 				}
 			}
 		});
@@ -323,7 +323,7 @@ var hhckeditor = {
 					},
 					callback : function(result) {
 						if (result.success) {
-							TreeUtil.refresh('formTree');
+							$.hh.tree.refresh('formTree');
 						}
 					}
 				});
@@ -336,7 +336,7 @@ var hhckeditor = {
 			params : {
 				id : treeNode.id,
 				callback : function() {
-					TreeUtil.refresh('formTree');
+					$.hh.tree.refresh('formTree');
 				}
 			}
 		});
@@ -374,8 +374,8 @@ var hhckeditor = {
 		}, function(result) {
 			if (result.success) {
 				selectTreeNode.html = data.html;
-				TreeUtil.updateNode('formTree', selectTreeNode);
-				TreeUtil.getTree('formTree').refresh();
+				$.hh.tree.updateNode('formTree', selectTreeNode);
+				$.hh.tree.getTree('formTree').refresh();
 			}
 		});
 	}
@@ -406,7 +406,7 @@ var hhckeditor = {
 			<div xtype="toolbar" config="type:'head'">
 				<span xtype="button" config="onClick:addFormType,text:'添加'"></span>
 				<span xtype="button"
-					config="onClick : TreeUtil.refresh,text : '刷新' ,params: 'formTree' "></span>
+					config="onClick : $.hh.tree.refresh,text : '刷新' ,params: 'formTree' "></span>
 			</div>
 			<span xtype="tree"
 				config=" id:'formTree' , url:'form-CkFormTree-queryTreeList' , remove : remove , edit : edit, onClick : formTreeClick"></span>

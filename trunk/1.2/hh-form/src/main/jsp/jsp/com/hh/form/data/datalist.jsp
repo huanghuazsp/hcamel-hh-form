@@ -40,7 +40,7 @@
 		});
 	}
 	function removeType(treeNode) {
-		TreeUtil.deleteData({
+		$.hh.tree.deleteData({
 			pageid : 'typeTree',
 			action : 'form-FormDataType-deleteTreeByIds',
 			id : treeNode.id
@@ -52,7 +52,7 @@
 			selectTypeNode = treeNode;
 			$('#msgspan').html(selectTypeNode.text);
 			$("#datacenter").undisabled();
-			TreeUtil.loadData('dataTree', {
+			$.hh.tree.loadData('dataTree', {
 				params : {
 					dataTypeId : treeNode.id
 				}
@@ -87,7 +87,7 @@
 		});
 	}
 	function removeData(treeNode) {
-		TreeUtil.deleteData({
+		$.hh.tree.deleteData({
 			pageid : 'dataTree',
 			action : 'form-FormData-deleteTreeByIds',
 			id : treeNode.id

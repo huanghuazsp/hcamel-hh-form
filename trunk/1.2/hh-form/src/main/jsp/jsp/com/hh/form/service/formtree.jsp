@@ -20,7 +20,7 @@
 		<div config="render : 'west'">
 			<div xtype="toolbar" config="type:'head'">
 				<span xtype="button"
-					config="onClick : TreeUtil.refresh,text : '刷新' ,params: 'formTree' "></span>
+					config="onClick : $.hh.tree.refresh,text : '刷新' ,params: 'formTree' "></span>
 			</div>
 			<span xtype="tree"
 				config=" id:'formTree' , url:'form-CkFormTree-queryTreeList' , onClick : formTreeClick"></span>
