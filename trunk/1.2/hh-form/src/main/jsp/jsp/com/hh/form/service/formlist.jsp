@@ -74,7 +74,7 @@
 		});
 	}
 	function doEdit() {
-		PageUtil.callRow("pagelist", function(row) {
+		$.hh.pagelist.callRow("pagelist", function(row) {
 			Dialog.open({
 				width : Browser.getMainWidth() * 0.9,
 				height : Browser.getMainHeight() * 0.85,
@@ -89,7 +89,7 @@
 		});
 	}
 	function doView() {
-		PageUtil.callRow("pagelist", function(row) {
+		$.hh.pagelist.callRow("pagelist", function(row) {
 			Dialog.open({
 				width : Browser.getMainWidth() * 0.9,
 				height : Browser.getMainHeight() * 0.85,
@@ -104,7 +104,7 @@
 		});
 	}
 	function doDelete() {
-		PageUtil.deleteData({
+		$.hh.pagelist.deleteData({
 			data : {
 				tableName : tableName
 			},
