@@ -31,29 +31,35 @@ html=html
 .replaceAll("\\$\\{当前时间HH:mm:ss}",  DateFormat.getDate("HH:mm:ss"))
 .replaceAll("\\$\\{当前时间HH:mm}",  DateFormat.getDate("HH:mm"))
 .replaceAll("\\$\\{当前时间yyyy-MM-dd HH}",  DateFormat.getDate("yyyy-MM-dd HH"));
+String type = Convert.toString(request.getParameter("type"));
 %>
 <script type="text/javascript">
 <%
-List<Map<String,Object>> mapList = Json.toMapList(eventList);
 StringBuffer eventStr = new StringBuffer();
-for(Map<String,Object> map : mapList){
-	String eventType = Convert.toString(map.get("eventType"));
-	String eventid = Convert.toString(map.get("id"));
-	String widget = Convert.toString(map.get("widget"));
-	String formula = Convert.toString(map.get("formula"));
-	
-	eventStr.append("function "+eventid+"(params){ \n");
-	if("setValue".equals(eventType)){
-		eventStr.append(" var data = $('#form').getValue(); \n");
+if(Check.isNoEmpty(eventList)){
 		
-		eventStr.append(" $('#span_"+widget+"').setValue("+formula+"); \n");
-	}else if("loadSubComboData".equals(eventType)){
-		eventStr.append(" $('#span_"+widget+"').setConfig({params:{node:params}}); \n");
-		eventStr.append(" $('#span_"+widget+"').render(); \n");
+	List<Map<String,Object>> mapList = Json.toMapList(eventList);
+	for(Map<String,Object> map : mapList){
+		String eventType = Convert.toString(map.get("eventType"));
+		String eventid = Convert.toString(map.get("id"));
+		String widget = Convert.toString(map.get("widget"));
+		String formula = Convert.toString(map.get("formula"));
+		
+		eventStr.append("function "+eventid+"(params){ \n");
+		if("setValue".equals(eventType)){
+			eventStr.append(" var data = $('#form').getValue(); \n");
+			
+			eventStr.append(" $('#span_"+widget+"').setValue("+formula+"); \n");
+		}else if("loadSubComboData".equals(eventType)){
+			eventStr.append(" $('#span_"+widget+"').setConfig({params:{node:params}}); \n");
+			eventStr.append(" $('#span_"+widget+"').render(); \n");
+		}
+		
+		eventStr.append("}\n");
 	}
 	
-	eventStr.append("}\n");
 }
+
 %>
 <%=eventStr.toString()%>
 $(function(){
