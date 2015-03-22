@@ -29,7 +29,7 @@
 	}
 
 	function doEdit() {
-		PageUtil.callRow("pagelist", function(row) {
+		$.hh.pagelist.callRow("pagelist", function(row) {
 			Dialog.open({
 				url : 'jsp-form-event-eventEdit',
 				params : {
@@ -44,7 +44,7 @@
 	}
 
 	function doDelete() {
-		PageUtil.callRow("pagelist", function(row) {
+		$.hh.pagelist.callRow("pagelist", function(row) {
 			$("#pagelist").getWidgetObject().deleteRow(row);
 		});
 	}
