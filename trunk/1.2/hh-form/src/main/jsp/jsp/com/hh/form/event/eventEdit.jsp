@@ -21,7 +21,7 @@
 	params.row=row;
 
 	function doSave() {
-		FormUtil.check('form', function(formData) {
+		$.hh.validation.check('form', function(formData) {
 			var subframe = window.frames[frameId].getValues();
 			if(subframe){
 				$.extend(formData,subframe);
