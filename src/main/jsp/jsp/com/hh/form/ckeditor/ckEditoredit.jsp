@@ -151,7 +151,7 @@
 																elements : [ {
 																	id : "iframe",
 																	type : "html",
-																	html : '<iframe src="jsp-form-properties-'+xtype+'" name="jsp-form-properties-'+xtype+'" id="jsp-form-properties-'+xtype+'" class="cke_pasteframe" style="width:550px;height:300px" frameborder="0"  allowTransparency="true" ></iframe>'
+																	html : '<iframe src="/hhcommon/opensource/ckeditor/properties/'+xtype+'.html" name="jsp-form-properties-'+xtype+'" id="jsp-form-properties-'+xtype+'" class="cke_pasteframe" style="width:550px;height:300px" frameborder="0"  allowTransparency="true" ></iframe>'
 																} ]
 															} ]
 														};
