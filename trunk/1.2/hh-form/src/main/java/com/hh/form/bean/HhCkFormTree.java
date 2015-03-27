@@ -17,6 +17,7 @@ public class HhCkFormTree extends BaseTreeNodeEntity<HhCkFormTree> {
 	private String html;
 	private String tableName;
 	private String jsonConfig;
+	private String eventList;
 	
 	@Lob
 	@Column(name = "HTML_")
@@ -44,6 +45,15 @@ public class HhCkFormTree extends BaseTreeNodeEntity<HhCkFormTree> {
 
 	public void setJsonConfig(String jsonConfig) {
 		this.jsonConfig = jsonConfig;
+	}
+	@Lob
+	@Column(name = "EVENT_LIST_")
+	public String getEventList() {
+		return eventList;
+	}
+
+	public void setEventList(String eventList) {
+		this.eventList = eventList;
 	}
 	
 }
