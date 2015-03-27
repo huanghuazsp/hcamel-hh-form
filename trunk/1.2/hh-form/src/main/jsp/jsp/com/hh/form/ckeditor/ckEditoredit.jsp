@@ -1,389 +1,87 @@
+<%@page import="com.hh.system.util.PrimaryKey"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@page import="com.hh.system.util.BaseSystemUtil"%>
 <%=BaseSystemUtil.getBaseDoctype()%>
 <html>
 <head>
-<title>表单设计器</title>
-<%=BaseSystemUtil.getBaseJs("layout", "ckeditor")%>
+<%=BaseSystemUtil.getBaseJs("layout", "ztree", "ztree_edit",
+					"ckeditor")%>
 <script type="text/javascript">
-	var hhckeditor = {
-		setup : function(config) {
-			this.setValue(config[this.id] || '');
-		},
-		commit : function(config) {
-			var value = this.getValue();
-			if (value) {
-				config[this.id] = value;
-			}
-		},
-		onOk : function(page, src, xtype, config) {
-			var editor = page.getParentEditor();
-			var field = editor.document.createElement('img');
-			field.setAttribute('src', src);
-			field.setAttribute('xtype', xtype);
-			editor.insertElement(field);
+	<%
+	String workflowiframeId =  PrimaryKey.getPrimaryKeyUUID();
+	%>
+	var iframeId = '<%=workflowiframeId%>';
+	var selectTreeNode = {};
+	var eventList = [];
 
-			if (config == null) {
-				config = {};
-				page.commitContent(config);
-			}
-			for ( var p in config) {
-				if (config[p] == null || config[p] == '') {
-					delete config[p];
+	function addFormType() {
+		var selectNode = $.hh.tree.getSelectNode('formTree');
+		Dialog.open({
+			url : 'jsp-form-forminfo-edit',
+			params : {
+				selectNode : selectNode,
+				callback : function() {
+					$.hh.tree.refresh('formTree');
 				}
 			}
-			var configStr = BaseUtil.toString(config);
-			field.setAttribute('config', configStr.substr(1,
-					configStr.length - 2));
-
-			field.setAttribute('ztype', 'span');
-		},
-		onShow : function(page, iframeId) {
-			var e = page;
-			delete e.textField;
-			var d = e.getParentEditor().getSelection().getSelectedElement();
-			e.textField = d;
-			var config = {};
-			if (d) {
-				config = d.getAttribute('config');
-				if (config) {
-					config = BaseUtil.toObject('{' + config + '}');
-				}
-				if (config == null || config == '') {
-					config = {};
-				}
-			}
-			if (iframeId) {
-				var iframe = window.frames[iframeId];
-				if (iframe.setValues) {
-					iframe.setValues(config);
-				} else {
-					BaseUtil.iframeLoad(iframe, function() {
-						iframe.setValues(config);
-					});
-				}
-			} else {
-				e.setupContent(config);
-			}
-		},
-		addButton : function(editor, commandname, xtype, label, icon) {
-			editor.addCommand(commandname, new CKEDITOR.dialogCommand(
-					commandname));
-			editor.ui.addButton(commandname, {
-				label : label,
-				icon : icon,
-				command : commandname
-			});
-			if (editor.addMenuItems) {
-				var object = {};
-				object[commandname] = {
-					label : label,
-					command : commandname,
-					icon : icon,
-					group : commandname
-				};
-				editor.addMenuItems(object);
-			}
-			if (editor.contextMenu) {
-				editor.contextMenu.addListener(function(element, selection) {
-					if (element != null
-							&& element.getAttribute('xtype') == xtype) {
-						var returnobj = {};
-						returnobj[commandname] = CKEDITOR.TRISTATE_OFF;
-						return returnobj;
+		});
+	}
+	function remove(treeNode) {
+		Dialog.confirm({
+			message : '您确认要删除数据吗？',
+			yes : function(result) {
+				Request.request('form-FormInfo-deleteTreeByIds', {
+					data : {
+						ids : treeNode.id
+					},
+					callback : function(result) {
+						if (result.success) {
+							$.hh.tree.refresh('formTree');
+						}
 					}
 				});
 			}
-		},
-		addWidget : function(params) {
-			var wjj = params.wjj;
-			var xtype = params.xtype;
-			var text = params.text;
-			CKEDITOR.plugins
-					.add(
-							wjj,
-							{
-								init : function(editor) {
-									hhckeditor.addButton(editor, wjj, xtype,
-											text,
-											'/hhcommon/opensource/ckeditor/plugins/'
-													+ wjj + '/' + wjj + '.jpg');
+		});
+	}
+	function edit(treeNode) {
+		Dialog.open({
+			url : 'jsp-form-forminfo-edit',
+			params : {
+				id : treeNode.id,
+				callback : function() {
+					$.hh.tree.refresh('formTree');
+				}
+			}
+		});
+	}
 
-									CKEDITOR.dialog
-											.add(
-													wjj,
-													function(a) {
-														return {
-															title : text,
-															minWidth : 550,
-															minHeight : 300,
-															onShow : function() {
-																hhckeditor
-																		.onShow(
-																				this,
-																				'jsp-form-properties-'
-																						+ xtype);
-															},
-															onOk : function() {
-																var values = window.frames['jsp-form-properties-'
-																		+ xtype]
-																		.getValues();
-																if (values == null) {
-																	return false;
-																}
-																hhckeditor
-																		.onOk(
-																				this,
-																				'/hhcommon/opensource/ckeditor/plugins/'
-																						+ wjj
-																						+ '/'
-																						+ wjj
-																						+ '.jpg',
-																				xtype,
-																				values);
-															},
-															onLoad : function() {
-															},
-															contents : [ {
-																//id : 'info',
-																label : text,
-																title : text,
-																elements : [ {
-																	id : "iframe",
-																	type : "html",
-																	html : '<iframe src="/hhcommon/opensource/ckeditor/properties/'+xtype+'.html" name="jsp-form-properties-'+xtype+'" id="jsp-form-properties-'+xtype+'" class="cke_pasteframe" style="width:550px;height:300px" frameborder="0"  allowTransparency="true" ></iframe>'
-																} ]
-															} ]
-														};
-													});
-								},
-								requires : [ 'fakeobjects' ]
-							});
+	function formTreeClick(treeNode) {
+		if (treeNode.leaf == 1) {
+			$('#formdivspan').html('（' + treeNode.text + '）');
+			$("#formdiv").undisabled();
+			selectTreeNode = treeNode;
+			window.frames[iframeId].setData({
+				text:selectTreeNode.text,
+				html:selectTreeNode.html,
+				eventList:selectTreeNode.eventList
+			});
 		}
 	}
-
-	var extraPlugins = '';
-	var formitems = [
-	//  'Form', 'Checkbox', 'Radio',
-	//'Textarea', 'Select', 'Button',
-	//, 'TextField', 
-	'hhtext', 'hhtextarea', 'hhcheck', 'hhcheckbox', 'hhradio', 'hhcombobox',
-			'hhitemselect', 'hhdate', 'hhuploadpic', 'hhfile', 'hhckeditor',
-			'hhselectUser', 'hhselectOrg', 'hhselectColor', 'hhtableitem' ];
-	
-	for(var i=0;i<formitems.length;i++){
-		extraPlugins+=formitems[i]+','
-	}
-	var buttonitems=[];
-	for(var i=0;i<buttonitems.length;i++){
-		extraPlugins+=buttonitems[i]+','
-	}
-	extraPlugins=extraPlugins.substr(0,extraPlugins.length-1);
-	window.onload = function() {
-		var editor = CKEDITOR
-				.replace(
-						'editor',
-						{
-							extraPlugins : extraPlugins,
-							toolbar : [
-									{
-										name : 'document',
-										items : [
-												'Source',
-												'-',
-												'NewPage',
-												//, 'Save',, 'DocProps','Preview', 'Print', '-',
-												'Templates' ]
-									},
-									{
-										name : 'clipboard',
-										items : [ 'Cut', 'Copy', 'Paste',
-												'PasteText', 'PasteFromWord',
-												'-', 'Undo', 'Redo' ]
-									},
-									{
-										name : 'editing',
-										items : [ 'Find', 'Replace', '-',
-												'SelectAll', '-',
-												'SpellChecker', 'Scayt' ]
-									},
-									{
-										name : 'basicstyles',
-										items : [ 'Bold', 'Italic',
-												'Underline', 'Strike',
-												'Subscript', 'Superscript',
-												'-', 'RemoveFormat' ]
-									},
-									{
-										name : 'paragraph',
-										items : [ 'NumberedList',
-												'BulletedList', '-', 'Outdent',
-												'Indent', '-', 'Blockquote',
-												'CreateDiv', '-',
-												'JustifyLeft', 'JustifyCenter',
-												'JustifyRight', 'JustifyBlock',
-												'-', 'BidiLtr', 'BidiRtl' ]
-									},
-									{
-										name : 'links',
-										items : [ 'Link', 'Unlink', 'Anchor' ]
-									},
-									{
-										name : 'insert',
-										items : [ 'Image', 'Flash', 'Table',
-												'HorizontalRule', 'Smiley',
-												'SpecialChar', 'PageBreak',
-												'Iframe' ]
-									},
-									{
-										name : 'styles',
-										items : [ 'Styles', 'Format', 'Font',
-												'FontSize' ]
-									},
-									{
-										name : 'colors',
-										items : [ 'TextColor', 'BGColor' ]
-									},
-									{
-										name : 'tools',
-										items : [ 'Maximize'/* , 'ShowBlocks', '-', 'About' */]
-									}, '/', {
-										name : 'forms',
-										items : formitems
-									} , {
-										name : 'buttons',
-										items : buttonitems
-									} ],
-							height : Browser.getHeight() - 145,
-							fullPage : false,
-							contentsCss : '/hhcommon/opensource/jquery/jqueryuiframe.css',
-							menu_groups : 'clipboard,form,tablecell,tablecellproperties,tablerow,tablecolumn,table,anchor,link,flash,checkbox,radio,textfield,hiddenfield,imagebutton,button,select,textarea,'
-									+ extraPlugins
-						});
-		  CKEDITOR.plugins.registered.dialog.init=function(t){
-		    	t.on("doubleclick",
-			            function(u) {
-		    				var xtype = u.data.dialog;
-		    				if($(u.data.element.$).attr('xtype')){
-		    					xtype = 'hh'+$(u.data.element.$).attr('xtype');
-		    				}
-		    				u.data.dialog && t.openDialog(xtype)
-			               // u.data.dialog && t.openDialog(u.data.dialog)
-			            },
-			            null, null, 999);
-		    };
-		CKEDITOR.instances['editor'].on("instanceReady", function() {
-			var toolId = '#cke_71';
-			if (Browser.type.indexOf('IE') > -1) {
-				toolId = '#cke_72';
-			}
-			$(toolId).find('a').each(
-					function() {
-						var ckeditor_a = $(this);
-						var background = ckeditor_a.find('span').eq(0).css(
-								'background-image')
-						var li = $('<li>' + '<table>' + '<tr>' + '<td>'
-								+ '<img width="16" height="16" src="' + (background.replace('url("','').replace('");',''))
-								+ '"	style="border: 1px solid #BEBEBE;">' + '</td>'
-								+ '<td>' + ckeditor_a.attr('title') + '</td>' + '</tr>' + '</table>'
-								+ '	</li>');
-						if (Browser.type.indexOf('IE') > -1) {
-							li.attr('onclick', ckeditor_a.attr('onmouseup'));
-						} else {
-							li.attr('onclick', ckeditor_a.attr('onclick'));
-						}
-						$("#btn_menu").append(li);
-					});
-			$("#btn_menu").menu();
-			$(toolId).remove();
-			findObject();
-		});
-	};
-	
-	var text = '<%=request.getParameter("text") == null ? "" : request.getParameter("text")%>';
-	var objectId = '<%=request.getParameter("objectId") == null ? "" : request.getParameter("objectId")%>';
-
-	function getData() {
-		var html = CKEDITOR.instances.editor.getData().replace(/<img config/g,
-				'<span config').replace(/ztype="span" \/>/g, '></span>');
-		var jsonConfig = [];
-		var $html = $('<span>' + html + '</span>');
-		$html.find("[xtype]").each(function() {
-			var config = $(this).getConfig();
-			if(config.xtype!='form'){
-				if (!config.text) {
-					config.text = config.name;
-				}
-				jsonConfig.push(config);
-			}
-		});
-		return {
-			html : html,
-			jsonConfig : jsonConfig,
-			eventList : eventList
-		};
-	}
-	var eventList = [];
-	function updateHtml() {
-		var data1 = getData();
-		var data = {
-			id : objectId,
-			html : data1.html,
-			eventList :BaseUtil.toString( eventList),
-			jsonConfig : BaseUtil.toString(data1.jsonConfig)
-		};
+	function updateHtml(data) {
+		data.id=selectTreeNode.id;
 		Request.request('form-FormInfo-updateHtml', {
 			data : data
+		}, function(result) {
+			if (result.success) {
+				selectTreeNode.html = data.html;
+				selectTreeNode.eventList = data.eventList;
+				$.hh.tree.updateNode('formTree', selectTreeNode);
+				$.hh.tree.getTree('formTree').refresh();
+			}
 		});
 	}
 
-	function openview() {
-		var data = getData();
-		Request.submit('jsp-form-ckeditor-ckeditorview', {
-			html : data.html,
-			eventList : BaseUtil.toString( data.eventList),
-			title : text
-		});
-	}
 	function init() {
-		document.title = document.title + '-' + text;
-	}
-
-	function findObject() {
-		Request.request('form-FormInfo-findObjectById', {
-			data : {
-				id : objectId
-			},
-			defaultMsg : false,
-			callback : function(object) {
-				if (object && object.html) {
-					CKEDITOR.instances.editor.setData(object.html.replace(
-							/<span config/g, '<img config').replace(
-							/><\/span>/g, 'ztype="span" />'));
-				}
-				if(object && object.eventList){
-					eventList=BaseUtil.toObject(object.eventList);
-				}
-			}
-		});
-	}
-	
-	
-	function doEventList() {
-		Dialog.open({
-			url : 'jsp-form-event-eventList',
-			params : {
-				eventList :eventList,
-				data : getData(),
-				callback : function(eventListResult) {
-					eventList=eventListResult;
-				}
-			}
-		});
-	}
-
-	function set_height() {
-		$('#cke_1_contents').height(Browser.getHeight() - 145);
 	}
 </script>
 <style>
@@ -394,23 +92,19 @@
 </head>
 <body>
 	<div xtype="border_layout">
-		<div config="render : 'west' ,resizable :false ,width:180 ">
-			<div xtype="toolbar" config="type:'head'"
-				style="height: 28px; text-align: center;">
-				<div style="margin: 5px 0px 0px 0px">控件列表</div>
-			</div>
-			<ul id="btn_menu" style="width: 150px; border: 0px; margin: 5px;">
-			</ul>
-		</div>
-		<div>
+		<div config="render : 'west'">
 			<div xtype="toolbar" config="type:'head'">
+				<span xtype="button" config="onClick:addFormType,text:'添加'"></span>
 				<span xtype="button"
-					config="onClick:updateHtml,text:'保存',itype:'save' "></span> <span
-					xtype="button"
-					config="onClick : openview,text : '预览' ,itype:'view' "></span> <span
-					xtype="button" config="onClick : doEventList ,text : '事件'  "></span>
+					config="onClick : $.hh.tree.refresh,text : '刷新' ,params: 'formTree' "></span>
 			</div>
-			<textarea id="editor" name="editor"></textarea>
+			<span xtype="tree"
+				config=" id:'formTree' , url:'form-FormInfo-queryTreeList' , remove : remove , edit : edit, onClick : formTreeClick"></span>
+		</div>
+		<div id="formdiv"  style="overflow: visible;">
+			<iframe id="<%=workflowiframeId%>" name="<%=workflowiframeId%>" width=100%
+					height=100% frameborder=0 
+					src="/hhcommon/opensource/ckeditor/ckeditor.html"></iframe>
 		</div>
 	</div>
 </body>
