@@ -10,7 +10,7 @@ public class CkFormTreeService extends BaseService<HhCkFormTree> {
 
 	public void updateHtml(HhCkFormTree object) {
 		dao.updateEntity("update " + HhCkFormTree.class.getName()
-				+ " set html=:html,jsonConfig=:jsonConfig where id=:id", object);
+				+ " set html=:html,jsonConfig=:jsonConfig,eventList=:eventList where id=:id", object);
 
 	}
 }
