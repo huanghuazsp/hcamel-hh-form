@@ -29,6 +29,7 @@
 		jsonConfig = hhCkFormTree.getJsonConfig();
 		tableName = hhCkFormTree.getTableName();
 		html = hhCkFormTree.getHtml();
+		eventList = hhCkFormTree.getEventList();
 	}else{
 		FormInfoService formInfoService = BeanFactoryHelper
 				.getBeanFactory().getBean(FormInfoService.class);
