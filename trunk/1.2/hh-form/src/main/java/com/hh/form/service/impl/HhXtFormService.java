@@ -3,7 +3,6 @@ package com.hh.form.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +10,10 @@ import com.hh.form.bean.HhXtForm;
 import com.hh.form.bean.model.Column;
 import com.hh.form.util.FormUtil;
 import com.hh.hibernate.dao.inf.IHibernateDAO;
-import com.hh.hibernate.util.dto.HQLParamList;
 import com.hh.system.util.Check;
 import com.hh.system.util.Convert;
 import com.hh.system.util.MessageException;
+import com.hh.system.util.dto.ParamFactory;
 
 @Service
 public class HhXtFormService {
@@ -78,8 +77,8 @@ public class HhXtFormService {
 
 	public HhXtForm findObjectByDataId(String dataId) {
 		HhXtForm hhXtForm = xtFormDAO.findEntity(HhXtForm.class,
-				new HQLParamList().addCondition(Restrictions.eq("dataId",
-						dataId)));
+				ParamFactory.getParamHb().is("dataId",
+						dataId));
 		return hhXtForm;
 	}
 
@@ -92,8 +91,8 @@ public class HhXtFormService {
 		List<String> deleteList =formTreeService.deleteTreeByIds(ids);
 //		List<String> deleteList = Convert.strToList(ids); 
 		List<HhXtForm> hhXtForms = xtFormDAO.queryList(HhXtForm.class,
-				new HQLParamList().addCondition(Restrictions.in("dataId",
-						deleteList)));
+				ParamFactory.getParamHb().in("dataId",
+						deleteList));
 		for (HhXtForm hhXtForm : hhXtForms) {
 			createTableService.deleteTableByTableName(hhXtForm.getTableName());
 		}
