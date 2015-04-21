@@ -6,18 +6,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hh.form.bean.HhXtForm;
 import com.hh.form.util.FormUtil;
 import com.hh.hibernate.dao.inf.IHibernateDAO;
-import com.hh.hibernate.util.dto.HQLParamList;
 import com.hh.system.util.Check;
 import com.hh.system.util.Convert;
 import com.hh.system.util.MessageException;
 import com.hh.system.util.dto.PageRange;
+import com.hh.system.util.dto.ParamFactory;
 
 @Service
 public class ActionFormService {
@@ -31,8 +30,8 @@ public class ActionFormService {
 	public Map<? extends String, ? extends Object> queryByTableName(
 			String dataId, String keywords, PageRange pageRange) {
 		HhXtForm hhXtForm = hhXtFormDAO.findEntity(HhXtForm.class,
-				new HQLParamList().addCondition(Restrictions.eq("dataId",
-						dataId)));
+				ParamFactory.getParamHb().is("dataId",
+						dataId));
 		String[] querySqls = null;
 		if (Check.isEmpty(keywords)) {
 			querySqls = FormUtil.getQueryPageSql(hhXtForm);
@@ -60,8 +59,8 @@ public class ActionFormService {
 
 	public Map<String, Object> findObjectById(String id, String tableName) {
 		HhXtForm hhXtForm = hhXtFormDAO.findEntity(HhXtForm.class,
-				new HQLParamList().addCondition(Restrictions.eq("tableName",
-						tableName)));
+				ParamFactory.getParamHb().is("tableName",
+						tableName));
 		Map<String, Object> map = hibernateDAO.findEntity(tableName, id);
 		Map<String, Object> objectMap = FormUtil.mapUpperNameToWidgetName(map,
 				hhXtForm.getFormSource());
@@ -81,8 +80,8 @@ public class ActionFormService {
 		String dataId = (String) parameterMap.get("dataId");
 
 		HhXtForm hhXtForm = hhXtFormDAO.findEntity(HhXtForm.class,
-				new HQLParamList().addCondition(Restrictions.eq("dataId",
-						dataId)));
+				ParamFactory.getParamHb().is("dataId",
+						dataId));
 
 		FormUtil.typeConversion(parameterMap, hhXtForm);
 
@@ -101,8 +100,8 @@ public class ActionFormService {
 			throws MessageException {
 		String dataId = (String) parameterMap.get("dataId");
 		HhXtForm hhXtForm = hhXtFormDAO.findEntity(HhXtForm.class,
-				new HQLParamList().addCondition(Restrictions.eq("dataId",
-						dataId)));
+				ParamFactory.getParamHb().is("dataId",
+						dataId));
 		FormUtil.typeConversion(parameterMap, hhXtForm);
 		if ("insert".equals(parameterMap.get("saveType"))) {
 			parameterMap.put("id", UUID.randomUUID().toString());
