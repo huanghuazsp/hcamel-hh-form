@@ -34,10 +34,20 @@
 		FormInfoService formInfoService = BeanFactoryHelper
 				.getBeanFactory().getBean(FormInfoService.class);
 		FormInfo formInfo = formInfoService.findObjectById(id);
-		jsonConfig = formInfo.getJsonConfig();
-		tableName = formInfo.getTableName();
-		html = formInfo.getHtml();
-		eventList = formInfo.getEventList();
+		if(formInfo!=null){
+			jsonConfig = formInfo.getJsonConfig();
+			tableName = formInfo.getTableName();
+			html = formInfo.getHtml();
+			eventList = formInfo.getEventList();
+		}else{
+			CkFormTreeService ckFormTreeService = BeanFactoryHelper
+					.getBeanFactory().getBean(CkFormTreeService.class);
+			HhCkFormTree hhCkFormTree = ckFormTreeService.findObjectById(id);
+			jsonConfig = hhCkFormTree.getJsonConfig();
+			tableName = hhCkFormTree.getTableName();
+			html = hhCkFormTree.getHtml();
+			eventList = hhCkFormTree.getEventList();
+		}
 	}
 	
 	IUser user =	(IUser)session.getAttribute("loginuser");
