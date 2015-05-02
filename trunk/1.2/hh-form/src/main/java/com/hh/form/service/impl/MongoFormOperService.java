@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.stereotype.Service;
 
-import com.hh.mongo.dao.inf.IDataBaseOper;
+import com.hh.mongo.dao.inf.IMongoDAOInf;
 import com.hh.system.util.Check;
 import com.hh.system.util.Convert;
 import com.hh.system.util.Json;
@@ -21,7 +21,7 @@ import com.hh.system.util.dto.ParamInf;
 @Service
 public class MongoFormOperService {
 	@Autowired
-	private IDataBaseOper springMongoDAOImpl;
+	private IMongoDAOInf springMongoDAOImpl;
 
 	public void save(Map<String, Object> objectMap) {
 		String tableName = Convert.toString(objectMap.get("tableName"));
