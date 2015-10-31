@@ -81,6 +81,7 @@
 	}
 
 	function init() {
+		$('#'+iframeId).attr('src','/hhcommon/opensource/ckeditor/ckeditor.html');
 	}
 </script>
 <style>
@@ -103,7 +104,7 @@
 		<div id="formdiv"  style="overflow: visible;">
 			<iframe id="<%=workflowiframeId%>" name="<%=workflowiframeId%>" width=100%
 					height=100% frameborder=0 
-					src="/hhcommon/opensource/ckeditor/ckeditor.html"></iframe>
+					src=""></iframe>
 		</div>
 	</div>
 </body>
