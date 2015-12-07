@@ -20,38 +20,36 @@ public class ActionFormWidget extends BaseAction implements
 	@Autowired
 	private HhXtFormService hhXtFormService;
 
-	public void save() {
+	public Object save() {
 		try {
 			HhXtForm hhXtForm = hhXtFormService
 					.save(this.hhXtForm, deleteTable==1);
-			this.getResultMap().put("object", hhXtForm);
 		} catch (MessageException e) {
-			this.getResultMap().put("returnModel",
-					new ReturnModel(e.getMessage()));
+			return e;
 		}
-		this.returnResult();
+		return null;
 	}
 
-	public void findObjectByDataId() {
+	public Object findObjectByDataId() {
 		HhXtForm hhXtForm = hhXtFormService.findObjectByDataId(this.hhXtForm
 				.getDataId());
-		this.returnResult(hhXtForm);
+		return hhXtForm;
 	}
 
-	public void findObjectById() {
+	public Object findObjectById() {
 		HhXtForm hhXtForm = hhXtFormService.findObjectById(this.hhXtForm
 				.getId());
-		this.returnResult(hhXtForm);
+		return hhXtForm;
 	}
 
 	public void deleteByIds() {
 		hhXtFormService.deleteByIds(this.getIds());
 	}
 	
-	public void queryColumnList() {
+	public Object queryColumnList() {
 		List<Column> maps = hhXtFormService
 					.queryColumnList(this.hhXtForm);
-		this.returnResult(maps);
+		return maps;
 	}
 	
 	public void deleteColumnByIdsTabName(){

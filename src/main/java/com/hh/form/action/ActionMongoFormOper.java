@@ -17,14 +17,14 @@ public class ActionMongoFormOper extends BaseAction {
 	private MongoFormOperService service;
 	
 	
-	public void queryPagingData() {
-		this.returnResult(service.queryPagingData(convertMap(object), this.getPageRange(),tableName));
+	public Object queryPagingData() {
+		return service.queryPagingData(convertMap(object), this.getPageRange(),tableName);
 	}
 
-	public void findObjectById() {
+	public Object findObjectById() {
 		Map<String, Object> map = service.findObjectById(id,
 				tableName);
-		this.returnResult(map);
+		return map;
 	}
 	
 	public void deleteByIds() {

@@ -19,11 +19,11 @@ public class ActionFormData extends BaseServiceAction<FormData> {
 	@Autowired
 	private FormDataService formDataService;
 
-	public void queryTreeList() {
-		this.returnResult(formDataService.queryTreeList(object.getNode(),
+	public Object queryTreeList() {
+		return formDataService.queryTreeList(object.getNode(),
 				Convert.toBoolean(request.getParameter("isNoLeaf")),
 				ParamFactory.getParam()
-						.is("dataTypeId", object.getDataTypeId())));
+						.is("dataTypeId", object.getDataTypeId()));
 	}
 
 }
