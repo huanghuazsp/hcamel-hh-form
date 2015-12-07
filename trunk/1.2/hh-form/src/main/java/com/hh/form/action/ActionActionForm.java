@@ -20,40 +20,34 @@ public class ActionActionForm extends BaseAction {
 	@Autowired
 	private ActionFormService actionFormService;
 	private Map<String, String> userMap = new HashMap<String, String>();
-	public void queryPagingDataByTableName() {
-		this.getResultMap().putAll(
-				actionFormService.queryByTableName(dataId, keywords,
-						this.getPageRange()));
-		this.returnResult();
+	public Object queryPagingDataByTableName() {
+		return actionFormService.queryByTableName(dataId, keywords,
+				this.getPageRange());
 	}
 
-	public void findObjectById() {
+	public Object findObjectById() {
 		Map<String, Object> map = actionFormService.findObjectById(id,
 				tableName);
-		this.returnResult(map);
+		return map;
 	}
 
-	public void save() {
+	public Object save() {
 		try {
 			Map<String, Object> paraMap =Request.getParamMapByRequest(request);
 			Map<String, Object> map = actionFormService.save(paraMap);
-			this.getResultMap().put("object", map);
 		} catch (MessageException e) {
-			this.getResultMap().put("returnModel",
-					new ReturnModel(e.getMessage()));
+			return e;
 		}
-		this.returnResult();
+		return null;
 	}
-	public void workflowSave() {
+	public Object workflowSave() {
 		try {
 			Map<String, Object> paraMap =Request.getParamMapByRequest(request);
 			Map<String, Object> map = actionFormService.workflowSave(paraMap);
-			this.getResultMap().put("object", map);
 		} catch (MessageException e) {
-			this.getResultMap().put("returnModel",
-					new ReturnModel(e.getMessage()));
+			return e;
 		}
-		this.returnResult();
+		return null;
 	}
 	
 	public void deleteByIds() {
