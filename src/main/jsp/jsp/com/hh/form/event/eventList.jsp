@@ -36,7 +36,7 @@
 					row : row,
 					data : params.data,
 					callback : function(data) {
-						$("#pagelist").gethhWidget().updateRow(data);
+						$("#pagelist").getWidget().updateRow(data);
 					}
 				}
 			});
@@ -45,7 +45,7 @@
 
 	function doDelete() {
 		$.hh.pagelist.callRow("pagelist", function(row) {
-			$("#pagelist").gethhWidget().deleteRow(row);
+			$("#pagelist").getWidget().deleteRow(row);
 		});
 	}
 
