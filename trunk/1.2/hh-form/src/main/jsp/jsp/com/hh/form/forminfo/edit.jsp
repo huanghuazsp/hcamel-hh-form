@@ -24,7 +24,7 @@
 			Request.request('form-FormInfo-saveTree', {
 				data : formData,
 				callback : function(result) {
-					if (result.success) {
+					if (result.success!=false) {
 						params.callback(result);
 						Dialog.close();
 					}

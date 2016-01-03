@@ -35,7 +35,7 @@
 						ids : treeNode.id
 					},
 					callback : function(result) {
-						if (result.success) {
+						if (result.success!=false) {
 							$.hh.tree.refresh('formTree');
 						}
 					}
@@ -72,7 +72,7 @@
 		Request.request('form-CkFormTree-updateHtml', {
 			data : data
 		}, function(result) {
-			if (result.success) {
+			if (result.success!=false) {
 				selectTreeNode.html = data.html;
 				$.hh.tree.updateNode('formTree', selectTreeNode);
 				$.hh.tree.getTree('formTree').refresh();
