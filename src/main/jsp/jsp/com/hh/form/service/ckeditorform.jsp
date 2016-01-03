@@ -114,7 +114,7 @@ for(Map<String,Object> map : mapList){
 					async : false,
 					data : object2
 				}, function(result) {
-					if (result.success) {
+					if (result.success!=false) {
 						if (params.callback) {
 							params.callback();
 							Dialog.close();
