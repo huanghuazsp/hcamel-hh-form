@@ -5,7 +5,7 @@
 <html>
 <head>
 <title>表单设计</title>
-<%=BaseSystemUtil.getBaseJs("right_menu","gridviewService")%>
+<%=BaseSystemUtil.getBaseJs("gridviewService")%>
 <%
 	Gson gson = new Gson();
 %>
