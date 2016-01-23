@@ -31,7 +31,7 @@
 			<tr>
 				<td xtype="label">类型：</td>
 				<td colspan="3"><span xtype="radio"
-					config="name: 'params_selectType' ,defaultValue : 'job',  data :[ { id : 'job' , text : '岗位' } , { id : 'dept' , text : '部门' } , { id : 'org' , text : '机构' } ,  { id : 'group' , text : '集团' }  ]"></span></td>
+					config="name: 'selectType' ,defaultValue : 'job',  data :[ { id : 'job' , text : '岗位' } , { id : 'dept' , text : '部门' } , { id : 'org' , text : '机构' } ,  { id : 'group' , text : '集团' }  ]"></span></td>
 			</tr>
 		</table>
 	</form>
