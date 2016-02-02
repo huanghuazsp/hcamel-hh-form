@@ -9,7 +9,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hh.form.bean.HhXtForm;
+import com.hh.form.bean.HhXtForm_bak;
 import com.hh.form.util.FormUtil;
 import com.hh.hibernate.dao.inf.IHibernateDAO;
 import com.hh.system.util.Check;
@@ -25,11 +25,11 @@ public class ActionFormService {
 	private IHibernateDAO hibernateDAO;
 
 	@Autowired
-	private IHibernateDAO<HhXtForm> hhXtFormDAO;
+	private IHibernateDAO<HhXtForm_bak> hhXtFormDAO;
 
 	public Map<? extends String, ? extends Object> queryByTableName(
 			String dataId, String keywords, PageRange pageRange) {
-		HhXtForm hhXtForm = hhXtFormDAO.findEntity(HhXtForm.class,
+		HhXtForm_bak hhXtForm = hhXtFormDAO.findEntity(HhXtForm_bak.class,
 				ParamFactory.getParamHb().is("dataId",
 						dataId));
 		String[] querySqls = null;
@@ -58,7 +58,7 @@ public class ActionFormService {
 	}
 
 	public Map<String, Object> findObjectById(String id, String tableName) {
-		HhXtForm hhXtForm = hhXtFormDAO.findEntity(HhXtForm.class,
+		HhXtForm_bak hhXtForm = hhXtFormDAO.findEntity(HhXtForm_bak.class,
 				ParamFactory.getParamHb().is("tableName",
 						tableName));
 		Map<String, Object> map = hibernateDAO.findEntity(tableName, id);
@@ -79,7 +79,7 @@ public class ActionFormService {
 
 		String dataId = (String) parameterMap.get("dataId");
 
-		HhXtForm hhXtForm = hhXtFormDAO.findEntity(HhXtForm.class,
+		HhXtForm_bak hhXtForm = hhXtFormDAO.findEntity(HhXtForm_bak.class,
 				ParamFactory.getParamHb().is("dataId",
 						dataId));
 
@@ -99,7 +99,7 @@ public class ActionFormService {
 	public Map<String, Object> workflowSave(Map<String, Object> parameterMap)
 			throws MessageException {
 		String dataId = (String) parameterMap.get("dataId");
-		HhXtForm hhXtForm = hhXtFormDAO.findEntity(HhXtForm.class,
+		HhXtForm_bak hhXtForm = hhXtFormDAO.findEntity(HhXtForm_bak.class,
 				ParamFactory.getParamHb().is("dataId",
 						dataId));
 		FormUtil.typeConversion(parameterMap, hhXtForm);

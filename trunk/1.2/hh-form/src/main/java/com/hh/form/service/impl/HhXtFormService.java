@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hh.form.bean.HhXtForm;
+import com.hh.form.bean.HhXtForm_bak;
 import com.hh.form.bean.model.Column;
 import com.hh.form.util.FormUtil;
 import com.hh.hibernate.dao.inf.IHibernateDAO;
@@ -19,7 +19,7 @@ import com.hh.system.util.dto.ParamFactory;
 public class HhXtFormService {
 
 	@Autowired
-	private IHibernateDAO<HhXtForm> xtFormDAO;
+	private IHibernateDAO<HhXtForm_bak> xtFormDAO;
 //	@Autowired
 //	private HhXtDataService hhXtDataService;
 	
@@ -28,7 +28,7 @@ public class HhXtFormService {
 	@Autowired
 	private CreateTableService createTableService;
 
-	public HhXtForm save(HhXtForm hhXtForm, boolean deleteTable)
+	public HhXtForm_bak save(HhXtForm_bak hhXtForm, boolean deleteTable)
 			throws MessageException {
 		if (checkTableNameOnly(hhXtForm)) {
 			throw new MessageException("表名称不能一致：" + hhXtForm.getTableName());
@@ -44,13 +44,13 @@ public class HhXtFormService {
 		}
 
 		String oldTableName = null;
-		HhXtForm hhXtForm1 = null;
+		HhXtForm_bak hhXtForm1 = null;
 		List<String> sqlList = new ArrayList<String>();
 		if (Check.isEmpty(hhXtForm.getId())) {
 			xtFormDAO.createEntity(hhXtForm);
 
 		} else {
-			hhXtForm1 = xtFormDAO.findEntityByPK(HhXtForm.class,
+			hhXtForm1 = xtFormDAO.findEntityByPK(HhXtForm_bak.class,
 					hhXtForm.getId());
 			oldTableName = hhXtForm1.getTableName();
 			xtFormDAO.mergeEntity(hhXtForm);
@@ -65,7 +65,7 @@ public class HhXtFormService {
 		return hhXtForm;
 	}
 
-	private boolean checkTableNameOnly(HhXtForm hhXtForm) {
+	private boolean checkTableNameOnly(HhXtForm_bak hhXtForm) {
 		return xtFormDAO
 				.findWhetherData(
 						"select count(o) from "
@@ -75,32 +75,32 @@ public class HhXtFormService {
 						hhXtForm);
 	}
 
-	public HhXtForm findObjectByDataId(String dataId) {
-		HhXtForm hhXtForm = xtFormDAO.findEntity(HhXtForm.class,
+	public HhXtForm_bak findObjectByDataId(String dataId) {
+		HhXtForm_bak hhXtForm = xtFormDAO.findEntity(HhXtForm_bak.class,
 				ParamFactory.getParamHb().is("dataId",
 						dataId));
 		return hhXtForm;
 	}
 
-	public HhXtForm findObjectById(String id) {
-		HhXtForm hhXtForm = xtFormDAO.findEntityByPK(HhXtForm.class, id);
+	public HhXtForm_bak findObjectById(String id) {
+		HhXtForm_bak hhXtForm = xtFormDAO.findEntityByPK(HhXtForm_bak.class, id);
 		return hhXtForm;
 	}
 
 	public void deleteByIds(String ids) {
 		List<String> deleteList =formTreeService.deleteTreeByIds(ids);
 //		List<String> deleteList = Convert.strToList(ids); 
-		List<HhXtForm> hhXtForms = xtFormDAO.queryList(HhXtForm.class,
+		List<HhXtForm_bak> hhXtForms = xtFormDAO.queryList(HhXtForm_bak.class,
 				ParamFactory.getParamHb().in("dataId",
 						deleteList));
-		for (HhXtForm hhXtForm : hhXtForms) {
+		for (HhXtForm_bak hhXtForm : hhXtForms) {
 			createTableService.deleteTableByTableName(hhXtForm.getTableName());
 		}
 
-		xtFormDAO.deleteEntity(HhXtForm.class, "dataId", deleteList);
+		xtFormDAO.deleteEntity(HhXtForm_bak.class, "dataId", deleteList);
 	}
 
-	public List<Column> queryColumnList(HhXtForm hhXtForm) {
+	public List<Column> queryColumnList(HhXtForm_bak hhXtForm) {
 
 		List<Column> columnList = FormUtil.xtFormToColumn(hhXtForm
 				.getFormSource());

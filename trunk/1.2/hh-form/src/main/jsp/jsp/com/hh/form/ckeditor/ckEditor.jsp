@@ -30,7 +30,7 @@
 		Dialog.confirm({
 			message : '您确认要删除数据吗？',
 			yes : function(result) {
-				Request.request('form-CkFormTree-deleteTreeByIds', {
+				Request.request('form-SysFormTree-deleteTreeByIds', {
 					data : {
 						ids : treeNode.id
 					},
@@ -69,7 +69,7 @@
 	}
 	function updateHtml(data) {
 		data.id=selectTreeNode.id;
-		Request.request('form-CkFormTree-updateHtml', {
+		Request.request('form-SysFormTree-updateHtml', {
 			data : data
 		}, function(result) {
 			if (result.success!=false) {
@@ -99,7 +99,7 @@
 					config="onClick : $.hh.tree.refresh,text : '刷新' ,params: 'formTree' "></span>
 			</div>
 			<span xtype="tree"
-				config=" id:'formTree' , url:'form-CkFormTree-queryTreeList' , remove : remove , edit : edit, onClick : formTreeClick"></span>
+				config=" id:'formTree' , url:'form-SysFormTree-queryTreeList' , remove : remove , edit : edit, onClick : formTreeClick"></span>
 		</div>
 		<div id="formdiv"  style="overflow: visible;">
 			<iframe id="<%=workflowiframeId%>" name="<%=workflowiframeId%>" width=100%

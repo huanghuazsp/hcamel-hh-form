@@ -10,10 +10,10 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import com.hh.hibernate.util.base.BaseTwoEntity;
 
-@Entity
-@Table(name = "HH_XT_FORM")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class HhXtForm extends BaseTwoEntity implements java.io.Serializable {
+//@Entity
+//@Table(name = "HH_XT_FORM")
+//@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+public class HhXtForm_bak extends BaseTwoEntity implements java.io.Serializable {
 	private String formSource;
 	private String tableName;
 	private String dataId;

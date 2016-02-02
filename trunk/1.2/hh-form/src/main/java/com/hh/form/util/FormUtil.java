@@ -15,7 +15,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.hh.form.bean.HhXtForm;
+import com.hh.form.bean.HhXtForm_bak;
 import com.hh.form.bean.model.Column;
 import com.hh.system.util.Check;
 import com.hh.system.util.Convert;
@@ -273,7 +273,7 @@ public class FormUtil {
 		return sqlList;
 	}
 
-	public static String getInsertDataSql(HhXtForm hhXtForm) {
+	public static String getInsertDataSql(HhXtForm_bak hhXtForm) {
 		List<Column> columnList = xtFormToColumn(hhXtForm.getFormSource());
 		StringBuffer sqlkey = new StringBuffer("(");
 		StringBuffer sqlvalue = new StringBuffer("(");
@@ -288,7 +288,7 @@ public class FormUtil {
 		return sql;
 	}
 
-	public static String getUpdateDataSql(HhXtForm hhXtForm) {
+	public static String getUpdateDataSql(HhXtForm_bak hhXtForm) {
 		StringBuffer stringBuffer = new StringBuffer();
 		List<Column> columnList = xtFormToColumn(hhXtForm.getFormSource());
 
@@ -304,11 +304,11 @@ public class FormUtil {
 		return sql;
 	}
 
-	public static String[] getQueryPageSql(HhXtForm hhXtForm) {
+	public static String[] getQueryPageSql(HhXtForm_bak hhXtForm) {
 		return getQueryPageSql(hhXtForm, false);
 	}
 
-	public static String[] getQueryPageSql(HhXtForm hhXtForm, boolean isKeywords) {
+	public static String[] getQueryPageSql(HhXtForm_bak hhXtForm, boolean isKeywords) {
 		StringBuffer sql = new StringBuffer("select * FROM "
 				+ hhXtForm.getTableName() + "   ");
 		StringBuffer countsql = new StringBuffer("select count(*) FROM "
@@ -329,7 +329,7 @@ public class FormUtil {
 	}
 
 	public static void typeConversion(Map<String, Object> parameterMap,
-			HhXtForm hhXtForm) {
+			HhXtForm_bak hhXtForm) {
 		List<Column> columnList = xtFormToColumn(hhXtForm.getFormSource());
 		for (Column column : columnList) {
 			Object value = parameterMap.get(column.getName());

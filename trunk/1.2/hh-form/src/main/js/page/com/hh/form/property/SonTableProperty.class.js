@@ -14,7 +14,6 @@ Ext.define('com.hh.form.property.SonTableProperty', {
 			"fieldLabel" : "子表",
 			"allowBlank" : false,
 			"action" : "form-FormTree-queryTreeListe",
-//			"extraParams" : "{'table_name':'hh_xt_data','type':'form_tree'}",
 			"submitType" : "id",
 			"defaultSubmitValue" : "root",
 			"paramType" : "paramsMap"

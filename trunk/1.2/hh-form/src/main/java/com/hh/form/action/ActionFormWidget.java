@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.hh.form.bean.HhXtForm;
+import com.hh.form.bean.HhXtForm_bak;
 import com.hh.form.bean.model.Column;
 import com.hh.form.service.impl.HhXtFormService;
 import com.hh.system.util.MessageException;
@@ -14,15 +14,15 @@ import com.opensymphony.xwork2.ModelDriven;
 
 @SuppressWarnings("serial")
 public class ActionFormWidget extends BaseAction implements
-		ModelDriven<HhXtForm> {
-	private HhXtForm hhXtForm = new HhXtForm();
+		ModelDriven<HhXtForm_bak> {
+	private HhXtForm_bak hhXtForm = new HhXtForm_bak();
 	private int deleteTable;
 	@Autowired
 	private HhXtFormService hhXtFormService;
 
 	public Object save() {
 		try {
-			HhXtForm hhXtForm = hhXtFormService
+			HhXtForm_bak hhXtForm = hhXtFormService
 					.save(this.hhXtForm, deleteTable==1);
 		} catch (MessageException e) {
 			return e;
@@ -31,13 +31,13 @@ public class ActionFormWidget extends BaseAction implements
 	}
 
 	public Object findObjectByDataId() {
-		HhXtForm hhXtForm = hhXtFormService.findObjectByDataId(this.hhXtForm
+		HhXtForm_bak hhXtForm = hhXtFormService.findObjectByDataId(this.hhXtForm
 				.getDataId());
 		return hhXtForm;
 	}
 
 	public Object findObjectById() {
-		HhXtForm hhXtForm = hhXtFormService.findObjectById(this.hhXtForm
+		HhXtForm_bak hhXtForm = hhXtFormService.findObjectById(this.hhXtForm
 				.getId());
 		return hhXtForm;
 	}
@@ -64,7 +64,7 @@ public class ActionFormWidget extends BaseAction implements
 		this.deleteTable = deleteTable;
 	}
 
-	public HhXtForm getModel() {
+	public HhXtForm_bak getModel() {
 		return hhXtForm;
 	}
 }
