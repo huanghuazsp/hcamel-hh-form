@@ -2,8 +2,8 @@
 <%@page import="com.hh.form.service.impl.FormInfoService"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@page import="com.hh.system.util.BaseSystemUtil"%>
-<%@page import="com.hh.form.bean.HhCkFormTree"%>
-<%@page import="com.hh.form.service.impl.CkFormTreeService"%>
+<%@page import="com.hh.form.bean.SysFormTree"%>
+<%@page import="com.hh.form.service.impl.SysFormTreeService"%>
 <%@page import="com.hh.system.service.impl.BeanFactoryHelper"%>
 <%@page import="com.hh.system.util.Convert"%>
 <%@page import="com.hh.system.util.Check"%>
@@ -18,14 +18,14 @@
 	String jsonConfig = "[]";
 	String tableName = "";
 	if("relation".equals(databaseType)){
-		CkFormTreeService ckFormTreeService = BeanFactoryHelper
-				.getBeanFactory().getBean(CkFormTreeService.class);
-		HhCkFormTree hhCkFormTree = ckFormTreeService.findObjectById(id);
-		jsonConfig = hhCkFormTree.getJsonConfig();
-		tableName = hhCkFormTree.getTableName();
+		SysFormTreeService sysFormTreeService = BeanFactoryHelper
+		.getBeanFactory().getBean(SysFormTreeService.class);
+		SysFormTree sysFormTree = sysFormTreeService.findObjectById(id);
+		jsonConfig = sysFormTree.getJsonConfig();
+		tableName = sysFormTree.getTableName();
 	}else{
 		FormInfoService formInfoService = BeanFactoryHelper
-				.getBeanFactory().getBean(FormInfoService.class);
+		.getBeanFactory().getBean(FormInfoService.class);
 		FormInfo formInfo = formInfoService.findObjectById(id);
 		jsonConfig = formInfo.getJsonConfig();
 		tableName = formInfo.getTableName();

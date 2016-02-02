@@ -23,7 +23,7 @@
 					config="onClick : $.hh.tree.refresh,text : '刷新' ,params: 'formTree' "></span>
 			</div>
 			<span xtype="tree"
-				config=" id:'formTree' , url:'form-CkFormTree-queryTreeList' , onClick : formTreeClick"></span>
+				config=" id:'formTree' , url:'form-SysFormTree-queryTreeList' , onClick : formTreeClick"></span>
 		</div>
 		<div id="formdiv"  style="overflow: visible;">
 			<iframe id="startserviceiframe" name="startserviceiframe" width=100%

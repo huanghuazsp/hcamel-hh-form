@@ -15,7 +15,7 @@
 				Dialog.infomsg("类型为表单时，表名不能为空！");
 				return;
 			}
-			Request.request('form-CkFormTree-saveTree', {
+			Request.request('form-SysFormTree-saveTree', {
 				data : formData,
 				callback : function(result) {
 					if (result.success!=false) {
@@ -28,7 +28,7 @@
 	}
 
 	function findData(id) {
-		Request.request('form-CkFormTree-findObjectById', {
+		Request.request('form-SysFormTree-findObjectById', {
 			data : {
 				id : params.id
 			},
@@ -66,7 +66,7 @@
 						<td><span xtype="text" config=" name : 'text',required :true"></span></td>
 						<td xtype="label">父节点：</td>
 						<td><span xtype="selectTree" id="node_span"
-							config="name: 'node' , params : {isNoLeaf : true}, tableName : 'HH_CK_FORM_TREE' , url : 'form-CkFormTree-queryTreeList'"></span>
+							config="name: 'node' , params : {isNoLeaf : true}, tableName : 'HH_CK_FORM_TREE' , url : 'form-SysFormTree-queryTreeList'"></span>
 						</td>
 					</tr>
 					<tr>

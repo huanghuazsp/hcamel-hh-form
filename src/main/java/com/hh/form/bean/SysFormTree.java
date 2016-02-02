@@ -11,9 +11,9 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import com.hh.hibernate.util.base.BaseTreeNodeEntity;
 
 @Entity
-@Table(name = "HH_CK_FORM_TREE")
+@Table(name = "SYS_FORM_TREE")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class HhCkFormTree extends BaseTreeNodeEntity<HhCkFormTree> {
+public class SysFormTree extends BaseTreeNodeEntity<SysFormTree> {
 	private String html;
 	private String tableName;
 	private String jsonConfig;

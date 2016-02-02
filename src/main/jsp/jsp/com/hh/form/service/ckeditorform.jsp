@@ -1,7 +1,7 @@
-<%@page import="com.hh.form.bean.HhCkFormTree"%>
+<%@page import="com.hh.form.bean.SysFormTree"%>
 <%@page import="com.hh.form.bean.FormInfo"%>
 <%@page import="com.hh.form.service.impl.FormInfoService"%>
-<%@page import="com.hh.form.service.impl.CkFormTreeService"%>
+<%@page import="com.hh.form.service.impl.SysFormTreeService"%>
 <%@page import="com.hh.system.service.impl.BeanFactoryHelper"%>
 <%@page import="com.hh.system.util.Convert"%>
 <%@page import="com.hh.system.util.Check"%>
@@ -23,30 +23,30 @@
 	String html = "";
 	String eventList = "[]";
 	if("relation".equals(databaseType)){
-		CkFormTreeService ckFormTreeService = BeanFactoryHelper
-				.getBeanFactory().getBean(CkFormTreeService.class);
-		HhCkFormTree hhCkFormTree = ckFormTreeService.findObjectById(id);
-		jsonConfig = hhCkFormTree.getJsonConfig();
-		tableName = hhCkFormTree.getTableName();
-		html = hhCkFormTree.getHtml();
-		eventList = hhCkFormTree.getEventList();
+		SysFormTreeService sysFormTreeService = BeanFactoryHelper
+		.getBeanFactory().getBean(SysFormTreeService.class);
+		SysFormTree sysFormTree = sysFormTreeService.findObjectById(id);
+		jsonConfig = sysFormTree.getJsonConfig();
+		tableName = sysFormTree.getTableName();
+		html = sysFormTree.getHtml();
+		eventList = sysFormTree.getEventList();
 	}else{
 		FormInfoService formInfoService = BeanFactoryHelper
-				.getBeanFactory().getBean(FormInfoService.class);
+		.getBeanFactory().getBean(FormInfoService.class);
 		FormInfo formInfo = formInfoService.findObjectById(id);
 		if(formInfo!=null){
-			jsonConfig = formInfo.getJsonConfig();
-			tableName = formInfo.getTableName();
-			html = formInfo.getHtml();
-			eventList = formInfo.getEventList();
+	jsonConfig = formInfo.getJsonConfig();
+	tableName = formInfo.getTableName();
+	html = formInfo.getHtml();
+	eventList = formInfo.getEventList();
 		}else{
-			CkFormTreeService ckFormTreeService = BeanFactoryHelper
-					.getBeanFactory().getBean(CkFormTreeService.class);
-			HhCkFormTree hhCkFormTree = ckFormTreeService.findObjectById(id);
-			jsonConfig = hhCkFormTree.getJsonConfig();
-			tableName = hhCkFormTree.getTableName();
-			html = hhCkFormTree.getHtml();
-			eventList = hhCkFormTree.getEventList();
+	SysFormTreeService sysFormTreeService = BeanFactoryHelper
+	.getBeanFactory().getBean(SysFormTreeService.class);
+	SysFormTree sysFormTree = sysFormTreeService.findObjectById(id);
+	jsonConfig = sysFormTree.getJsonConfig();
+	tableName = sysFormTree.getTableName();
+	html = sysFormTree.getHtml();
+	eventList = sysFormTree.getEventList();
 		}
 	}
 	
