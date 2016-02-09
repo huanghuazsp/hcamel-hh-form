@@ -21,7 +21,7 @@
 			<tr>
 				<td xtype="label">子结构：</td>
 				<td colspan="3"><span xtype="selectTree" 
-					config="name: 'formId' , noCheckParent : true ,  tableName : 'HH_CK_FORM_TREE' , url : 'form-SysFormTree-queryTreeList'"></span>
+					config="name: 'formId' , noCheckParent : true ,  tableName : 'sys_form_tree' , url : 'form-SysFormTree-queryTreeList'"></span>
 				</td>
 			</tr>
 		</table>
