@@ -4,7 +4,7 @@
 <html>
 <head>
 <title>数据编辑</title>
-<%=BaseSystemUtil.getBaseJs("checkform")%>
+<%=BaseSystemUtil.getBaseJs("checkform","pinyin")%>
 <script type="text/javascript">
 	var params = BaseUtil.getIframeParams();
 	var width = 600;
@@ -47,6 +47,16 @@
 			}
 		}
 	}
+	function zwblur(){
+		if(!$('#span_code').getValue()){
+			$('#span_code').setValue(pinyin.getPinyin($('#span_text').getValue()));
+		}
+	}
+	$(function(){
+		$('#refreshName').click(function(){
+			$('#span_code').setValue(pinyin.getPinyin($('#span_text').getValue()));
+		});
+	});
 </script>
 </head>
 <body>
@@ -57,7 +67,7 @@
 				<tbody>
 					<tr>
 						<td xtype="label">名称：</td>
-						<td><span xtype="text" config=" name : 'text',required :true"></span></td>
+						<td><span xtype="text" config=" name : 'text',required :true,blur: zwblur "></span></td>
 						<td xtype="label">父节点：</td>
 						<td><span xtype="selectTree" id="node_span"
 							config="name: 'node' , findTextAction : 'form-FormDataType-findObjectById', params : {isNoLeaf : true},  url : 'form-FormDataType-queryTreeList'"></span>
@@ -72,8 +82,8 @@
 							config="name: 'expanded' ,defaultValue : 0,  data :[{id:1,text:'是'},{id:0,text:'否'}]"></span></td>
 					</tr>
 					<tr>
-						<td xtype="label">标识：</td>
-						<td colspan="3"><span xtype="text" config=" name : 'type'"></span></td>
+						<td xtype="label">标识：<img id="refreshName" style="cursor:pointer;"  src="/hhcommon/opensource/jquery/image/16/refresh.png"  title="根据中文名获取拼音"  /></td>
+						<td colspan="3"><span xtype="text" config=" required :true,name : 'code'"></span></td>
 					</tr>
 				</tbody>
 			</table>
