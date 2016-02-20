@@ -11,8 +11,8 @@
 		name : 'data',
 		required : true,
 		valueType:'object',
-		trhtml : '<tr><td xtype="label">提交值：</td><td><span xtype="text" valuekey="id" config=" required :true"></span></td>'
-		+'<td xtype="label">显示值：</td><td><span xtype="text" valuekey="text" config=" required :true"></span></td></tr>'
+		trhtml : '<table width=100%><tr><td style="width:60px;text-align:right;">提交值：</td><td><span xtype="text" valuekey="id" config=" required :true"></span></td>'
+		+'<td style="width:60px;text-align:right;">显示值：</td><td><span xtype="text" valuekey="text" config=" required :true"></span></td></tr></table>'
 	}
 </script>
 </head>

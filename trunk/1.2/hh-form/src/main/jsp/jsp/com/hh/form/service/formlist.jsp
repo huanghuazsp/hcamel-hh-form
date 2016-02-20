@@ -138,19 +138,19 @@
 	};
 	var tableitemConfig = {
 		name : 'cond',
-		trhtml : '<tr>'
+		trhtml : '<table width=100%><tr>'
 				//+'<td xtype="label" style="width:50px">关系：</td><td  style="width:50px"><span valuekey="andor"  xtype="combobox" configVar="andorConfig"></span></td>'
-				+ '<td xtype="label" style="width:50px">字段：</td><td  style="width:150px"><span valuekey="field"  xtype="combobox" configVar="selectConfig"></span></td>'
-				+ '<td xtype="label" style="width:50px">条件：</td><td  style="width:100px"><span valuekey="cond"  xtype="combobox" configVar="condConfig"></span></td>'
-				+ '<td xtype="label" style="width:50px">值：</td><td><span valuekey="value" xtype="text"  ></span></td></tr>'
+				+ '<td  style="width:50px;text-align:right;">字段：</td><td  style="width:150px"><span valuekey="field"  xtype="combobox" configVar="selectConfig"></span></td>'
+				+ '<td  style="width:50px;text-align:right;">条件：</td><td  style="width:100px"><span valuekey="cond"  xtype="combobox" configVar="condConfig"></span></td>'
+				+ '<td  style="width:50px;text-align:right;">值：</td><td><span valuekey="value" xtype="text"  ></span></td></tr></table>'
 	};
 	var groupi =1;
 	function doAddGroup(){
-		var trhtml = '<tr type="queryFormTr">'
+		var trhtml = '<table width=100%><tr type="queryFormTr">'
 								+'<td style="width: 100px;"><span type="andor" xtype="radio"'
 									+' config="name: \'andor'+groupi+'\' ,defaultValue : \'and\',  data :[{id:\'and\',text:\'与\'},{id:\'or\',text:\'或\'}]"></span></td>'
 								+'<td><span type="tableitem" xtype="tableitem" configVar="tableitemConfig"></span></td>'
-							+'</tr>';
+							+'</tr></table>';
 		var tr = $(trhtml);
 		tr.renderAll();
 		$('#queryForm').append(tr);
