@@ -94,8 +94,8 @@ for(Map<String,Object> map : mapList){
 <%=eventStr.toString()%>
 </script>
 <script type="text/javascript">
-	var params = BaseUtil.getIframeParams();
-	var dataManager = params.dataManager?BaseUtil.toObject(params.dataManager):[];
+	var params = $.hh.getIframeParams();
+	var dataManager = params.dataManager?$.hh.toObject(params.dataManager):[];
 	var actionType = '<%=Convert.toString(request.getParameter("actionType"))%>';
 	var tableName = '<%=tableName%>';
 	var objectId= '<%=Convert.toString(request.getParameter("objectId"))%>';

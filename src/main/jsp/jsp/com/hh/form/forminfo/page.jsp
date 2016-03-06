@@ -21,7 +21,7 @@
 		margin : 10,
 		onClick : function(data) {
 			if (data.leaf == 1) {
-				BaseUtil.addTab({
+				$.hh.addTab({
 					id : data.id,
 					text :  '表单查看-'+data.text,
 					src : 'jsp-form-service-formlist?formId=' + data.id

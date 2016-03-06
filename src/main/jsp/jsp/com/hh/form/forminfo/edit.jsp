@@ -6,7 +6,7 @@
 <title>流程编辑</title>
 <%=BaseSystemUtil.getBaseJs("checkform")%>
 <script type="text/javascript">
-	var params = BaseUtil.getIframeParams();
+	var params = $.hh.getIframeParams();
 	var width = 600;
 	var height = 350;
 

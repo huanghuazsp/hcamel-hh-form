@@ -15,7 +15,7 @@
 	var height = 550;
 	var frameId = '<%=frameId%>';
 	var row = params.row || {
-		id : BaseUtil.getUUID()
+		id : $.hh.getUUID()
 	}
 	
 	params.row=row;
@@ -48,7 +48,7 @@
 	}
 
 	function init() {
-		BaseUtil.setFrameParams(frameId, params);
+		$.hh.setFrameParams(frameId, params);
 		$('#form').setValue(row);
 		var eventType = $('#span_eventType').getValue();
 		$('#' + frameId).attr('src', 'jsp-form-event-' + eventType);
