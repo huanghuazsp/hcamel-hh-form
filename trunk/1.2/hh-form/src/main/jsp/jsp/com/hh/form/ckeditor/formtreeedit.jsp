@@ -6,7 +6,7 @@
 <title>表单树编辑</title>
 <%=BaseSystemUtil.getBaseJs("checkform")%>
 <script type="text/javascript">
-	var params = BaseUtil.getIframeParams();
+	var params = $.hh.getIframeParams();
 	var width = 580;
 	var height = 220;
 	function save() {

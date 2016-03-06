@@ -11,7 +11,7 @@
 <script type="text/javascript">
 	var width = 650;
 	var height = 450;
-	var params = BaseUtil.getIframeParams();
+	var params = $.hh.getIframeParams();
 	function doAdd() {
 		Dialog.open({
 			url : 'jsp-form-event-eventEdit',

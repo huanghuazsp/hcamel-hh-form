@@ -49,7 +49,7 @@
 		render : false
 	};
 	function init() {
-		var width = (Browser.getWidth() - 150) / column.length;
+		var width = ($.hh.browser.getWidth() - 150) / column.length;
 		var dataList = [];
 		$.each(column, function(index, data) {
 			data.contentwidth = width;
@@ -63,8 +63,8 @@
 
 	function doAdd() {
 		Dialog.open({
-			width : Browser.getMainWidth() * 0.9,
-			height : Browser.getMainHeight() * 0.85,
+			width : $.hh.browser.getMainWidth() * 0.9,
+			height : $.hh.browser.getMainHeight() * 0.85,
 			url : 'jsp-form-service-ckeditorform?databaseType=<%=databaseType%>&hrefckeditor=' + formId,
 			params : {
 				callback : function() {
@@ -76,8 +76,8 @@
 	function doEdit() {
 		$.hh.pagelist.callRow("pagelist", function(row) {
 			Dialog.open({
-				width : Browser.getMainWidth() * 0.9,
-				height : Browser.getMainHeight() * 0.85,
+				width : $.hh.browser.getMainWidth() * 0.9,
+				height : $.hh.browser.getMainHeight() * 0.85,
 				url : 'jsp-form-service-ckeditorform?databaseType=<%=databaseType%>&hrefckeditor=' + formId
 						+ '&objectId=' + row.id,
 				params : {
@@ -91,8 +91,8 @@
 	function doView() {
 		$.hh.pagelist.callRow("pagelist", function(row) {
 			Dialog.open({
-				width : Browser.getMainWidth() * 0.9,
-				height : Browser.getMainHeight() * 0.85,
+				width : $.hh.browser.getMainWidth() * 0.9,
+				height : $.hh.browser.getMainHeight() * 0.85,
 				url : 'jsp-form-service-ckeditorform?actionType=select&databaseType=<%=databaseType%>&hrefckeditor=' + formId
 						+ '&objectId=' + row.id,
 				params : {
@@ -168,7 +168,7 @@
 			formdata.push(object);
 		});
 		var data = {};
-		data['object.cond'] = BaseUtil.toString(formdata);
+		data['object.cond'] = $.hh.toString(formdata);
 		data.tableName = tableName;
 		$('#pagelist').loadData({
 			params : data
