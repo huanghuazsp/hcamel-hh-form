@@ -49,13 +49,7 @@
 		render : false
 	};
 	function init() {
-		var width = ($.hh.browser.getWidth() - 150) / column.length;
-		var dataList = [];
-		$.each(column, function(index, data) {
-			data.contentwidth = width;
-			dataList.push(data);
-		});
-		pagelistConfig.column = dataList;
+		pagelistConfig.column = column;
 		$('#pagelist').render();
 		
 		doAddGroup();
