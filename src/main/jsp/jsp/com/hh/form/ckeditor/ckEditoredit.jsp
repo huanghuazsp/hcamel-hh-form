@@ -104,7 +104,7 @@
 		<div id="formdiv"  style="overflow: visible;">
 			<iframe id="<%=workflowiframeId%>" name="<%=workflowiframeId%>" width=100%
 					height=100% frameborder=0 
-					src="/hhcommon/opensource/ckeditor/ckeditor.html"></iframe>
+					src="jsp-form-ckeditor-editor"></iframe>
 		</div>
 	</div>
 </body>

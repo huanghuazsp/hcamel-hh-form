@@ -39,6 +39,7 @@
 	
 	for(var i=0;i<column.length;i++){
 		var data = column[i];
+		data.text=data.textfield;
 		data.id=data.name;
 	}
 	var pagelistConfig = {
