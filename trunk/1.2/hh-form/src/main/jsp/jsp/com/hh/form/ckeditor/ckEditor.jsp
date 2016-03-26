@@ -81,14 +81,9 @@
 	}
 
 	function init() {
-		$('#'+iframeId).attr('src','/hhcommon/opensource/ckeditor/ckeditor.html');
+		$('#'+iframeId).attr('src','jsp-form-ckeditor-editor');
 	}
 </script>
-<style>
-.ui-menu {
-	width: 100%;
-}
-</style>
 </head>
 <body>
 	<div xtype="border_layout">

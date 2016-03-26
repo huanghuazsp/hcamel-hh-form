@@ -4,68 +4,68 @@
 <html>
 <head>
 <title>事件列表</title>
-<%=BaseSystemUtil.getBaseJs()%>
+<%=BaseSystemUtil.getBaseJs()+ BaseSystemUtil.getKey("event")%>
 <%
 	
 %>
 <script type="text/javascript">
-	var width = 650;
-	var height = 450;
-	var params = $.hh.getIframeParams();
-	function doAdd() {
+var width = 700;
+var height = 450;
+var params = $.hh.getIframeParams();
+function doAdd() {
+	Dialog.open({
+		url : 'jsp-form-event-eventEdit',
+		params : {
+			data : params.data,
+			callback : function(data) {
+				var dataList = $('#pagelist').data('data') || [];
+				dataList.push(data);
+				$('#pagelist').loadData({
+					data : dataList
+				});
+			}
+		}
+	});
+}
+
+function doEdit() {
+	$.hh.pagelist.callRow("pagelist", function(row) {
 		Dialog.open({
 			url : 'jsp-form-event-eventEdit',
 			params : {
+				row : row,
 				data : params.data,
 				callback : function(data) {
-					var dataList = $('#pagelist').data('data') || [];
-					dataList.push(data);
-					$('#pagelist').loadData({
-						data : dataList
-					});
+					$("#pagelist").getWidget().updateRow(data);
 				}
 			}
 		});
-	}
+	});
+}
 
-	function doEdit() {
-		$.hh.pagelist.callRow("pagelist", function(row) {
-			Dialog.open({
-				url : 'jsp-form-event-eventEdit',
-				params : {
-					row : row,
-					data : params.data,
-					callback : function(data) {
-						$("#pagelist").getWidget().updateRow(data);
-					}
-				}
-			});
-		});
-	}
+function doDelete() {
+	$.hh.pagelist.callRow("pagelist", function(row) {
+		$("#pagelist").getWidget().deleteRow(row);
+	});
+}
 
-	function doDelete() {
-		$.hh.pagelist.callRow("pagelist", function(row) {
-			$("#pagelist").getWidget().deleteRow(row);
-		});
-	}
+function doSave() {
+	params.callback($('#pagelist').data('data') || []);
+	Dialog.closethis();
+}
 
-	function doSave() {
-		params.callback($('#pagelist').data('data') || []);
-		Dialog.close();
-	}
+var pagelistConfig = {
+	paging : false,
+	column : [ {
+		name : 'eventName',
+		text : '名称'
+	} ],
+	data : params.eventList
+}
 
-	var pagelistConfig = {
-		paging : false,
-		column : [ {
-			name : 'eventName',
-			text : '名称'
-		} ],
-		data : params.eventList
-	}
-
-	function init() {
-
-	}
+function init() {
+	
+}
 </script>
 </head>
 <body>
