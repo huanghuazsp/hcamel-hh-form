@@ -22,7 +22,7 @@ Ext.define('com.hh.form.MainFormDesigner', {
 
 		var canvasForm = Ext.create('com.hh.base.BaseFormPanel', {
 					title : '设计器',
-					icon : 'struts-image?path=com/hh/form/img/computer2_16x16.gif',
+					icon : 'outsystem-File-img?path=com/hh/form/img/computer2_16x16.gif',
 					id : canvasFormId,
 					buttons : null,
 					listeners : {
@@ -39,7 +39,7 @@ Ext.define('com.hh.form.MainFormDesigner', {
 		this.canvasForm = canvasForm;
 
 		var sourcePanel = Ext.create('Ext.panel.Panel', {
-					icon : 'struts-image?path=com/hh/form/img/script_16x16.gif',
+					icon : 'outsystem-File-img?path=com/hh/form/img/script_16x16.gif',
 					autoScroll : true,
 					title : '脚本'
 				});
@@ -148,7 +148,7 @@ Ext.define('com.hh.form.MainFormDesigner', {
 		var page = this;
 		if (type == 'preview') {
 			return {
-				icon : 'struts-image?path=com/hh/form/img/search.gif',
+				icon : 'outsystem-File-img?path=com/hh/form/img/search.gif',
 				text : '预览',
 				handler : function() {
 					if (page.canvasForm.items == null) {
@@ -203,7 +203,7 @@ Ext.define('com.hh.form.MainFormDesigner', {
 			};
 		} else if (type == "deleteColumn") {
 			return {
-				icon : 'struts-image?path=com/hh/form/img/table_delete.png',
+				icon : 'outsystem-File-img?path=com/hh/form/img/table_delete.png',
 				text : '删除字段',
 				handler : function() {
 					Desktop.openWindow('com.hh.form.ColumnList', {
