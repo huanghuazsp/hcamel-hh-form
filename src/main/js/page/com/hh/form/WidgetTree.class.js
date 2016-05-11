@@ -157,7 +157,7 @@ Ext.define('com.hh.form.WidgetTree', {
 			};
 		} else if (type == 'settings') {
 			return {
-				icon : 'struts-image?path=com/hh/form/img/settings1_16x16.gif',
+				icon : 'outsystem-File-img?path=com/hh/form/img/settings1_16x16.gif',
 				text : '属性',
 				handler : function() {
 					panel.doOpenWidgetSettings();

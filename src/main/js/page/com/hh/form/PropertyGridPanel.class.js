@@ -62,7 +62,7 @@ Ext.define('com.hh.form.PropertyGridPanel', {
 		var panel = this;
 		if (type == 'getValues') {
 			return {
-				icon : 'struts-image?path=com/hh/form/img/settings1_16x16.gif',
+				icon : 'outsystem-File-img?path=com/hh/form/img/settings1_16x16.gif',
 				text : '设置属性',
 				handler : function() {
 					panel.doSetProperty();
