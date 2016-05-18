@@ -268,7 +268,7 @@
 									} ],
 							height : $.hh.browser.getHeight() - 180,
 							fullPage : false,
-							//contentsCss : '../jquery/jqueryuiframe.css',
+							//contentsCss : '../jquery/hhjqueryui.css',
 							menu_groups : 'clipboard,form,tablecell,tablecellproperties,tablerow,tablecolumn,table,anchor,link,flash,checkbox,radio,textfield,hiddenfield,imagebutton,button,select,textarea,'
 									+ extraPlugins
 						});
