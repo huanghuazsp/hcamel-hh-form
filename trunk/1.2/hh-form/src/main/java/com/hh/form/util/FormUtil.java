@@ -19,8 +19,8 @@ import com.hh.form.bean.HhXtForm_bak;
 import com.hh.form.bean.model.Column;
 import com.hh.system.util.Check;
 import com.hh.system.util.Convert;
+import com.hh.system.util.StaticVar;
 import com.hh.system.util.date.DateFormat;
-import com.hh.system.util.statics.StaticVar;
 
 public class FormUtil {
 	public static List<Column> xtFormToColumn(String formSource) {

@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.hh.form.bean.FormInfo;
 import com.hh.system.service.impl.BaseMongoService;
+import com.hh.system.util.StaticVar;
 import com.hh.system.util.dto.ParamFactory;
-import com.hh.system.util.statics.StaticVar;
 
 @Service
 public class FormInfoService extends BaseMongoService<FormInfo> {
