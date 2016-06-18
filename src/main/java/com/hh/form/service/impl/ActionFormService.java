@@ -71,7 +71,9 @@ public class ActionFormService {
 	public void deleteByIds(String ids, String tableName) {
 		String sql = FormUtil.getDeleteDataSql(tableName);
 		List<String> idList = Convert.strToList(ids);
-		hibernateDAO.deleteEntityBySql(sql, "ids", idList);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("ids", idList);
+		hibernateDAO.executeSql(sql, map);
 	}
 
 	public Map<String, Object> save(Map<String, Object> parameterMap)
@@ -88,10 +90,10 @@ public class ActionFormService {
 		if (parameterMap.get("id") == null || "".equals(parameterMap.get("id"))) {
 			String sql = FormUtil.getInsertDataSql(hhXtForm);
 			parameterMap.put("id", UUID.randomUUID().toString());
-			hibernateDAO.createEntityBySql(sql, parameterMap);
+			hibernateDAO.executeSql(sql, parameterMap);
 		} else {
 			String sql = FormUtil.getUpdateDataSql(hhXtForm);
-			hibernateDAO.updateEntityBySql(sql, parameterMap);
+			hibernateDAO.executeSql(sql, parameterMap);
 		}
 		return parameterMap;
 	}
@@ -106,10 +108,10 @@ public class ActionFormService {
 		if ("insert".equals(parameterMap.get("saveType"))) {
 			parameterMap.put("id", UUID.randomUUID().toString());
 			String sql = FormUtil.getInsertDataSql(hhXtForm);
-			hibernateDAO.createEntityBySql(sql, parameterMap);
+			hibernateDAO.executeSql(sql, parameterMap);
 		} else {
 			String sql = FormUtil.getUpdateDataSql(hhXtForm);
-			hibernateDAO.updateEntityBySql(sql, parameterMap);
+			hibernateDAO.executeSql(sql, parameterMap);
 		}
 		return parameterMap;
 	}
