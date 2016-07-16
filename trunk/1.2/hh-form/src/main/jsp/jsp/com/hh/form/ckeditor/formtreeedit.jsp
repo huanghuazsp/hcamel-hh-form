@@ -66,7 +66,7 @@
 						<td><span xtype="text" config=" name : 'text',required :true"></span></td>
 						<td xtype="label">父节点：</td>
 						<td><span xtype="selectTree" id="node_span"
-							config="name: 'node' , params : {isNoLeaf : true}, tableName : 'sys_form_tree' , url : 'form-SysFormTree-queryTreeList'"></span>
+							config="name: 'node' , noCheckLeaf:true,tableName : 'sys_form_tree' , url : 'form-SysFormTree-queryTreeList'"></span>
 						</td>
 					</tr>
 					<tr>
