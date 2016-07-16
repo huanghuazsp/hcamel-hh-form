@@ -72,7 +72,7 @@
 					<tr>
 						<td xtype="label">父节点：</td>
 						<td><span xtype="selectTree" id="node_span"
-							config="name: 'node' , params : {isNoLeaf : true}, findTextAction: 'form-FormInfo-findObjectById', url : 'form-FormInfo-queryTreeList'"></span>
+							config="name: 'node' , findTextAction: 'form-FormInfo-findObjectById', url : 'form-FormInfo-queryTreeList'"></span>
 						</td>
 					</tr>
 					<tr>

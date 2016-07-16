@@ -55,5 +55,8 @@ public class SysFormTree extends BaseTreeNodeEntity<SysFormTree> {
 	public void setEventList(String eventList) {
 		this.eventList = eventList;
 	}
-	
+	@Column(name = "LEAF", length = 1)
+	public int getLeaf() {
+		return leaf;
+	}
 }

@@ -94,7 +94,7 @@
 					config="onClick : $.hh.tree.refresh,text : '刷新' ,params: 'formTree' "></span>
 			</div>
 			<span xtype="tree"
-				config=" id:'formTree' , url:'form-SysFormTree-queryTreeList' , remove : remove , edit : edit, onClick : formTreeClick"></span>
+				config=" id:'formTree' , url:'form-SysFormTree-queryList' , remove : remove , edit : edit, onClick : formTreeClick"></span>
 		</div>
 		<div id="formdiv"  style="overflow: visible;">
 			<iframe id="<%=workflowiframeId%>" name="<%=workflowiframeId%>" width=100%
