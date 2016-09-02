@@ -278,13 +278,13 @@
 				if ($(u.data.element.$).attr('xtype')) {
 					xtype = 'hh' + $(u.data.element.$).attr('xtype');
 				}
-				u.data.dialog && t.openDialog(xtype)
+				u.data.dialog && t.openDialog(xtype) 
 				// u.data.dialog && t.openDialog(u.data.dialog)
 			}, null, null, 999);
 		};
 		CKEDITOR.instances['editor'].on("instanceReady", function() {
 			var toolId = '#cke_71';
-			if ($.hh.browser.type.indexOf('IE') > -1) {
+			if ($.hh.browser.type.indexOf('IE6') > -1 || $.hh.browser.type.indexOf('IE7') > -1 || $.hh.browser.type.indexOf('IE8') > -1) {
 				toolId = '#cke_72';
 			}
 			$(toolId).find('a').each(
