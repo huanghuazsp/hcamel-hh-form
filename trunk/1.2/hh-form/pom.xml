@@ -47,8 +47,8 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.hh.system</groupId>
-			<artifactId>a-hh-system</artifactId>
+			<groupId>com.hh.baseproject</groupId>
+			<artifactId>a-hh-baseproject</artifactId>
 			<version>1.0</version>
 		</dependency>
 	</dependencies>
