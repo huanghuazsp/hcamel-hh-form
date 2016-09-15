@@ -1,18 +1,17 @@
 package com.hh.form.service.impl;
 
-import java.util.UUID;
-
 import javax.annotation.PostConstruct;
 
 import org.springframework.stereotype.Service;
 
+import com.hh.system.util.PrimaryKey;
 import com.hh.usersystem.bean.usersystem.SysMenu;
 import com.hh.usersystem.util.steady.StaticProperties;
 
 @Service
 public class SetupInitializer {
 	public static void main(String[] args) {
-		System.out.println(UUID.randomUUID().toString());
+		System.out.println(PrimaryKey.getPrimaryKeyUUID());
 	}
 
 	@PostConstruct
