@@ -7,9 +7,7 @@
 <%=BaseSystemUtil.getBaseJs("layout", "ztree", "ztree_edit",
 					"ckeditor")%>
 <script type="text/javascript">
-	<%
-	String workflowiframeId =  PrimaryKey.getPrimaryKeyUUID();
-	%>
+	<%String workflowiframeId =  PrimaryKey.getUUID();%>
 	var iframeId = '<%=workflowiframeId%>';
 	var selectTreeNode = {};
 	var eventList = [];

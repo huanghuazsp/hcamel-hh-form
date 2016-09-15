@@ -8,7 +8,7 @@
 <%=BaseSystemUtil.getBaseJs("checkform")
 					+ BaseSystemUtil.getKey("event")%>
 <%
-	String frameId = PrimaryKey.getPrimaryKeyUUID();
+	String frameId = PrimaryKey.getUUID();
 %>
 <script type="text/javascript">
 	var width = 650;
