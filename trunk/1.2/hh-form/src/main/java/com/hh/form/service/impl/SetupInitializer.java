@@ -4,7 +4,7 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.stereotype.Service;
 
-import com.hh.system.util.PrimaryKey;
+import com.hh.system.util.pk.PrimaryKey;
 import com.hh.usersystem.bean.usersystem.SysMenu;
 import com.hh.usersystem.util.steady.StaticProperties;
 
