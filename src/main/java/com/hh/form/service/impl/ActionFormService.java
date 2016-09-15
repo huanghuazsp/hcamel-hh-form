@@ -89,7 +89,7 @@ public class ActionFormService {
 
 		if (parameterMap.get("id") == null || "".equals(parameterMap.get("id"))) {
 			String sql = FormUtil.getInsertDataSql(hhXtForm);
-			parameterMap.put("id", PrimaryKey.getPrimaryKeyUUID());
+			parameterMap.put("id", PrimaryKey.getUUID());
 			hibernateDAO.executeSql(sql, parameterMap);
 		} else {
 			String sql = FormUtil.getUpdateDataSql(hhXtForm);
@@ -106,7 +106,7 @@ public class ActionFormService {
 						dataId));
 		FormUtil.typeConversion(parameterMap, hhXtForm);
 		if ("insert".equals(parameterMap.get("saveType"))) {
-			parameterMap.put("id", PrimaryKey.getPrimaryKeyUUID());
+			parameterMap.put("id", PrimaryKey.getUUID());
 			String sql = FormUtil.getInsertDataSql(hhXtForm);
 			hibernateDAO.executeSql(sql, parameterMap);
 		} else {

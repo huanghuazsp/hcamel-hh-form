@@ -29,7 +29,7 @@ public class MongoFormOperService {
 		objectMap.remove("tableName");
 		objectMap.put("_id", id);
 		if (Check.isEmpty(id)) {
-			String uuidString = PrimaryKey.getPrimaryKeyUUID();
+			String uuidString = PrimaryKey.getUUID();
 			objectMap.put("_id", uuidString);
 			objectMap.put("id", uuidString);
 		}

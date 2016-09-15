@@ -11,7 +11,7 @@ import com.hh.usersystem.util.steady.StaticProperties;
 @Service
 public class SetupInitializer {
 	public static void main(String[] args) {
-		System.out.println(PrimaryKey.getPrimaryKeyUUID());
+		System.out.println(PrimaryKey.getUUID());
 	}
 
 	@PostConstruct
