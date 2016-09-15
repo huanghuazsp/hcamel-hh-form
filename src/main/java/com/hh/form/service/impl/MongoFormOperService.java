@@ -12,11 +12,11 @@ import com.hh.mongo.dao.inf.IMongoDAOInf;
 import com.hh.system.util.Check;
 import com.hh.system.util.Convert;
 import com.hh.system.util.Json;
-import com.hh.system.util.PrimaryKey;
 import com.hh.system.util.dto.PageRange;
 import com.hh.system.util.dto.PagingData;
 import com.hh.system.util.dto.ParamFactory;
 import com.hh.system.util.dto.ParamInf;
+import com.hh.system.util.pk.PrimaryKey;
 
 @Service
 public class MongoFormOperService {
