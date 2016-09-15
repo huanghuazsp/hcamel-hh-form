@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +14,7 @@ import com.hh.hibernate.dao.inf.IHibernateDAO;
 import com.hh.system.util.Check;
 import com.hh.system.util.Convert;
 import com.hh.system.util.MessageException;
+import com.hh.system.util.PrimaryKey;
 import com.hh.system.util.dto.PageRange;
 import com.hh.system.util.dto.ParamFactory;
 
@@ -89,7 +89,7 @@ public class ActionFormService {
 
 		if (parameterMap.get("id") == null || "".equals(parameterMap.get("id"))) {
 			String sql = FormUtil.getInsertDataSql(hhXtForm);
-			parameterMap.put("id", UUID.randomUUID().toString());
+			parameterMap.put("id", PrimaryKey.getPrimaryKeyUUID());
 			hibernateDAO.executeSql(sql, parameterMap);
 		} else {
 			String sql = FormUtil.getUpdateDataSql(hhXtForm);
@@ -106,7 +106,7 @@ public class ActionFormService {
 						dataId));
 		FormUtil.typeConversion(parameterMap, hhXtForm);
 		if ("insert".equals(parameterMap.get("saveType"))) {
-			parameterMap.put("id", UUID.randomUUID().toString());
+			parameterMap.put("id", PrimaryKey.getPrimaryKeyUUID());
 			String sql = FormUtil.getInsertDataSql(hhXtForm);
 			hibernateDAO.executeSql(sql, parameterMap);
 		} else {
