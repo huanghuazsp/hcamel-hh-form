@@ -81,18 +81,23 @@
 	function init() {
 		$('#'+iframeId).attr('src','jsp-form-ckeditor-editor');
 	}
+	function querytree(){
+		$('#span_formTree').loadData({
+			params : {text:$('#span_treeText').getValue()}
+		});
+	}
 </script>
 </head>
 <body>
 	<div xtype="border_layout">
-		<div config="render : 'west'">
+		<div config="render : 'west'" style="overflow :hidden; ">
 			<div xtype="toolbar" config="type:'head'">
 				<span xtype="button" config="onClick:addFormType,text:'添加'"></span>
-				<span xtype="button"
-					config="onClick : $.hh.tree.refresh,text : '刷新' ,params: 'formTree' "></span>
+				<span xtype="text" config=" name : 'treeText' ,width:90 ,enter: querytree"></span>
+				<span xtype="button" config=" icon :'hh_img_query' , onClick : querytree "></span>
 			</div>
 			<span xtype="tree"
-				config=" id:'formTree' , url:'form-SysFormTree-queryList' , remove : remove , edit : edit, onClick : formTreeClick"></span>
+				config=" id:'formTree' , url:'form-SysFormTree-queryList' , remove : remove , edit : edit, onClick : formTreeClick,nheight:42 "></span>
 		</div>
 		<div id="formdiv"  style="overflow: visible;">
 			<iframe id="<%=workflowiframeId%>" name="<%=workflowiframeId%>" width=100%
