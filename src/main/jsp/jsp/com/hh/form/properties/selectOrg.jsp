@@ -32,7 +32,7 @@
 			<tr>
 				<td xtype="label">类型：</td>
 				<td colspan="3"><span xtype="radio"
-					config="name: 'selectType' ,defaultValue : 'job',  data :[ { id : 'job' , text : '岗位' } , { id : 'dept' , text : '部门' } , { id : 'org' , text : '机构' }  ]"></span></td>
+					config="name: 'selectType' ,value : 'job',  data :[ { id : 'job' , text : '岗位' } , { id : 'dept' , text : '部门' } , { id : 'org' , text : '机构' }  ]"></span></td>
 			</tr>
 		</table>
 	</form>
