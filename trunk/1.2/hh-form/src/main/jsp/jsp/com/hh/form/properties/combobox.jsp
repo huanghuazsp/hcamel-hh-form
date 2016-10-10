@@ -7,13 +7,14 @@
 <%=BaseSystemUtil.getBaseJs("checkform","pinyin")+BaseSystemUtil.getKey("form")%>
 <script type="text/javascript">
 	function dataitemChange(value) {
-		$('#span_url').setValue('system-SysData-queryTreeListCode?dataTypeId='+value.id);
+		$('#span_url').setValue('system-SysData-queryTreeListCode?dataTypeId='+value.code);
 	}
 	var dataitemConfig = {
 		onChange : dataitemChange,
 		name : 'dataitem',
 		findTextAction :$.hh.getRootFrame().contextPath+ '/system-SysDataType-findObjectByCode',
-		url : $.hh.getRootFrame().contextPath+ '/system-SysDataType-queryTreeListCode'
+		url : $.hh.getRootFrame().contextPath+ '/system-SysDataType-queryTreeListCode',
+		selectKey : 'code'
 	}
 </script>
 </head>
