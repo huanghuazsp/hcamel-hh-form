@@ -16,7 +16,7 @@ public class SetupInitializer {
 
 	@PostConstruct
 	public void initialize() {
-		for (SysMenu hhXtCd : StaticProperties.hhXtCds) {
+		for (SysMenu hhXtCd : StaticProperties.sysMenuList) {
 			if ("系统管理".equals(hhXtCd.getText())) {
 				hhXtCd.getChildren().add(new SysMenu( "xTxBOR4fbANwYEbH3U5","表单设计",
 						"jsp-form-service-formmain", "/hhcommon/images/extjsico/17460321.png", 0, 1));
