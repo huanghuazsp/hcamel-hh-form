@@ -7,8 +7,8 @@
 <%=BaseSystemUtil.getBaseJs("checkform")%>
 <script type="text/javascript">
 	var params = $.hh.getIframeParams();
-	var width = 580;
-	var height = 220;
+	var width = 600;
+	var height = 300;
 	function save() {
 		$.hh.validation.check('form', function(formData) {
 			if(formData.leaf==1 && (formData.tableName==null || formData.tableName=='')){

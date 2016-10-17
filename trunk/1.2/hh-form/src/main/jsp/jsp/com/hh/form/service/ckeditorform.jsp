@@ -160,7 +160,7 @@ for(Map<String,Object> map : mapList){
 <script type="text/javascript">
 $(function(){
 	var width = $('#form').find('table').eq(0).css('width');
-	$('#maintable').css('width',width);
+	$('#form').css('width',width);
 });
 </script>
 </head>
@@ -172,22 +172,9 @@ $(function(){
 		<%
 			}
 		%>
-		<table cellpadding="0" cellspacing="0" border="0" width="100%"
-			height="100%">
-			<tr>
-				<td align="center" valign="top">
-					<table  id="maintable"   cellspacing="0" cellpadding="0">
-						<tr>
-							<td align=left>
 								<form id="form" xtype="form" style="padding-top: 20px">
 									<%=Convert.toString(html)%>
 								</form>
-							</td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-		</table>
 		<%
 			if (!"workflow".equals(type)) {
 		%>
