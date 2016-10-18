@@ -29,7 +29,7 @@
 			</tr>
 			<tr>
 				<td xtype="label">单选：</td>
-				<td colspan="3"><span xtype="check" config=" name : 'radio'  "></span></td>
+				<td colspan="3"><span xtype="check" config=" name : 'many'  "></span></td>
 			</tr>
 		</table>
 	</form>
