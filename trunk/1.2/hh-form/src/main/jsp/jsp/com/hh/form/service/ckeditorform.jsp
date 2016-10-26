@@ -172,9 +172,9 @@ $(function(){
 		<%
 			}
 		%>
-								<form id="form" xtype="form" style="padding-top: 20px">
-									<%=Convert.toString(html)%>
-								</form>
+				<form id="form" xtype="form" style="padding-top: 20px;margin: 0px auto;	margin-top: 10px;margin-bottom: 10px;">
+					<%=Convert.toString(html)%>
+				</form>
 		<%
 			if (!"workflow".equals(type)) {
 		%>
