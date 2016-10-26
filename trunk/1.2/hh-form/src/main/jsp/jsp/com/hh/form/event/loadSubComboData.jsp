@@ -11,7 +11,7 @@
 </script>
 </head>
 <body>
-	<form id="form" xtype="form">
+	<form id="form" xtype="form" class="form">
 		<table xtype="form">
 			<tr>
 				<td xtype="label">渲染控件：</td>

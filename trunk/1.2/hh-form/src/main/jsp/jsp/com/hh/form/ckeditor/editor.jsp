@@ -194,7 +194,133 @@
 		extraPlugins += buttonitems[i] + ','
 	}
 	extraPlugins = extraPlugins.substr(0, extraPlugins.length - 1);
-	window.onload = function() {
+	
+	function loadToolbar(){
+		var toolId = '#cke_71';
+		if ($.hh.browser.type.indexOf('IE6') > -1 || $.hh.browser.type.indexOf('IE7') > -1 || $.hh.browser.type.indexOf('IE8') > -1) {
+			toolId = '#cke_72';
+		}
+		$(toolId).find('a').each(
+				function() {
+					var ckeditor_a = $(this);
+					var background = ckeditor_a.find('span').eq(0).css(
+							'background-image');
+					var li = $('<li style="font-weight:normal;margin:2px;'
+							+ 'border :  1px solid '+$.hh.property.classObject.themeContent+'">'
+							+ '<table>'
+							+ '<tr>'
+							+ '<td>'
+							+ '<img width="16" height="16" src="'
+							+ (background.replace('url("', '').replace('url(', '').replace(
+									'");', '').replace(
+											');', '').replace(
+											')', ''))
+							+ '"	style="">'
+							+ '</td>' + '<td>' + ckeditor_a.attr('title')
+							+ '</td>' + '</tr>' + '</table>' + '	</li>');
+					if ($.hh.browser.type.indexOf('IE') > -1) {
+						li.attr('onclick', ckeditor_a.attr('onmouseup'));
+					} else {
+						li.attr('onclick', ckeditor_a.attr('onclick'));
+					}
+					li
+					.mouseover(
+							function() {
+								$(this)
+										.css(
+												'border',
+												'1px solid '
+														+ $.hh.property.classObject.themeHead);
+							})
+					.mouseout(
+							function() {
+								$(this)
+										.css(
+												'border',
+												'1px solid '
+														+ $.hh.property.classObject.themeContent);
+							});
+					$("#btn_menu").append(li);
+				});
+		$("#btn_menu").menu();
+		$(toolId).remove();
+	}
+
+	function getData() {
+		var html = CKEDITOR.instances.editor.getData().replace(/<img config/g,
+				'<span config').replace(/ztype="span" \/>/g, '></span>');
+		var jsonConfig = [];
+		var $html = $('<span>' + html + '</span>');
+		$html.find("[xtype]").each(function() {
+			var config = $(this).getConfig();
+			if (config.xtype != 'form') {
+				if (!config.text) {
+					config.text = config.name;
+				}
+				jsonConfig.push(config);
+			}
+		});
+		return {
+			html : html,
+			jsonConfigObject : jsonConfig,
+			eventListObject : eventList,
+			eventList : $.hh.toString(eventList),
+			jsonConfig : $.hh.toString(jsonConfig)
+		};
+	}
+	var text = '';
+	
+	function setData(data){
+		if(data.eventList){
+			eventList=$.hh.toObject(data.eventList);
+		}else{
+			eventList=[];
+		}
+		text = data.text;
+		Doing.show();
+		if(data.html){
+			CKEDITOR.instances.editor.setData(data.html.replace(
+					/<span config/g, '<img config').replace(/><\/span>/g,
+					'ztype="span" />'));
+		}else{
+			CKEDITOR.instances.editor.setData('');
+		}
+		Doing.hide();
+		/*if($.hh.browser.type.indexOf('IE')>-1){
+			try{
+				CKEDITOR.tools.callFunction(4,this);
+				setTimeout(function(){
+					CKEDITOR.tools.callFunction(4,this);
+					Doing.hide();
+				},500);
+			}catch(e){
+				Doing.hide();
+			}
+		}else{
+			Doing.hide();
+		}*/
+	}
+	
+	var eventList = [];
+
+	function openview() {
+		var data = getData();
+		parent.Request.submit('jsp-form-ckeditor-ckeditorview', {
+			html : data.html,
+			eventList : data.eventList,
+			title : text
+		});
+	}
+	
+	function updateHtml (){
+		parent.updateHtml(getData());
+	}
+	
+	function init() {
+		setTimeout(renderCkeditor,500)
+	}
+	
+	function renderCkeditor(){
 		var editor = CKEDITOR
 				.replace(
 						'editor',
@@ -283,128 +409,9 @@
 			}, null, null, 999);
 		};
 		CKEDITOR.instances['editor'].on("instanceReady", function() {
-			var toolId = '#cke_71';
-			if ($.hh.browser.type.indexOf('IE6') > -1 || $.hh.browser.type.indexOf('IE7') > -1 || $.hh.browser.type.indexOf('IE8') > -1) {
-				toolId = '#cke_72';
-			}
-			$(toolId).find('a').each(
-					function() {
-						var ckeditor_a = $(this);
-						var background = ckeditor_a.find('span').eq(0).css(
-								'background-image');
-						var li = $('<li style="font-weight:normal;margin:2px;'
-								+ 'border :  1px solid '+$.hh.property.classObject.themeContent+'">'
-								+ '<table>'
-								+ '<tr>'
-								+ '<td>'
-								+ '<img width="16" height="16" src="'
-								+ (background.replace('url("', '').replace('url(', '').replace(
-										'");', '').replace(
-												');', '').replace(
-												')', ''))
-								+ '"	style="">'
-								+ '</td>' + '<td>' + ckeditor_a.attr('title')
-								+ '</td>' + '</tr>' + '</table>' + '	</li>');
-						if ($.hh.browser.type.indexOf('IE') > -1) {
-							li.attr('onclick', ckeditor_a.attr('onmouseup'));
-						} else {
-							li.attr('onclick', ckeditor_a.attr('onclick'));
-						}
-						li
-						.mouseover(
-								function() {
-									$(this)
-											.css(
-													'border',
-													'1px solid '
-															+ $.hh.property.classObject.themeHead);
-								})
-						.mouseout(
-								function() {
-									$(this)
-											.css(
-													'border',
-													'1px solid '
-															+ $.hh.property.classObject.themeContent);
-								});
-						$("#btn_menu").append(li);
-					});
-			$("#btn_menu").menu();
-			$(toolId).remove();
-		});
-	};
-
-	function getData() {
-		var html = CKEDITOR.instances.editor.getData().replace(/<img config/g,
-				'<span config').replace(/ztype="span" \/>/g, '></span>');
-		var jsonConfig = [];
-		var $html = $('<span>' + html + '</span>');
-		$html.find("[xtype]").each(function() {
-			var config = $(this).getConfig();
-			if (config.xtype != 'form') {
-				if (!config.text) {
-					config.text = config.name;
-				}
-				jsonConfig.push(config);
-			}
-		});
-		return {
-			html : html,
-			jsonConfigObject : jsonConfig,
-			eventListObject : eventList,
-			eventList : $.hh.toString(eventList),
-			jsonConfig : $.hh.toString(jsonConfig)
-		};
-	}
-	var text = '';
-	
-	function setData(data){
-		if(data.eventList){
-			eventList=$.hh.toObject(data.eventList);
-		}else{
-			eventList=[];
-		}
-		text = data.text;
-		Doing.show();
-		if(data.html){
-			CKEDITOR.instances.editor.setData(data.html.replace(
-					/<span config/g, '<img config').replace(/><\/span>/g,
-					'ztype="span" />'));
-		}else{
-			CKEDITOR.instances.editor.setData('');
-		}
-		Doing.hide();
-		/*if($.hh.browser.type.indexOf('IE')>-1){
-			try{
-				CKEDITOR.tools.callFunction(4,this);
-				setTimeout(function(){
-					CKEDITOR.tools.callFunction(4,this);
-					Doing.hide();
-				},500);
-			}catch(e){
-				Doing.hide();
-			}
-		}else{
-			Doing.hide();
-		}*/
-	}
-	
-	var eventList = [];
-
-	function openview() {
-		var data = getData();
-		parent.Request.submit('jsp-form-ckeditor-ckeditorview', {
-			html : data.html,
-			eventList : data.eventList,
-			title : text
-		});
-	}
-	
-	function updateHtml (){
-		parent.updateHtml(getData());
-	}
-	
-	function init() {
+			loadToolbar();
+		}); 
+		
 	}
 
 	function doEventList() {

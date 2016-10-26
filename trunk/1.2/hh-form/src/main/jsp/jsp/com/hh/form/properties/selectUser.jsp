@@ -11,7 +11,7 @@
 </head>
 <body>
 <div xtype="hh_content" style="overflow: visible;">
-	<form id="form" xtype="form">
+	<form id="form" xtype="form" class="form">
 		<table xtype="form">
 			<tr>
 				<td xtype="label">中文名称：</td>

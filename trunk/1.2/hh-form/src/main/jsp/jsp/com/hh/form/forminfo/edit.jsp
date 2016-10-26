@@ -54,7 +54,7 @@
 </head>
 <body>
 	<div xtype="hh_content">
-		<form id="form" xtype="form">
+		<form id="form" xtype="form" class="form">
 			<span xtype="text" config="name: 'html' ,hidden:true"></span> <span
 				xtype="text" config="name: 'eventList' ,hidden:true"></span> <span
 				xtype="text" config="name: 'id' ,hidden:true"></span>
