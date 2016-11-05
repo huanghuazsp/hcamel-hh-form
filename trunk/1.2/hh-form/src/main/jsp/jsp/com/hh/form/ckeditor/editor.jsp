@@ -38,6 +38,9 @@
 					configStr.length - 2));
 
 			field.setAttribute('ztype', 'span');
+			
+			$('.cke_dialog').show();
+			$('.cke_dialog_background_cover').show();
 		},
 		onShow : function(page, iframeId,wjj,xtype) {
 			var e = page;
