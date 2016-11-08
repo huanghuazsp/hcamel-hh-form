@@ -431,7 +431,7 @@
 		});
 	}
 
-	function set_height() {
+	function setHeight() {
 		$('#cke_1_contents').height($.hh.browser.getHeight() - 180);
 	}
 </script>
