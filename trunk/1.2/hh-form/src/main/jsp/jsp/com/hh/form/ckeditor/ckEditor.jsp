@@ -79,7 +79,7 @@
 	}
 
 	function init() {
-		$('#'+iframeId).attr('src','jsp-form-ckeditor-editor');
+		$('#'+iframeId).attr('src','jsp-form-ckeditor-ueditor');
 	}
 	function querytree(){
 		$('#span_formTree').loadData({
