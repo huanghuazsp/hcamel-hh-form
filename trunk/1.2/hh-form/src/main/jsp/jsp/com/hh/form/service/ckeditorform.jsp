@@ -14,7 +14,7 @@
 <html>
 <head>
 <title>表单</title>
-<%=BaseSystemUtil.getBaseJs("checkform", "date", "ckeditor", "fileUpload")%>
+<%=BaseSystemUtil.getBaseJs("checkform", "date", "ueditor", "fileUpload")%>
 <%
 	String id = Convert.toString(request.getParameter("hrefckeditor"));
 	String databaseType = Convert.toString(request.getParameter("databaseType"));

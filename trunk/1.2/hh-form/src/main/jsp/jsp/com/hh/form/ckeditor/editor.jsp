@@ -5,7 +5,7 @@
 <html>
 <head>
 <%=BaseSystemUtil.getBaseJs("layout", "ztree", "ztree_edit",
-					"ckeditor")%>
+					"ueditor")%>
 <script type="text/javascript">
 	var hhckeditor = {
 		setup : function(config) {
