@@ -9,7 +9,7 @@
 <html>
 <head>
 <title>表单预览</title>
-<%=BaseSystemUtil.getBaseJs("checkform", "date", "ckeditor", "fileUpload")%>
+<%=BaseSystemUtil.getBaseJs("checkform", "date", "ueditor", "fileUpload")%>
 <%
 Map<String,Object> paramMap =   Json.toMap(request.getParameter("params"));
 String html =  Convert.toString(paramMap.get("html"));

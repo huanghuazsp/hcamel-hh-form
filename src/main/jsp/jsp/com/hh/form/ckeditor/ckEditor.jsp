@@ -4,8 +4,7 @@
 <%=BaseSystemUtil.getBaseDoctype()%>
 <html>
 <head>
-<%=BaseSystemUtil.getBaseJs("layout", "ztree", "ztree_edit",
-					"ckeditor")%>
+<%=BaseSystemUtil.getBaseJs("layout", "ztree", "ztree_edit")%>
 <script type="text/javascript">
 	<%String workflowiframeId =  PrimaryKey.getUUID();%>
 	var iframeId = '<%=workflowiframeId%>';

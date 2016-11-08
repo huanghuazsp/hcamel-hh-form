@@ -54,12 +54,12 @@
 		$('#form').setValue(row);
 		var eventType = $('#span_eventType').getValue();
 		if (eventType) {
-			$('#' + frameId).attr('src', eventType + '.html');
+			$('#' + frameId).attr('src','jsp-form-event-'+ eventType );
 		}
 	}
 
 	function setHeight(height) {
-		$('#' + frameId).height(height - 150);
+		$('#' + frameId).height(height - 180);
 	}
 </script>
 </head>
