@@ -39,6 +39,7 @@
 		var jsonConfig = [];
 		var $html = $('<span>' + html + '</span>');
 		$html.find('table').each(function(){
+			$(this).attr('xtype','form');
 			$(this).removeAttr('width');
 			if($(this).attr('hhwidth')){
 				$(this).attr('width',$(this).attr('hhwidth'));
