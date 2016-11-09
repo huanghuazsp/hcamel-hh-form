@@ -81,9 +81,12 @@
 		text = data.text;
 		Doing.show();
 		if(data.html){
-			ue.setContent(data.html.replace(
+			var span = $('<span></span>');
+			span.html(data.html.replace(
 					/<span config/g, '<img config').replace(/><\/span>/g,
 					'ztype="span" />'));
+			//span.find('table').removeAttr('width');
+			ue.setContent(span.html());
 		}else{
 			ue.setContent('');
 		}
