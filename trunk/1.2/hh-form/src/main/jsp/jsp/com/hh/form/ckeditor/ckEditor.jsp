@@ -91,9 +91,16 @@
 	<div xtype="border_layout">
 		<div config="render : 'west'" style="overflow :hidden; ">
 			<div xtype="toolbar" config="type:'head'">
+				<table style="font-size: 12" width=100%  cellspacing="0" cellpadding="0" ><tr>
+				<td width="60">
 				<span xtype="button" config="onClick:addFormType,text:'添加'"></span>
-				<span xtype="text" config=" name : 'treeText' ,width:90 ,enter: querytree"></span>
+				</td>
+				<td >
+				<span xtype="text" config=" name : 'treeText' ,enter: querytree"></span>
+				</td>
+				<td width="40px" style="text-align:right;">
 				<span xtype="button" config=" icon :'hh_img_query' , onClick : querytree "></span>
+				</td><tr></table>
 			</div>
 			<span xtype="tree"
 				config=" id:'formTree' , url:'form-SysFormTree-queryList' , remove : remove , edit : edit, onClick : formTreeClick,nheight:42 "></span>
