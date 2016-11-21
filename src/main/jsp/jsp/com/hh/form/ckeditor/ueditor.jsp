@@ -182,12 +182,12 @@
 				img : '/hhcommon/opensource/ckeditor/plugins/hhuploadpic/hhuploadpic.jpg',
 				xtype : 'uploadpic',
 				onClick : widgetClick
-			},{
+			},/* {
 				text : '附件上传',
 				img : '/hhcommon/opensource/ckeditor/plugins/hhfile/hhfile.jpg',
 				xtype : 'file',
 				onClick : widgetClick
-			},{
+			}, */{
 				text : '附件上传',
 				img : '/hhcommon/opensource/ckeditor/plugins/hhfileUpload/hhfileUpload.jpg',
 				xtype : 'fileUpload',
