@@ -35,7 +35,7 @@
     
     function getData() {
 		var html = ue.getContent().replace(/<img config/g,
-		'<span config').replace(/ztype="span" \/>/g, '></span>');;
+		'<span config').replace(/ztype="span" \/>/g, '></span>');
 		var jsonConfig = [];
 		var $html = $('<span>' + html + '</span>');
 		$html.find('table').each(function(){
@@ -52,6 +52,12 @@
 				}
 			});
 		});
+		
+		$html.find('img[xtype]').each(function(){
+			$(this)[0].outerHTML=$(this)[0].outerHTML.replace(/<img /g,
+			'<span ').replace(/\/>/g, '></span>');
+		});
+		
 		html=$html.html();
 		$html.find("[xtype]").each(function() {
 			var config = $(this).getConfig();
@@ -85,7 +91,10 @@
 			span.html(data.html.replace(
 					/<span config/g, '<img config').replace(/><\/span>/g,
 					'ztype="span" />'));
-			//span.find('table').removeAttr('width');
+			span.find('span[xtype]').each(function(){
+				$(this)[0].outerHTML = $(this)[0].outerHTML.replace(/<span /g,
+				'<img ').replace(/><\/span>/g, '/>');
+			});
 			ue.setContent(span.html());
 		}else{
 			ue.setContent('');
