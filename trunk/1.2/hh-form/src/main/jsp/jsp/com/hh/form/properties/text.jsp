@@ -21,7 +21,9 @@
 			</tr>
 			<tr>
 				<td xtype="label">默认值：</td>
-				<td colspan="3"><span xtype="text" configVar=" defaultValueConfig "></span></td>
+				<td><span xtype="text" configVar=" defaultValueConfig "></span></td>
+				<td xtype="label">水印：</td>
+				<td><span xtype="text" config=" name : 'watermark' "></span></td>
 			</tr>
 			<tr>
 			<td xtype="label">宽度：</td>
