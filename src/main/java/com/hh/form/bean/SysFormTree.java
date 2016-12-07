@@ -8,12 +8,12 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import com.hh.hibernate.util.base.BaseTreeNodeEntity;
+import com.hh.hibernate.util.base.BaseEntityTree;
 
 @Entity
 @Table(name = "SYS_FORM_TREE")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class SysFormTree extends BaseTreeNodeEntity<SysFormTree> {
+public class SysFormTree extends BaseEntityTree<SysFormTree> {
 	private String html;
 	private String tableName;
 	private String jsonConfig;

@@ -8,12 +8,12 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import com.hh.hibernate.util.base.BaseTwoEntity;
+import com.hh.hibernate.util.base.BaseEntity;
 
 //@Entity
 //@Table(name = "HH_XT_FORM")
 //@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class HhXtForm_bak extends BaseTwoEntity implements java.io.Serializable {
+public class HhXtForm_bak extends BaseEntity implements java.io.Serializable {
 	private String formSource;
 	private String tableName;
 	private String dataId;
