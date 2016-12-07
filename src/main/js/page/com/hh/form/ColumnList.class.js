@@ -68,8 +68,8 @@ Ext.define('com.hh.form.ColumnList', {
 			ExtFrame.info("请选中要删除的数据！");
 		} else {
 			var strids = Util.recordsToStrByKey(records, this.pkey);
-			var vorgids = Util.recordsToStrByKey(records, "vorgid");
-			var vcreates = Util.recordsToStrByKey(records, "vcreate");
+			var orgids = Util.recordsToStrByKey(records, "orgid");
+			var createUsers = Util.recordsToStrByKey(records, "createUser");
 
 			if (Util.isNull(strids)) {
 				return;
@@ -82,8 +82,8 @@ Ext.define('com.hh.form.ColumnList', {
 								if (btn == 'yes') {
 									Request.synRequestObject(url, {
 												ids : strids,
-												orgids : vorgids,
-												vcreates : vcreates,
+												orgids : orgids,
+												createUsers : createUsers,
 												tableName : records[0]
 														.get('tableName')
 											});
