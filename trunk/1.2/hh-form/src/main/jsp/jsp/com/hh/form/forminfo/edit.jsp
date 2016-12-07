@@ -16,8 +16,8 @@
 		$.hh.validation.check('form', function(formData) {
 			if (queryData) {
 				$.extend(queryData, formData);
-				delete queryData.dcreate;
-				delete queryData.dupdate;
+				delete queryData.createTime;
+				delete queryData.updateTime;
 				formData = queryData;
 			}
 			formData.id = params.id;
