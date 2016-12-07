@@ -1,8 +1,8 @@
 package com.hh.form.bean;
 
-import com.hh.hibernate.util.base.BaseTreeNodeEntity;
+import com.hh.hibernate.util.base.BaseEntityTree;
 
-public class FormInfo extends BaseTreeNodeEntity<FormInfo> {
+public class FormInfo extends BaseEntityTree<FormInfo> {
 	private String html;
 	private String tableName;
 	private String jsonConfig;
