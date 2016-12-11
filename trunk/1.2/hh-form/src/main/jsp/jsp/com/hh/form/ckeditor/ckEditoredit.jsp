@@ -1,10 +1,10 @@
 <%@page import="com.hh.system.util.pk.PrimaryKey"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@page import="com.hh.system.util.BaseSystemUtil"%>
-<%=BaseSystemUtil.getBaseDoctype()%>
+<%@page import="com.hh.system.util.SystemUtil"%>
+<%=SystemUtil.getBaseDoctype()%>
 <html>
 <head>
-<%=BaseSystemUtil.getBaseJs("layout", "ztree", "ztree_edit",
+<%=SystemUtil.getBaseJs("layout", "ztree", "ztree_edit",
 					"ueditor")%>
 <script type="text/javascript">
 	<%String workflowiframeId =  PrimaryKey.getUUID();%>

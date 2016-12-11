@@ -4,12 +4,12 @@
 <%@page import="com.hh.system.util.Check"%>
 <%@page import="com.hh.system.util.Json"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@page import="com.hh.system.util.BaseSystemUtil"%>
-<%=BaseSystemUtil.getBaseDoctype()%>
+<%@page import="com.hh.system.util.SystemUtil"%>
+<%=SystemUtil.getBaseDoctype()%>
 <html>
 <head>
 <title>表单预览</title>
-<%=BaseSystemUtil.getBaseJs("checkform", "date", "ueditor", "fileUpload")%>
+<%=SystemUtil.getBaseJs("checkform", "date", "ueditor", "fileUpload")%>
 <%
 Map<String,Object> paramMap =   Json.toMap(request.getParameter("params"));
 String html =  Convert.toString(paramMap.get("html"));

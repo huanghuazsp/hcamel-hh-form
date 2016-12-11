@@ -1,11 +1,11 @@
 <%@page import="com.hh.system.service.impl.BeanFactoryHelper"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@page import="com.hh.system.util.BaseSystemUtil"%>
-<%=BaseSystemUtil.getBaseDoctype()%>
+<%@page import="com.hh.system.util.SystemUtil"%>
+<%=SystemUtil.getBaseDoctype()%>
 <html>
 <head>
 <title>表单设计</title>
-<%=BaseSystemUtil.getBaseJs("layout")%>
+<%=SystemUtil.getBaseJs("layout")%>
 <script type="text/javascript">
 	var emailMenu = {
 		data : [ {

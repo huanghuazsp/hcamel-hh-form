@@ -1,17 +1,17 @@
 <%@page import="com.hh.form.bean.FormInfo"%>
 <%@page import="com.hh.form.service.impl.FormInfoService"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@page import="com.hh.system.util.BaseSystemUtil"%>
+<%@page import="com.hh.system.util.SystemUtil"%>
 <%@page import="com.hh.form.bean.SysFormTree"%>
 <%@page import="com.hh.form.service.impl.SysFormTreeService"%>
 <%@page import="com.hh.system.service.impl.BeanFactoryHelper"%>
 <%@page import="com.hh.system.util.Convert"%>
 <%@page import="com.hh.system.util.Check"%>
 <%@page import="com.hh.system.util.Json"%>
-<%=BaseSystemUtil.getBaseDoctype()%>
+<%=SystemUtil.getBaseDoctype()%>
 <html>
 <head>
-<%=BaseSystemUtil.getBaseJs()%>
+<%=SystemUtil.getBaseJs()%>
 <%
 	String id = Convert.toString(request.getParameter("formId"));
 	String databaseType = Convert.toString(request.getParameter("databaseType"));
