@@ -70,7 +70,7 @@
 							config="name: 'leaf' ,value : 1, data :[{id:1,text:'表单'},{id:0,text:'类别'}]"></span></td>
 					</tr>
 					<tr>
-						<td xtype="label">父节点：</td>
+						<td xtype="label">上级节点：</td>
 						<td><span xtype="selectTree" id="node_span"
 							config="name: 'node' , findTextAction: 'form-FormInfo-findObjectById', url : 'form-FormInfo-queryTreeList'"></span>
 						</td>

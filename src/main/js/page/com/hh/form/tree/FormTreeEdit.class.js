@@ -73,7 +73,7 @@ Ext.define('com.hh.form.tree.FormTreeEdit', {
 					name : "node",
 					columnWidth : 0.5,
 					defaultSubmitValue : 'root',
-					fieldLabel : "父节点",
+					fieldLabel : "上级节点",
 					action : "form-FormTree-queryTreeList",
 					value : pid
 				}];
