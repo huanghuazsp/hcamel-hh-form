@@ -35,18 +35,18 @@
 		.getBeanFactory().getBean(FormInfoService.class);
 		FormInfo formInfo = formInfoService.findObjectById(id);
 		if(formInfo!=null){
-	jsonConfig = formInfo.getJsonConfig();
-	tableName = formInfo.getTableName();
-	html = formInfo.getHtml();
-	eventList = formInfo.getEventList();
+			jsonConfig = formInfo.getJsonConfig();
+			tableName = formInfo.getTableName();
+			html = formInfo.getHtml();
+			eventList = formInfo.getEventList();
 		}else{
-	SysFormTreeService sysFormTreeService = BeanFactoryHelper
-	.getBeanFactory().getBean(SysFormTreeService.class);
-	SysFormTree sysFormTree = sysFormTreeService.findObjectById(id);
-	jsonConfig = sysFormTree.getJsonConfig();
-	tableName = sysFormTree.getTableName();
-	html = sysFormTree.getHtml();
-	eventList = sysFormTree.getEventList();
+			SysFormTreeService sysFormTreeService = BeanFactoryHelper
+			.getBeanFactory().getBean(SysFormTreeService.class);
+			SysFormTree sysFormTree = sysFormTreeService.findObjectById(id);
+			jsonConfig = sysFormTree.getJsonConfig();
+			tableName = sysFormTree.getTableName();
+			html = sysFormTree.getHtml();
+			eventList = sysFormTree.getEventList();
 		}
 	}
 	
