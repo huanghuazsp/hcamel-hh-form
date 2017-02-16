@@ -14,7 +14,7 @@
 <html>
 <head>
 <title>表单</title>
-<%=SystemUtil.getBaseJs("checkform", "date", "ueditor", "fileUpload")%>
+<%=SystemUtil.getBaseJs("checkform", "date", "ueditor", "fileUpload","workflow")%>
 <%
 	String id = Convert.toString(request.getParameter("hrefckeditor"));
 	String databaseType = Convert.toString(request.getParameter("databaseType"));
@@ -95,7 +95,7 @@ for(Map<String,Object> map : mapList){
 </script>
 <script type="text/javascript">
 	var params = $.hh.getIframeParams();
-	var dataManager = params.dataManager?$.hh.toObject(params.dataManager):[];
+	var dataManager = WF.getDataManager(params);
 	var actionType = '<%=Convert.toString(request.getParameter("actionType"))%>';
 	var tableName = '<%=tableName%>';
 	var objectId= '<%=Convert.toString(request.getParameter("objectId"))%>';
@@ -131,15 +131,8 @@ for(Map<String,Object> map : mapList){
 			Dialog.errormsg("验证失败！！");
 		}
 	}
+	
 	function init() {
-		$.each(dataManager, function(i, data) {
-			if (data.readonly == 1) {
-				$('#span_' + data.field).toView();
-			}
-			if (data.hidden == 1) {
-				$('#span_' + data.field).hide();
-			}
-		});
 		if (objectId) {
 			Request.request('form-MongoFormOper-findObjectById', {
 				defaultMsg:false,
@@ -153,7 +146,11 @@ for(Map<String,Object> map : mapList){
 				} else {
 					$('#form').setValue(result);
 				}
+				WF.dataManagerWidgets(dataManager);
 			});
+		}else{
+			$('#form').setValue({});
+			WF.dataManagerWidgets(dataManager);
 		}
 	}
 </script>
