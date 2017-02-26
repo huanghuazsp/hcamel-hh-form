@@ -97,4 +97,10 @@ public class MongoFormOperService {
 	public void deleteByIds(String ids, String tableName) {
 		springMongoDAOImpl.remove(tableName, Convert.strToList(ids));
 	}
+
+	public void update(String tableName, String id, Map<String, Object> serviceMap1) {
+		serviceMap1.put("id", id);
+		springMongoDAOImpl.update(tableName, serviceMap1);
+		
+	}
 }
