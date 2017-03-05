@@ -28,7 +28,8 @@
 
 <script type="text/javascript">
 	var selectHHImg = null;
-
+	var isUeditorForm = true;
+	
     //实例化编辑器
     //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
     var ue = UE.getEditor('editor');
@@ -263,9 +264,40 @@
 		}
 		var configStr = $.hh.toString(config).replace(/\"/g,"'");
 		
+		
+		var width = config.width ;
+    	var height = config.height;
+    	var height_ = 34;
+   		if(xtype=='ckeditor' 
+   			|| xtype=='date'
+   			|| xtype=='itemselect'
+   			|| xtype=='selectColor'
+   			|| xtype=='selectOrg'
+   			|| xtype=='selectUser'
+   			|| xtype=='tableitem'
+   			|| xtype=='text'
+   			|| xtype=='textarea'
+   				 ){
+   			width = config.width || '100%'
+   			if(xtype=='ckeditor'){
+   				height_=234;
+   			}else if(xtype=='itemselect'){
+   				height_=244;
+   			}else if(xtype=='tableitem'){
+   				height_=60;
+   			}else if(xtype=='textarea'){
+   				height_=78;
+   			}
+   			if(!height){
+   				height=height_;
+      		}
+    	}
+		
 		var obj = {
-	        src:'/hhcommon/opensource/ckeditor/plugins/hh'+xtype+'/hh'+xtype+'.jpg',
+	        src:'/hhcommon/images/widget/'+xtype+'.png',
 	        xtype : xtype,
+	        width:width,
+	        height:height,
 	        config: configStr.substr(1,configStr.length - 2)
 	    };
 		ue.execCommand( 'insertimage', obj );
