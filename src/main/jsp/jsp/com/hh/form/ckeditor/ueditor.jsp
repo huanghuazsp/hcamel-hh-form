@@ -8,7 +8,7 @@
 
 </head>
 <body  xtype="border_layout">
-		<div config="render : 'west' ,resizable :false ,width:180 ">
+		<div config="render : 'west' ,resizable :false ,width:150 ">
 			<div xtype="toolbar" config="type:'head'"
 				style="height: 28px; text-align: center;">
 				<div style="margin: 5px 0px 0px 0px">控件列表</div>
@@ -23,7 +23,9 @@
 					config="onClick : openview,text : '预览' ,itype:'view' "></span> <span
 					xtype="button" config="onClick : doEventList ,text : '事件' ,icon:'hh_img_event' "></span>
 			</div>
+			<div id="editor_div" style="overflow-y : auto">
 			 <script id="editor" type="text/plain" style="width:99.8%;height:500px;"></script>
+			 </div>
 		</div>
 
 <script type="text/javascript">
@@ -305,6 +307,8 @@
     
     function setHeight(height) {
 		$('#editor').height(height - 180);
+		$('#editor_div').height(height - 35);
+		
 	}
 </script>
 </body>
