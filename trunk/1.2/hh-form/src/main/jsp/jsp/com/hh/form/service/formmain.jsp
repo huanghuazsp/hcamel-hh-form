@@ -10,17 +10,17 @@
 	var emailMenu = {
 		data : [ {
 			text : '表单设计器',
-			img : '/hhcommon/images/icons/world/world.png',
+			//img : '/hhcommon/images/icons/world/world.png',
 			url : 'jsp-form-ckeditor-ckEditor',
 			onClick : onClick
 		},{
 			text : '表单结果',
-			img : '/hhcommon/images/icons/world/world.png',
+			//img : '/hhcommon/images/icons/world/world.png',
 			url : 'jsp-form-service-formtree',
 			onClick : onClick
 		},  {
 			text : '表单模板',
-			img : '/hhcommon/images/icons/world/world.png',
+			//img : '/hhcommon/images/icons/world/world.png',
 			url : 'jsp-form-ckeditor-formmodel',
 			onClick : onClick
 		}
@@ -36,7 +36,7 @@
 </head>
 <body>
 	<div xtype="border_layout">
-		<div config="render : 'west',width:140">
+		<div config="render : 'west',width:60,open:0">
 			<span xtype=menu  configVar="emailMenu"></span>
 		</div>
 		<div style="overflow: visible;" id=centerdiv>
