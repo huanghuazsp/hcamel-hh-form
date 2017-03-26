@@ -22,7 +22,7 @@ Ext.define('com.hh.form.MainFormDesigner', {
 
 		var canvasForm = Ext.create('com.hh.base.BaseFormPanel', {
 					title : '设计器',
-					icon : 'outsystem-File-img?path=com/hh/form/img/computer2_16x16.gif',
+					icon : 'outsystem-File-img?path=com/hh/form/img/computer.gif',
 					id : canvasFormId,
 					buttons : null,
 					listeners : {
@@ -39,7 +39,7 @@ Ext.define('com.hh.form.MainFormDesigner', {
 		this.canvasForm = canvasForm;
 
 		var sourcePanel = Ext.create('Ext.panel.Panel', {
-					icon : 'outsystem-File-img?path=com/hh/form/img/script_16x16.gif',
+					icon : 'outsystem-File-img?path=com/hh/form/img/script.gif',
 					autoScroll : true,
 					title : '脚本'
 				});
