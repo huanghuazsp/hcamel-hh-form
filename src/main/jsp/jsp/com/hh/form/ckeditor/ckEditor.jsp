@@ -92,18 +92,22 @@
 		<div config="render : 'west'" style="overflow :hidden; ">
 			<div xtype="toolbar" config="type:'head'">
 				<table style="font-size: 12" width=100%  cellspacing="0" cellpadding="0" ><tr>
-				<td width="60">
-				<span xtype="button" config="onClick:addFormType,text:'添加'"></span>
-				</td>
 				<td >
 				<span xtype="text" config=" name : 'treeText' ,enter: querytree"></span>
 				</td>
 				<td width="40px" style="text-align:right;">
 				<span xtype="button" config=" icon :'hh_img_query' , onClick : querytree "></span>
 				</td><tr></table>
+				
+				<span xtype="button" config="onClick:addFormType,text:'添加'"></span>
+				<span xtype="button"
+					config="onClick: $.hh.tree.doUp , params:{treeid:'formTree',action:'form-SysFormTree-order'}  , text:'上移'  "></span>
+				<span xtype="button"
+					config="onClick: $.hh.tree.doDown , params:{treeid:'formTree',action:'form-SysFormTree-order'} , text:'下移'  "></span>
+				
 			</div>
 			<span xtype="tree"
-				config=" id:'formTree' , url:'form-SysFormTree-queryList' , remove : remove , edit : edit, onClick : formTreeClick,nheight:42 "></span>
+				config=" id:'formTree' , url:'form-SysFormTree-queryList' , remove : remove , edit : edit, onClick : formTreeClick,nheight:62 "></span>
 		</div>
 		<div id="formdiv"  style="overflow: visible;">
 			<iframe id="<%=workflowiframeId%>" name="<%=workflowiframeId%>" width=100%
