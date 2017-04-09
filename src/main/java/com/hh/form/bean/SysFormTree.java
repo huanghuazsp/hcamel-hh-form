@@ -8,11 +8,13 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import com.hh.hibernate.dao.inf.Order;
 import com.hh.hibernate.util.base.BaseEntityTree;
 
 @Entity
 @Table(name = "SYS_FORM_TREE")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Order(sorts = "asc")
 public class SysFormTree extends BaseEntityTree<SysFormTree> {
 	private String html;
 	private String tableName;
