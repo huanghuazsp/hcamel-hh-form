@@ -71,7 +71,7 @@
 			}
 		});
 		return {
-			html : html,
+			html : $.hh.xmlCompression(html),
 			jsonConfigObject : jsonConfig,
 			eventListObject : eventList,
 			eventList : $.hh.toString(eventList),
